@@ -1,79 +1,107 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import SocialProof from "@/components/SocialProof";
+import StatsTicker from "@/components/StatsTicker";
+import About from "@/components/About";
 import Services from "@/components/Services";
+import Implantology from "@/components/Implantology";
+import SleepDentistry from "@/components/SleepDentistry";
 import Calculator from "@/components/Calculator";
-import BeforeAfter from "@/components/BeforeAfter";
-import TechTrust from "@/components/TechTrust";
-import VideoShowcase from "@/components/VideoShowcase";
+import PrecisionMicroscope from "@/components/PrecisionMicroscope";
+import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
+import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
-import Faq from "@/components/Faq";
-import Contact from "@/components/Contact";
+import BookingForm from "@/components/BookingForm";
+import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
+
+// High density interstitials
+import { StatementBand, LabeledHairline, WatermarkStrip } from "@/components/Interstitials";
+
+// Scroll motion wrapper
+import { Reveal } from "@/components/motion";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main className="relative">
+      <main className="relative min-h-screen overflow-x-hidden">
+        {/* Layer 1: Epic Cinematic Hero */}
         <Hero />
-        <SocialProof />
         
-        {/* INTERSTITIAL 1: Styled Marquee Ticker */}
-        <div className="bg-primary text-accent py-5 overflow-hidden border-t border-b border-white/5 relative z-20 select-none">
-          <div className="animate-marquee whitespace-nowrap flex gap-12 text-[10px] tracking-[0.3em] font-bold uppercase">
-            <span>NOBEL BIOCARE ALL-ON-4 • PLANMECA 3D CT • ZEISS OPTICAL • NOBEL BIOCARE ALL-ON-4 • PLANMECA 3D CT • ZEISS OPTICAL •</span>
-            <span>NOBEL BIOCARE ALL-ON-4 • PLANMECA 3D CT • ZEISS OPTICAL • NOBEL BIOCARE ALL-ON-4 • PLANMECA 3D CT • ZEISS OPTICAL •</span>
-          </div>
-        </div>
-
-        <Services />
+        {/* Interstitial 1: Running Brand Marquee */}
+        <StatsTicker />
         
-        {/* INTERSTITIAL 2: Standalone oversized statement band */}
-        <div className="bg-bg-dark py-12 text-center relative overflow-hidden border-t border-b border-white/5">
-          <div className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none select-none">
-            <span className="font-display font-bold text-[8rem] tracking-wider text-white">ALL ON FOUR</span>
-          </div>
-          <p className="font-display italic text-white/80 text-xl md:text-2xl tracking-wide max-w-4xl mx-auto px-6 relative z-10 leading-relaxed">
-            «Реабілітація зубного ряду за один хірургічний день — це ліквідація дискомфорту та повернення жувальної функції відразу після встановлення опор»
-          </p>
-        </div>
-
-        <Calculator />
-
-        {/* INTERSTITIAL 3: Labeled Hairline */}
-        <div className="bg-bg-light py-8 relative">
-          <div className="max-w-7xl mx-auto px-6 flex items-center">
-            <span className="text-[10px] tracking-[0.25em] text-primary/40 font-bold uppercase whitespace-nowrap mr-6">ПОРТФОЛІО ТА ДОКАЗОВА ХІРУРГІЯ</span>
-            <div className="w-full h-[1px] bg-primary/10" />
-            <span className="text-[10px] tracking-[0.25em] text-primary/40 font-bold uppercase whitespace-nowrap ml-6">CASE 124 / 2024</span>
-          </div>
-        </div>
-
-        <BeforeAfter />
-        <TechTrust />
-        <VideoShowcase />
-
-        {/* INTERSTITIAL 4: Rating / Press Strip */}
-        <div className="bg-primary py-10 relative overflow-hidden border-t border-b border-white/5">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <span className="text-xs tracking-[0.2em] text-white/50 font-bold uppercase">СВІТОВІ СТАНДАРТИ ІМПЛАНТАЦІЇ В ХАРКОВІ</span>
-            <div className="flex gap-10 text-accent font-display font-semibold text-lg">
-              <span>99.2% успішних інтеграцій</span>
-              <span>•</span>
-              <span>100% сертифіковані імплантати Nobel</span>
-              <span>•</span>
-              <span>Штатний анестезіолог</span>
-            </div>
-          </div>
-        </div>
-
-        <Process />
-        <Testimonials />
-        <Faq />
-        <Contact />
+        {/* Layer 2: Elaborate About & Manifest */}
+        <Reveal>
+          <About />
+        </Reveal>
+        
+        {/* Interstitial 2: Structural Hairline */}
+        <LabeledHairline label="ЕКСПЕРТНИЙ ПРАЙС-ЛИСТ" />
+        
+        {/* Layer 3: Comprehensive Service Catalog */}
+        <Reveal>
+          <Services />
+        </Reveal>
+        
+        {/* Interstitial 3: Grand Statement Band */}
+        <Reveal>
+          <StatementBand text="«Хірургія без компромісів та штучних обмежень. Повертаємо здоров'я вашим зубам навіть у безнадійних випадках атрофії кістки»" />
+        </Reveal>
+        
+        {/* Layer 4: Deep Specialization (All-on-X / Zygoma) */}
+        <Reveal>
+          <Implantology />
+        </Reveal>
+        
+        {/* Layer 5: Sleep Dentistry Section */}
+        <Reveal>
+          <SleepDentistry />
+        </Reveal>
+        
+        {/* Interstitial 4: Tiny Hairline separator */}
+        <LabeledHairline label="ОЦІНКА ВАРТОСТІ ПАКЕТУ" />
+        
+        {/* Layer 6: Interactive Package Calculator */}
+        <Reveal>
+          <Calculator />
+        </Reveal>
+        
+        {/* Layer 7: German Precision Endodontics */}
+        <Reveal>
+          <PrecisionMicroscope />
+        </Reveal>
+        
+        {/* Layer 8: Before / After Clinical Portfolio */}
+        <Reveal>
+          <Portfolio />
+        </Reveal>
+        
+        {/* Layer 9: Treatment Workflow Journey */}
+        <Reveal>
+          <Process />
+        </Reveal>
+        
+        {/* Interstitial 5: Massive Background Watermark Ticker */}
+        <WatermarkStrip word="PRAKTIKA DENTAL" />
+        
+        {/* Layer 10: State-of-the-Art FAQ Accordions */}
+        <Reveal>
+          <FAQ />
+        </Reveal>
+        
+        {/* Layer 11: Real High-Contrast Testimonials with Featured review */}
+        <Reveal>
+          <Testimonials />
+        </Reveal>
+        
+        {/* Layer 12: Conversion optimized stateful Booking Form with NAP */}
+        <Reveal>
+          <BookingForm />
+        </Reveal>
       </main>
+      <BottomNav />
       <Footer />
     </>
   );

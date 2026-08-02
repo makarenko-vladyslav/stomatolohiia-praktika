@@ -1,5 +1,5 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="0" fill="hsl(215 50% 12%)" />
-  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-family="'Spectral', serif" font-weight="700" font-size="20" fill="hsl(185 90% 43%)">P</text>
+  <rect width="32" height="32" rx="8" fill="hsl(175 80% 40%)" />
+  <path d="M10 8h6c3.314 0 6 2.686 6 6s-2.686 6-6 6h-6v4h-2V8zm2 2v8h4c2.21 0 4-1.79 4-4s-1.79-4-4-4h-4z" fill="white" />
 </svg>

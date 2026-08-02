@@ -1,99 +1,84 @@
 @import "tailwindcss";
 
+
 @theme {
-  --color-primary: hsl(215 50% 12%);
-  --color-accent: hsl(185 90% 43%);
-  --color-bg-dark: hsl(215 50% 8%);
-  --color-bg-light: hsl(210 30% 97%);
-  --color-text-main: hsl(215 40% 16%);
+  --color-primary: hsl(200 25% 10%);
+  --color-primary-light: hsl(200 15% 18%);
+  --color-accent: hsl(175 80% 40%);
+  --color-accent-hover: hsl(175 85% 32%);
+  --color-bg-light: hsl(180 15% 98%);
+  --color-bg-alt: hsl(195 15% 94%);
+  --color-text-main: hsl(200 35% 12%);
+  --color-text-muted: hsl(200 15% 45%);
+  --color-border-subtle: hsl(200 15% 88%);
   
-  --font-display: 'Spectral', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: "Spectral", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
 }
 
 @layer base {
   html {
     font-size: 16px;
-    scroll-behavior: auto !important;
   }
-  @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
-  @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
-  @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
-  @media (max-width: 640px) { html { font-size: 4.444444vw; } }
 
   body {
+    font-family: var(--font-body);
     background-color: var(--color-bg-light);
     color: var(--color-text-main);
-    font-family: var(--font-body);
-    font-feature-settings: "tnum" on, "lnum" on;
-    overflow-x: hidden;
   }
 }
 
-/* Custom Utilities & Keyframes */
+/* Base interactive styling */
+button, a {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .img-fallback {
-  background: linear-gradient(135deg, hsl(185 90% 43% / 0.2) 0%, hsl(215 50% 12% / 0.8) 100%);
-  min-height: 200px;
-  border-radius: 0;
+  background: linear-gradient(135deg, hsl(200 15% 18%) 0%, hsl(175 80% 40%) 100%);
+  min-height: 12.5rem;
+  border-radius: 0.75rem;
 }
 
-/* Scrollbar aesthetic */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg-light);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+/* Custom layout helper */
+.container-custom {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-.text-balance {
-  text-wrap: balance;
+/* Custom scrolling layout enhancements */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-*:focus-visible {
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.625rem); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Accessibility Focus Styling */
+:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 4px;
 }
 
-/* Keyframes */
-@keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Animation utilities */
-.animate-scroll-line {
-  animation: scrollLine 2s infinite cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,101 +1,116 @@
+
 "use client";
-import { useLocale } from '@/lib/i18n';
+import { useLocale } from "@/lib/i18n";
 
 export default function Footer() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   return (
-    <footer className="bg-bg-dark text-white pt-16 lg:pt-24 pb-8 border-t border-white/5 relative z-20 overflow-hidden">
+    <footer className="bg-primary text-white pt-24 pb-28 md:pb-16 border-t border-white/5 relative overflow-hidden z-10">
       
-      {/* Layer 1: Giant full-width brand wordmark bleeding off the bottom edge */}
-      <div className="absolute left-0 right-0 bottom-0 pointer-events-none select-none z-0 translate-y-12 md:translate-y-24 opacity-[0.01]">
-        <span className="font-display font-extrabold text-[22vw] leading-none text-white whitespace-nowrap block text-center">
+      {/* Structural horizontal hairline decoration */}
+      <div className="absolute top-0 left-0 w-full h-px bg-white/10" />
+
+      <div className="container-custom grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        
+        {/* Brand Block */}
+        <div className="md:col-span-4 space-y-4">
+          <a href="#hero" className="flex flex-col">
+            <span className="font-display font-bold text-3xl tracking-wider text-white">
+              PRAKTIKA
+            </span>
+            <span className="font-body text-[0.65rem] text-accent tracking-[0.2em] uppercase font-bold">
+              стоматологія
+            </span>
+          </a>
+          <p className="font-body text-[0.7rem] text-white/60 leading-relaxed max-w-sm">
+            Стоматологічна клініка повного циклу у Харкові. Спеціалізоване хірургічне лікування, КТ-діагностика та імплантація вилицевих систем Nobel і Straumann.
+          </p>
+          <p className="font-body text-[0.625rem] text-white/40">
+            {t("common.since") as string}
+          </p>
+        </div>
+
+        {/* Contacts column */}
+        <div className="md:col-span-4 space-y-4">
+          <h4 className="font-body text-xs uppercase tracking-[0.2em] text-accent font-bold">
+            {t("nav.contacts") as string}
+          </h4>
+          <ul className="space-y-3 font-body text-[0.7rem] text-white/80 leading-relaxed">
+            <li>
+              <span className="text-accent font-bold select-none">•</span> {t("common.address") as string}
+            </li>
+            <li>
+              <span className="text-accent font-bold select-none">•</span> <a href="tel:+380507717535" className="hover:text-accent font-semibold transition-colors">+38 050 771 75 35</a>
+            </li>
+            <li>
+              <span className="text-accent font-bold select-none">•</span> <a href="mailto:praktika.kh@gmail.com" className="hover:text-accent font-semibold transition-colors">praktika.kh@gmail.com</a>
+            </li>
+            <li>
+              <span className="text-accent font-bold select-none">•</span> {t("common.hours") as string}
+            </li>
+          </ul>
+        </div>
+
+        {/* Navigation column */}
+        <div className="md:col-span-4 space-y-4">
+          <h4 className="font-body text-xs uppercase tracking-[0.2em] text-accent font-bold">
+            Навігація
+          </h4>
+          <div className="grid grid-cols-2 gap-3 font-body text-[0.65rem] text-white/70 uppercase tracking-widest font-medium">
+            <a href="#about" className="hover:text-accent transition-colors">{t("nav.about") as string}</a>
+            <a href="#services" className="hover:text-accent transition-colors">{t("nav.services") as string}</a>
+            <a href="#implantology" className="hover:text-accent transition-colors">{t("nav.implantology") as string}</a>
+            <a href="#portfolio" className="hover:text-accent transition-colors">{t("nav.portfolio") as string}</a>
+            <a href="#faq" className="hover:text-accent transition-colors">{t("nav.faq") as string}</a>
+            <a href="#booking" className="hover:text-accent transition-colors font-bold text-accent">{t("common.book") as string}</a>
+          </div>
+
+          {/* Social Row as text-links */}
+          <div className="pt-4 border-t border-white/10 flex items-center space-x-4 select-none">
+            <span className="font-body text-[0.6rem] text-white/40 uppercase tracking-wider">Слідкуйте за нами:</span>
+            <div className="flex space-x-3 font-body text-[0.65rem] font-bold text-accent">
+              <a href="https://instagram.com" className="hover:underline transition-all">IG</a>
+              <span className="text-white/20 select-none">/</span>
+              <a href="https://facebook.com" className="hover:underline transition-all">FB</a>
+              <span className="text-white/20 select-none">/</span>
+              <a href="https://youtube.com" className="hover:underline transition-all">YT</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Structured Google Maps Integration with non-neutral background container */}
+      <div className="container-custom mb-12">
+        <div className="w-full h-64 rounded overflow-hidden border border-white/10 shadow-inner relative bg-primary-light">
+          <iframe 
+            src="https://www.google.com/maps?q=Kharkiv,Nauky+Avenue,77&output=embed" 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen={false} 
+            loading="lazy"
+            title="Google Maps Location"
+          />
+        </div>
+      </div>
+
+      {/* Huge Typographic wordmark bleeding off the bottom edge (Footer Signature Moment) */}
+      <div className="w-full text-center overflow-hidden pointer-events-none select-none my-6">
+        <span className="font-display font-bold text-[14vw] text-white/5 tracking-tight leading-none uppercase block translate-y-6">
           PRAKTIKA
         </span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Main 4-column stack */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          
-          {/* Column 1: Brand details & metadata */}
-          <div>
-            <span className="font-display font-bold text-2xl tracking-widest block mb-4 text-white">
-              PRAKTIKA
-            </span>
-            <p className="text-white/50 text-xs leading-relaxed max-w-xs font-mono mb-6">
-              {t('meta.tagline') as string}. Центральна стоматологічна хірургія та повний цикл протезування в Харкові. Засновано у 2018.
-            </p>
-            <div className="text-[10px] tracking-wider text-accent font-bold uppercase font-mono">
-              ЛІЦЕНЗІЯ МОЗ УКРАЇНИ №124-ХР
-            </div>
-          </div>
-
-          {/* Column 2: Structural Navigation Links */}
-          <div>
-            <span className="text-[10px] tracking-widest uppercase text-accent font-bold block mb-4 font-mono">
-              {t('nav.services') as string}
-            </span>
-            <ul className="flex flex-col gap-2.5 text-xs text-white/60 font-mono">
-              <li><a href="#services" className="hover:text-accent transition-colors">All-on-4 / All-on-6</a></li>
-              <li><a href="#services" className="hover:text-accent transition-colors">Імплантація Zygoma</a></li>
-              <li><a href="#services" className="hover:text-accent transition-colors">Хірургічний сон</a></li>
-              <li><a href="#services" className="hover:text-accent transition-colors">Ендодонтія під мікроскопом</a></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Contact details */}
-          <div>
-            <span className="text-[10px] tracking-widest uppercase text-accent font-bold block mb-4 font-mono">
-              Координати клініки
-            </span>
-            <address className="not-italic text-xs text-white/60 flex flex-col gap-2.5 font-mono">
-              <span className="text-white">Харків, проспект Науки, 77</span>
-              <span>Метро 23 Серпня</span>
-              <a href="tel:+380507717535" className="hover:text-accent transition-colors font-bold text-white">+38 050 771 75 35</a>
-              <a href="mailto:praktika.kh@gmail.com" className="hover:text-accent transition-colors">praktika.kh@gmail.com</a>
-            </address>
-          </div>
-
-          {/* Column 4: Text Social Connections */}
-          <div>
-            <span className="text-[10px] tracking-widest uppercase text-accent font-bold block mb-4 font-mono">
-              Цифрові Медіа
-            </span>
-            <ul className="flex flex-col gap-2.5 text-xs text-white/60 font-mono">
-              <li><a href="https://www.instagram.com/praktika.dentist/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Instagram Profile</a></li>
-              <li><a href="https://www.facebook.com/praktika.dentist" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Facebook Page</a></li>
-              <li><a href="https://t.me/praktika_kh" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Telegram Channel</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Separator Hairline */}
-        <div className="border-t border-white/5 my-8" />
-
-        {/* Legal block, Year, Credit & Brand Statement */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-[10px] text-white/40 font-mono">
-          <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
-            <span>&copy; {new Date().getFullYear()} Стоматологія Praktika. Всі права застережено.</span>
-            <span>•</span>
-            <span className="text-accent uppercase font-bold tracking-widest">EST. 2018</span>
-          </div>
-          <div className="text-center sm:text-right">
-            <span>Турбота про біологічну стабільність імплантів. </span>
-            <span>Розроблено </span>
-            <a 
-              href="https://makarich.framer.website" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-white/60 hover:text-accent font-bold underline underline-offset-4"
-            >
-              Студія Тест
-            </a>
-          </div>
-        </div>
-
+      {/* Bottom Legal bar */}
+      <div className="container-custom border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-white/40 font-body text-[0.625rem] space-y-4 md:space-y-0 uppercase tracking-widest">
+        <p>
+          &copy; 2026 Стоматологія Praktika. Всі права захищено. Ліцензія МОЗ АЕ №571344.
+        </p>
+        <p>
+          Розроблено <a href="https://makarich.framer.website" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Студія Тест</a>
+        </p>
       </div>
     </footer>
   );

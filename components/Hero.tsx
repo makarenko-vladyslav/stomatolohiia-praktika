@@ -1,172 +1,170 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useLocale } from "@/lib/i18n";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const { t } = useLocale();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
+  const { t, locale } = useLocale();
+  const [rotation, setRotation] = useState(0);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  // Rotate text-seal dynamically on idle scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setRotation(window.scrollY * 0.15);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section 
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary pt-28"
-    >
-      {/* LAYER 1: Giant watermark behind content */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none flex items-center justify-center opacity-[0.02]" aria-hidden="true">
-        <span className="font-display font-bold text-[24vw] tracking-wider text-white whitespace-nowrap">
-          PRAKTIKA
-        </span>
-      </div>
-
-      {/* LAYER 2: Background Video Stack with parallax and darkened gradient mask */}
-      <motion.div 
-        style={{ y: videoY }}
-        className="absolute inset-0 z-0 w-full h-full"
-      >
-        <video
-          autoPlay
-          muted
-          loop
+    <section id="hero" className="relative min-h-[100svh] flex items-center justify-center bg-primary overflow-hidden">
+      {/* Background Cinematic Video Loop & Gradient Overlay Layers */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
           playsInline
+          className="w-full h-full object-cover opacity-25"
           poster="https://images.pexels.com/videos/6192977/bank-card-calculation-caries-caries-removal-6192977.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
-          className="w-full h-full object-cover scale-105"
         >
           <source src="https://videos.pexels.com/video-files/6192977/6192977-hd_1280_720_30fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/60 to-primary/95" />
-      </motion.div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white grid grid-cols-1 lg:grid-cols-12 gap-12 py-16">
-        
-        {/* LAYER 3: Main Text Area */}
-        <motion.div 
-          style={{ y: textY }}
-          className="lg:col-span-8 flex flex-col justify-center"
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* LAYER 4: Kicker with real metadata */}
-          <span className="text-accent text-[10px] tracking-[0.25em] uppercase font-bold mb-6 block border-l-2 border-accent pl-4 font-mono">
-            {t('hero.kicker') as string}
-          </span>
-          
-          {/* LAYER 5: Multi-line poster H1 with one italic serif line */}
-          <h1 className="font-display font-bold text-white leading-[1.05] mb-8 text-balance">
-            <span className="block text-4xl sm:text-6xl lg:text-7xl">
-              {t('hero.title1') as string}
-            </span>
-            <span className="block italic font-normal text-3xl sm:text-5xl lg:text-6xl text-accent/90 my-3">
-              {t('hero.titleItalic') as string}
-            </span>
-            <span className="block text-4xl sm:text-6xl lg:text-7xl">
-              {t('hero.title2') as string}
-            </span>
-          </h1>
-
-          {/* LAYER 6: 1-2 line subtitle */}
-          <p className="text-white/75 text-sm sm:text-base max-w-xl leading-relaxed mb-12">
-            {t('hero.subtitle') as string}
-          </p>
-
-          {/* LAYER 7: CTA Pair with restored geometry padding */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-accent hover:bg-white hover:text-primary transition-all duration-300 text-center font-bold text-xs tracking-widest uppercase"
-            >
-              {t('hero.primaryCta') as string}
-            </a>
-            <a
-              href="#calculator"
-              className="px-8 py-4 border border-white/20 hover:border-white hover:bg-white/5 transition-all duration-300 text-center font-bold text-xs tracking-widest uppercase"
-            >
-              {t('hero.secondaryCta') as string}
-            </a>
-          </div>
-
-          {/* LAYER 8: 3-item meta strip with hairline separators */}
-          <div className="border-t border-white/10 pt-6 flex flex-wrap gap-8 text-[11px] font-bold tracking-wider text-white/50 uppercase font-mono">
-            <div className="flex items-center gap-2">
-              <span className="text-accent">ПН-СБ</span> 09:00 - 20:00
-            </div>
-            <div className="w-[1px] h-4 bg-white/10 self-center hidden sm:block" />
-            <div>ХАРКІВ, НАУКИ 77</div>
-            <div className="w-[1px] h-4 bg-white/10 self-center hidden sm:block" />
-            <div className="flex items-center gap-1.5">
-              <span>РЕЙТИНГ</span> <span className="text-accent">4.9 GOOGLE</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* LAYER 9: Flanking mini-copy columns and CSS seal */}
-        <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="lg:col-span-4 flex flex-col justify-between items-center lg:items-end gap-12"
-        >
-          {/* Rotating Text Seal (With magnetic spring micro-interactions) */}
-          <motion.div 
-            className="relative w-36 h-36 select-none cursor-pointer hidden lg:block group/seal"
-            whileHover={{ scale: 1.1, rotate: 15 }}
-            transition={{ type: "spring", stiffness: 300, damping: 15 }}
-          >
-            <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow group-hover/seal:[animation-duration:12s] transition-all duration-500">
-              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-              <text className="text-[7px] font-mono font-bold fill-white/40 tracking-[0.2em] uppercase transition-colors duration-300 group-hover/seal:fill-white/80">
-                <textPath href="#circlePath" startOffset="0%">
-                  • КЛІНІКА ПОВНОГО ЦИКЛУ • ХАРКІВ • EST. 2018
-                </textPath>
-              </text>
-            </svg>
-            <motion.div 
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              whileHover={{ scale: 1.15 }}
-            >
-              <span className="font-display font-bold text-accent text-lg group-hover/seal:text-white transition-colors duration-300">P</span>
-            </motion.div>
-          </motion.div>
-
-          {/* Clinical info cards / Mini copy columns */}
-          <div className="bg-primary/95 border border-white/10 p-8 w-full max-w-sm flex flex-col gap-6">
-            <span className="text-white/40 text-[9px] tracking-[0.25em] uppercase block border-b border-white/10 pb-2 font-mono">
-              PRAKTIKA CLINICAL FILE
-            </span>
-            <div className="grid grid-cols-1 gap-4 text-xs font-mono">
-              <div>
-                <span className="text-accent block mb-1">Спеціалізація</span>
-                <p className="text-white font-display font-semibold text-sm">All-on-4 / Zygoma хірургія</p>
-              </div>
-              <div>
-                <span className="text-accent block mb-1">Діагностика</span>
-                <p className="text-white font-display font-semibold text-sm">Planmeca 3D КТ у кріслі</p>
-              </div>
-              <div>
-                <span className="text-accent block mb-1">Анестезія</span>
-                <p className="text-white font-display font-semibold text-sm">Медикаментозний супровід сну</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        {/* Dark Surgical Teal Overlay (V3 Ground Choreography) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary/70 to-primary/98 mix-blend-multiply" />
       </div>
 
-      {/* LAYER 10: Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-10">
-        <span className="text-[8px] tracking-[0.3em] text-white/40 uppercase font-bold font-mono">
-          {t('hero.scroll') as string}
-        </span>
-        <div className="w-[1px] h-10 bg-white/10 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-accent origin-top animate-scroll-line" />
+      {/* High-end precision technical blueprint grid instead of noisy watermark */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.04]">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-white" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          <circle cx="50%" cy="50%" r="300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent" strokeDasharray="5,5" />
+          <circle cx="50%" cy="50%" r="150" fill="none" stroke="currentColor" strokeWidth="1" className="text-white" strokeDasharray="2,2" />
+          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="currentColor" strokeWidth="1.5" className="text-white" strokeDasharray="4,4" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="currentColor" strokeWidth="1.5" className="text-white" strokeDasharray="4,4" />
+        </svg>
+      </div>
+
+      <div className="container-custom relative z-10 pt-32 pb-16 flex flex-col justify-between min-h-[calc(100svh-4rem)]">
+        
+        {/* Layer 1: Top-aligned metadata branding with strict NAP indicators */}
+        <div className="flex justify-between items-start text-white/40 border-b border-white/10 pb-4 mb-8">
+          <p className="font-body text-[0.625rem] uppercase tracking-[0.3em] font-medium">
+            {t("hero.kicker") as string}
+          </p>
+          <p className="font-body text-[0.625rem] uppercase tracking-[0.3em] text-right font-medium">
+            EST. 2018 — ХАРКІВ, ЦЕНТР
+          </p>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          {/* Left Column content Block */}
+          <div className="lg:col-span-8 space-y-6">
+            <h1 className="font-display font-medium text-white tracking-tight leading-[1.05] text-[clamp(2.5rem,6.5vw,5.5rem)] text-wrap">
+              {t("hero.title") as string}{" "}
+              <span className="font-display italic text-accent font-normal underline decoration-accent/30 decoration-wavy underline-offset-[0.25rem]">
+                {t("hero.italicWord") as string}
+              </span>
+            </h1>
+
+            <p className="font-body text-white/80 max-w-2xl text-[clamp(0.85rem,1.4vw,1.05rem)] leading-relaxed font-normal">
+              {t("hero.sub") as string}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a 
+                href="#booking" 
+                className="bg-accent hover:bg-accent-hover text-white font-body text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded transition-all duration-300 shadow-2xl shadow-accent/20"
+              >
+                {t("common.cta") as string}
+              </a>
+              <a 
+                href="#services" 
+                className="bg-white/5 hover:bg-white/10 text-white border border-white/20 font-body text-xs uppercase tracking-[0.2em] font-bold px-8 py-4 rounded transition-all duration-300"
+              >
+                {t("nav.services") as string}
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Mini-copy column + Rotating text seal (Layer 7 & 11) */}
+          <div className="lg:col-span-4 flex flex-col items-center lg:items-end justify-center relative select-none">
+            {/* Spinning Text Seal Widget */}
+            <div 
+              className="relative w-40 h-40 flex items-center justify-center"
+              style={{ transform: `rotate(${rotation}deg)` }}
+            >
+              <svg viewBox="0 0 100 100" className="w-full h-full text-accent/80">
+                <path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                <text className="font-body text-[0.38rem] tracking-[0.22em] uppercase font-bold fill-current">
+                  <textPath href="#circlePath" startOffset="0%">
+                    {locale === "uk" 
+                      ? "• ПРАКТИКА • СТОМАТОЛОГІЯ • ХАРКІВ • ДІАГНОСТИКА " 
+                      : "• PRAKTIKA • DENTAL CLINIC • KHARKIV • CLINIC "}
+                  </textPath>
+                </text>
+              </svg>
+              {/* Inner core badge with numeric rating */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span className="font-body text-xs font-bold text-white tracking-widest">★ 4.9</span>
+                <span className="font-body text-[0.5rem] text-white/50 uppercase tracking-widest">GOOGLE</span>
+              </div>
+            </div>
+
+            {/* Micro details / Flanking columns info */}
+            <div className="mt-8 text-center lg:text-right max-w-xs space-y-2">
+              <p className="font-body text-[0.625rem] text-accent font-bold uppercase tracking-[0.2em]">
+                {locale === "uk" ? "ЛІЦЕНЗІЯ МОЗ" : "MOH LICENSE"}
+              </p>
+              <p className="font-body text-[0.65rem] text-white/50 leading-relaxed uppercase">
+                {locale === "uk" 
+                  ? "СЕРІЯ АЕ №571344 — ДЕРЖАВНІ СТАНДАРТИ ЯКОСТІ"
+                  : "SERIES AE NO. 571344 — HIGHEST MEDICAL COMPLIANCE"}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Layer 6: 3-item horizontal Meta Strip with Hairline separators */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 mt-12 border-t border-white/10 text-white/80">
+          <div className="flex items-center space-x-4">
+            <span className="font-body text-2xl font-bold text-accent tracking-tighter">
+              {t("hero.stat1_num") as string}
+            </span>
+            <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-white/60 leading-tight">
+              {t("hero.stat1_lbl") as string}
+            </span>
+          </div>
+          <div className="flex items-center space-x-4 md:border-x md:border-white/10 md:px-6">
+            <span className="font-body text-2xl font-bold text-accent tracking-tighter">
+              {t("hero.stat2_num") as string}
+            </span>
+            <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-white/60 leading-tight">
+              {t("hero.stat2_lbl") as string}
+            </span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="font-body text-2xl font-bold text-accent tracking-tighter">
+              {t("hero.stat3_num") as string}
+            </span>
+            <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] text-white/60 leading-tight">
+              {t("hero.stat3_lbl") as string}
+            </span>
+          </div>
+        </div>
+
+        {/* Layer 8: Precise vertical inline Scroll Cue */}
+        <div className="flex flex-col items-center pt-8 mt-4 select-none opacity-40">
+          <p className="font-body text-[0.55rem] tracking-[0.3em] text-white uppercase mb-2">SCROLL</p>
+          <div className="w-px h-8 bg-gradient-to-b from-white to-transparent" />
+        </div>
+
       </div>
     </section>
   );

@@ -1,156 +1,180 @@
+
 "use client";
-import { useState, useEffect } from 'react';
-import { useLocale } from '@/lib/i18n';
-import pricing from '@/lib/pricing.json';
+import { useState, useEffect } from "react";
+import { useLocale } from "@/lib/i18n";
+import pricing from "@/lib/pricing.json";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [selectedType, setSelectedType] = useState('all4');
-  const [extraSedation, setExtraSedation] = useState(false);
-  const [extraZirconia, setExtraZirconia] = useState(false);
-  const [extraBone, setExtraBone] = useState(false);
-  const [totalCost, setTotalCost] = useState(0);
+  const [units, setUnits] = useState(pricing.estimationLogic.defaultUnits);
+  const [implantType, setImplantType] = useState<"single" | "all_on_4" | "all_on_6" | "zygoma">("single");
+  const [useSleep, setUseSleep] = useState(false);
+  const [useCT, setUseCT] = useState(true);
+  const [estimate, setEstimate] = useState(0);
 
   useEffect(() => {
-    let base = 0;
-    if (selectedType === 'single') base = pricing.basePrices.singleImplant;
-    else if (selectedType === 'all4') base = pricing.basePrices.allOn4;
-    else if (selectedType === 'all6') base = pricing.basePrices.allOn6;
-    else if (selectedType === 'zygoma') base = pricing.basePrices.zygoma;
+    let price = 0;
+    
+    if (implantType === "single") {
+      price = pricing.basePrices.implantation_single * units;
+      // Add standard crowns for units
+      price += pricing.basePrices.crown_zirconia * units;
+    } else if (implantType === "all_on_4") {
+      price = pricing.basePrices.implantation_all_4;
+    } else if (implantType === "all_on_6") {
+      price = pricing.basePrices.implantation_all_6;
+    } else if (implantType === "zygoma") {
+      price = pricing.basePrices.implantation_zygoma;
+    }
 
-    if (extraSedation) base += pricing.options.sedation.price;
-    if (extraZirconia) base += pricing.options.zirconiaCrown.price;
-    if (extraBone) base += pricing.options.boneGrafting.price;
+    if (useSleep) {
+      price += pricing.basePrices.medication_sleep_hour * 2; // Default estimation is 2 hours
+    }
 
-    setTotalCost(base);
-  }, [selectedType, extraSedation, extraZirconia, extraBone]);
+    if (useCT) {
+      price += pricing.basePrices.computed_tomography;
+    }
+
+    setEstimate(price);
+  }, [units, implantType, useSleep, useCT]);
 
   return (
-    <section id="calculator" className="py-16 lg:py-24 bg-bg-light relative">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Layer 1: Kicker */}
-        <span className="text-[10px] tracking-[0.25em] text-accent font-bold uppercase block mb-3 font-mono">
-          КЛІНІЧНА ДІАГНОСТИКА ТА ОЦІНКА ВАРТОСТІ
-        </span>
-
-        {/* Layer 2: Heading & Subtitle */}
-        <div className="mb-16 max-w-3xl">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-primary leading-[1.1] mb-6">
-            {t('calculator.title') as string}
+    <section id="calculator" className="py-20 bg-bg-alt border-y border-border-subtle/30">
+      <div className="container-custom max-w-4xl">
+        <div className="text-center space-y-4 mb-12">
+          <span className="font-body text-xs font-bold text-accent uppercase tracking-widest">
+            {t("calculator.kicker") as string}
+          </span>
+          <h2 className="font-display text-text-main text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] font-bold">
+            {t("calculator.title") as string}
           </h2>
-          <p className="text-primary/75 text-sm leading-relaxed">
-            {t('calculator.subtitle') as string}
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Clean crisp solid card */}
+        <div className="bg-bg-light p-6 md:p-10 rounded border border-border-subtle shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {/* Layer 3: Opaque Light Option Blocks */}
-          <div className="lg:col-span-7 bg-white border border-primary/10 p-8 sm:p-12 shadow-sm">
+          {/* Controls Column */}
+          <div className="space-y-6">
             
-            {/* Restoration choices */}
-            <div className="mb-10">
-              <label className="block text-[10px] uppercase tracking-widest text-primary/50 mb-4 font-bold font-mono">
-                {t('calculator.typeLabel') as string}
+            {/* Preferred System */}
+            <div className="space-y-2">
+              <label className="font-body text-xs text-text-main font-semibold uppercase tracking-wider block">
+                {t("calculator.implant_type") as string}
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {(Object.keys(pricing.basePrices) as Array<keyof typeof pricing.basePrices>).map((key) => {
-                  let mappedKey = 'single';
-                  if (key === 'allOn4') mappedKey = 'all4';
-                  else if (key === 'allOn6') mappedKey = 'all6';
-                  else if (key === 'zygoma') mappedKey = 'zygoma';
-
-                  return (
-                    <button
-                      key={key}
-                      onClick={() => setSelectedType(mappedKey)}
-                      className={`p-5 border text-left transition-all duration-300 ${
-                        selectedType === mappedKey
-                          ? 'border-accent bg-accent/5 text-primary'
-                          : 'border-primary/10 hover:border-primary/30 text-primary/70 bg-transparent'
-                      }`}
-                    >
-                      <span className="block text-xs uppercase tracking-wider font-bold font-mono">
-                        {t(`calculator.types.${mappedKey}`) as string}
-                      </span>
-                    </button>
-                  );
-                })}
+              
+              <div className="grid grid-cols-1 gap-2">
+                <button
+                  onClick={() => { setImplantType("single"); }}
+                  className={`p-3 text-left font-body text-xs rounded border transition-all ${
+                    implantType === "single" ? "bg-accent/10 border-accent text-accent font-bold" : "border-border-subtle text-text-muted"
+                  }`}
+                >
+                  {t("calculator.single_opt") as string}
+                </button>
+                <button
+                  onClick={() => { setImplantType("all_on_4"); }}
+                  className={`p-3 text-left font-body text-xs rounded border transition-all ${
+                    implantType === "all_on_4" ? "bg-accent/10 border-accent text-accent font-bold" : "border-border-subtle text-text-muted"
+                  }`}
+                >
+                  {t("calculator.all4_opt") as string}
+                </button>
+                <button
+                  onClick={() => { setImplantType("all_on_6"); }}
+                  className={`p-3 text-left font-body text-xs rounded border transition-all ${
+                    implantType === "all_on_6" ? "bg-accent/10 border-accent text-accent font-bold" : "border-border-subtle text-text-muted"
+                  }`}
+                >
+                  {t("calculator.all6_opt") as string}
+                </button>
+                <button
+                  onClick={() => { setImplantType("zygoma"); }}
+                  className={`p-3 text-left font-body text-xs rounded border transition-all ${
+                    implantType === "zygoma" ? "bg-accent/10 border-accent text-accent font-bold" : "border-border-subtle text-text-muted"
+                  }`}
+                >
+                  {t("calculator.zygoma_opt") as string}
+                </button>
               </div>
             </div>
 
-            {/* Extra additions selection */}
-            <div>
-              <label className="block text-[10px] uppercase tracking-widest text-primary/50 mb-4 font-bold font-mono">
-                {t('calculator.optionsLabel') as string}
-              </label>
-              <div className="flex flex-col gap-4 font-mono">
-                <label className="flex items-center gap-4 cursor-pointer p-4 border border-primary/10 hover:border-primary/20 bg-primary/[0.01] transition-all">
-                  <input
-                    type="checkbox"
-                    checked={extraSedation}
-                    onChange={(e) => setExtraSedation(e.target.checked)}
-                    className="w-4 h-4 accent-accent bg-transparent border-primary/20"
-                  />
-                  <span className="text-xs sm:text-sm text-primary/80 font-medium">
-                    {t('calculator.options.sedation') as string} <span className="text-accent tabular-nums font-bold font-mono">({pricing.options.sedation.price.toLocaleString()} UAH)</span>
-                  </span>
-                </label>
-                <label className="flex items-center gap-4 cursor-pointer p-4 border border-primary/10 hover:border-primary/20 bg-primary/[0.01] transition-all">
-                  <input
-                    type="checkbox"
-                    checked={extraZirconia}
-                    onChange={(e) => setExtraZirconia(e.target.checked)}
-                    className="w-4 h-4 accent-accent bg-transparent border-primary/20"
-                  />
-                  <span className="text-xs sm:text-sm text-primary/80 font-medium">
-                    {t('calculator.options.zirconia') as string} <span className="text-accent tabular-nums font-bold font-mono">({pricing.options.zirconiaCrown.price.toLocaleString()} UAH)</span>
-                  </span>
-                </label>
-                <label className="flex items-center gap-4 cursor-pointer p-4 border border-primary/10 hover:border-primary/20 bg-primary/[0.01] transition-all">
-                  <input
-                    type="checkbox"
-                    checked={extraBone}
-                    onChange={(e) => setExtraBone(e.target.checked)}
-                    className="w-4 h-4 accent-accent bg-transparent border-primary/20"
-                  />
-                  <span className="text-xs sm:text-sm text-primary/80 font-medium">
-                    {t('calculator.options.bone') as string} <span className="text-accent tabular-nums font-bold font-mono">({pricing.options.boneGrafting.price.toLocaleString()} UAH)</span>
-                  </span>
-                </label>
+            {/* Units range slider — only active when single unit selected */}
+            {implantType === "single" && (
+              <div className="space-y-2 pt-2">
+                <div className="flex justify-between font-body text-xs text-text-main font-semibold">
+                  <span>{t("calculator.param_label") as string}</span>
+                  <span className="text-accent">{units}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min={pricing.estimationLogic.minUnits}
+                  max={pricing.estimationLogic.maxUnits}
+                  value={units}
+                  onChange={(e) => setUnits(parseInt(e.target.value))}
+                  className="w-full accent-accent bg-border-subtle/60 rounded-lg appearance-none h-1.5 cursor-pointer"
+                />
               </div>
+            )}
+
+            {/* Support Addons */}
+            <div className="space-y-3 pt-2">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input 
+                  type="checkbox"
+                  checked={useSleep}
+                  onChange={(e) => setUseSleep(e.target.checked)}
+                  className="w-4 h-4 rounded text-accent border-border-subtle focus:ring-accent"
+                />
+                <span className="font-body text-[0.7rem] text-text-main font-medium">
+                  {t("calculator.sleep_option") as string}
+                </span>
+              </label>
+
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input 
+                  type="checkbox"
+                  checked={useCT}
+                  onChange={(e) => setUseCT(e.target.checked)}
+                  className="w-4 h-4 rounded text-accent border-border-subtle focus:ring-accent"
+                />
+                <span className="font-body text-[0.7rem] text-text-main font-medium">
+                  {t("calculator.ct_option") as string}
+                </span>
+              </label>
             </div>
+
           </div>
 
-          {/* Layer 4: Floating High-Contrast Cost Preview Card with Standard CTA Geometry */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <div className="bg-primary text-white p-8 sm:p-12 flex flex-col gap-8 shadow-xl border border-white/5 relative overflow-hidden">
-              <div className="absolute -right-16 -bottom-16 w-32 h-32 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-              
-              <span className="text-[10px] tracking-widest uppercase text-accent font-bold border-b border-white/10 pb-3 font-mono">
-                {t('calculator.totalLabel') as string}
+          {/* Pricing Display Column */}
+          <div className="bg-primary text-white p-6 rounded flex flex-col justify-between border border-white/10">
+            <div className="space-y-4">
+              <span className="font-body text-[0.6rem] bg-accent text-white px-2 py-1 rounded font-bold uppercase tracking-widest block w-max">
+                {t("common.guarantee") as string}
               </span>
-
-              <div className="my-2">
-                <span className="font-mono font-bold text-4xl sm:text-5xl text-white transition-all duration-300 tabular-nums">
-                  {totalCost.toLocaleString()}
-                </span>
-                <span className="text-base font-bold text-accent ml-2 uppercase font-mono">{pricing.currency}</span>
-              </div>
-
-              <p className="text-xs text-white/70 leading-relaxed">
-                {t('calculator.note') as string}
+              <p className="font-body text-xs text-white/70">
+                Остаточний хірургічний протокол визначається хірургом після аналізу комп'ютерної томографії 3D.
               </p>
+            </div>
 
+            <div className="pt-8 border-t border-white/10 space-y-2">
+              <span className="font-body text-[0.625rem] text-white/60 uppercase tracking-widest block">
+                {t("calculator.total_lbl") as string}
+              </span>
+              <p className="font-display text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-accent transition-all duration-300">
+                {estimate.toLocaleString()} {pricing.currency}
+              </p>
+            </div>
+
+            <div className="pt-6">
               <a
-                href="#contact"
-                className="w-full py-4 bg-accent hover:bg-white hover:text-primary transition-all duration-300 text-center font-bold text-xs tracking-widest uppercase text-white font-mono"
+                href="#booking"
+                className="w-full text-center block bg-accent hover:bg-accent-hover text-white font-body text-xs font-bold uppercase tracking-wider py-3.5 rounded transition-all"
               >
-                {t('calculator.cta') as string}
+                {t("calculator.cta_calc") as string}
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
