@@ -1,107 +1,119 @@
 "use client";
-import { useLocale } from "@/lib/i18n";
+import { useLocale } from '@/lib/i18n';
 
 export default function Hero() {
   const { t } = useLocale();
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-24 bg-primary text-white">
-      
-      {/* BACKGROUND VIDEO LOOP STACK */}
+    <section className="relative min-h-[100svh] flex flex-col justify-center bg-primary text-white overflow-hidden pt-28 pb-16">
+      {/* Background CAD/CAM and 3D precision medical diagnostics visual */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={t("hero.posterSrc")}
-          className="w-full h-full object-cover opacity-30"
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          poster="https://images.pexels.com/videos/7581135/pexels-photo-7581135.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+          className="w-full h-full object-cover scale-105 select-none pointer-events-none opacity-25"
         >
-          <source src={t("hero.videoSrc")} type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/7581135/7581135-hd_1280_720_30fps.mp4" type="video/mp4" />
         </video>
-        {/* Surgical-green radial overlay for elite depth & contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark via-primary/85 to-primary/95 mix-blend-multiply" />
+        {/* Single explicit multi-level gradient overlay to secure typography contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary/80 to-primary/95" />
       </div>
 
-      {/* GIANT DECORATIVE WATERMARK TEXT LAYER */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-        <span className="font-display text-[15vw] font-bold text-white/2 leading-none whitespace-nowrap tracking-wider">
-          PRAKTIKA DENT
-        </span>
+      {/* Watermark in background layer */}
+      <div className="absolute top-[25%] right-[-5%] text-watermark text-[14rem] hidden lg:block select-none pointer-events-none">
+        PRAKTIKA
       </div>
 
-      {/* HERO CONTENT CONTAINER */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 flex flex-col items-center text-center">
-        
-        {/* KICKER WITH REAL META */}
-        <div className="mb-6 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-[10px] font-mono tracking-[0.3em] uppercase text-accent">
-          <span>{t("hero.kicker")}</span>
-          <span className="hidden sm:inline text-white/30">·</span>
-          <span className="text-white/60">EST. 2018</span>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-8 space-y-8">
+            {/* Kicker */}
+            <div className="inline-flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-2xs font-bold uppercase tracking-[0.25em] text-accent">
+                {t('hero.kicker')}
+              </span>
+            </div>
 
-        {/* H1 WITH DUAL-FONT ARCHITECTURE */}
-        <h1 className="heading-display text-4xl sm:text-6xl md:text-8xl max-w-5xl leading-none mb-6">
-          Хірургічна точність <span className="italic font-normal text-accent">ортопедичної</span> реабілітації
-        </h1>
+            {/* Title where *without* is italicized and styled dynamically */}
+            <h1 className="font-display font-semibold text-3xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-white max-w-4xl text-wrap">
+              {(() => {
+                const parts = t('hero.title').split('*');
+                if (parts.length >= 3) {
+                  return (
+                    <>
+                      {parts[0]}
+                      <span className="italic font-normal text-accent font-display">{parts[1]}</span>
+                      {parts[2]}
+                    </>
+                  );
+                }
+                return t('hero.title');
+              })()}
+            </h1>
 
-        {/* SUBTITLE */}
-        <p className="text-sm sm:text-base text-white/70 max-w-3xl mb-12 font-light leading-relaxed max-w-2xl font-mono">
-          {t("hero.subtitle")}
-        </p>
+            {/* Description */}
+            <p className="font-body text-white/70 text-sm leading-[1.6] max-w-2xl">
+              {t('hero.description')}
+            </p>
 
-        {/* CTA PAIR BUTTON BLOCK */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto z-20">
-          <a
-            href="#contact"
-            className="w-full sm:w-auto bg-accent hover:bg-accent-deep text-white px-8 py-4.5 text-xs font-bold tracking-wider uppercase transition-all shadow-lg shadow-accent/20 font-mono"
-          >
-            {t("hero.ctaPrimary")}
-          </a>
-          <a
-            href="#calculator"
-            className="w-full sm:w-auto border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white px-8 py-4.5 text-xs font-bold tracking-wider uppercase transition-all font-mono"
-          >
-            {t("hero.ctaSecondary")}
-          </a>
-        </div>
+            {/* Actions Block */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a 
+                href="#contact" 
+                className="inline-flex bg-accent text-primary hover:bg-white hover:text-primary transition-all duration-300 font-bold text-xs uppercase tracking-widest px-8 py-4 rounded shadow-lg shadow-accent/20"
+              >
+                {t('common.cta')}
+              </a>
+              <a 
+                href="#calculator" 
+                className="inline-flex border border-white/20 hover:border-accent text-white hover:text-accent transition-all duration-300 font-bold text-xs uppercase tracking-widest px-8 py-4 rounded"
+              >
+                {t('common.calculate')}
+              </a>
+            </div>
 
-        {/* THREE-ITEM META STRIP */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 border-t border-white/10 pt-8 w-full max-w-3xl font-mono">
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-white/40 uppercase tracking-widest block">Прийомні години</span>
-            <span className="text-xs font-bold text-white mt-1 block">Пн - Сб: 09:00 - 19:00</span>
+            {/* Info bar at bottom */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-3xl">
+              <div>
+                <p className="text-2xs uppercase tracking-wider text-white/40">{t('hero.phoneLabel')}</p>
+                <p className="text-sm font-semibold text-white mt-1">{t('common.phone')}</p>
+              </div>
+              <div>
+                <p className="text-2xs uppercase tracking-wider text-white/40">Локація:</p>
+                <p className="text-sm font-semibold text-white mt-1">{t('common.address')}</p>
+              </div>
+              <div className="col-span-2 sm:col-span-1">
+                <p className="text-2xs uppercase tracking-wider text-white/40">Рейтинг довіри:</p>
+                <p className="text-sm font-semibold text-accent mt-1">4.9 ★ 587+ відгуків</p>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col items-center border-y sm:border-y-0 sm:border-x border-white/10 py-4 sm:py-0">
-            <span className="text-xs text-white/40 uppercase tracking-widest block">Локація</span>
-            <span className="text-xs font-bold text-white mt-1 block">Харків, проспект Науки, 77</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-xs text-white/40 uppercase tracking-widest block">Рейтинг клініки</span>
-            <span className="text-xs font-bold text-accent mt-1 block">4.9 / 5 · 587 відгуків</span>
-          </div>
-        </div>
 
-        {/* ROTATING TEXT SEAL METAPHOR */}
-        <div className="hidden lg:block absolute right-12 bottom-24 w-28 h-28 pointer-events-none select-none z-20 overflow-hidden" aria-hidden="true">
-          <div className="relative w-full h-full animate-rotate-text flex items-center justify-center">
-            <svg className="w-full h-full text-white/10" viewBox="0 0 100 100">
-              <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
-              <text className="font-mono text-[7px] fill-accent uppercase tracking-[0.2em]">
-                <textPath href="#circlePath" startOffset="0%">
-                  PRAKTIKA DENTAL CLINIC · DIGITAL ACCURACY ·
-                </textPath>
-              </text>
-            </svg>
+          {/* Side card containing real diagnostic center image */}
+          <div className="lg:col-span-4 relative">
+            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-primary/40 p-2 shadow-2xl backdrop-blur-md">
+              <img 
+                src="https://praktika.dentist/wp-content/uploads/2025/12/2-800x533.jpg" 
+                alt="Praktika Clinic Diagnostics" 
+                className="w-full aspect-[4/3] object-cover rounded"
+                loading="eager"
+              />
+              <div className="mt-3 p-3 text-2xs text-white/65 uppercase tracking-wider bg-black/30 rounded border border-white/5">
+                • {t('hero.addressShort')} • Засновано у 2018 році • Сучасні мікроскопи
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* CLASSIC SCROLL INDICATOR */}
-        <div className="mt-16 flex flex-col items-center gap-2">
-          <span className="text-[9px] font-mono tracking-[0.3em] text-white/40">SCROLL</span>
-          <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+        {/* Silent scroll cue */}
+        <div className="flex flex-col items-center justify-center mt-12 gap-2 select-none">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-white/40">SCROLL</span>
+          <div className="w-px h-10 bg-gradient-to-b from-accent to-transparent animate-pulse" />
         </div>
-
       </div>
     </section>
   );

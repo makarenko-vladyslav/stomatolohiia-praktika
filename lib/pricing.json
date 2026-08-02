@@ -1,16 +1,19 @@
 
 {
   "basePrices": {
-    "implantSingle": 12000,
-    "allOn4": 85000,
-    "allOn6": 120000,
-    "crownZirconia": 95000,
-    "veneerEmax": 9500
+    "implantationBasic": 12000,
+    "allOn4": 140000,
+    "allOn6": 190000,
+    "zygoma": 280000,
+    "zirconiumCrown": 14000,
+    "ceramicVeneer": 16000,
+    "sedationPerHour": 4500
   },
   "multipliers": {
-    "sedationPerHour": 4000,
-    "boneGrafting": 15000
+    "regular": 1.0,
+    "complexBoneAtrophy": 1.25,
+    "guidedSurgery3D": 1.15
   },
-  "currency": "₴",
-  "estimationLogic": "interactive"
+  "currency": "грн",
+  "estimationLogic": "range"
 }

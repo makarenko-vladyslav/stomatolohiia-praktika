@@ -1,87 +1,75 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: hsl(200 45% 10%);
-  --color-accent: hsl(165 85% 42%);
-  --color-accent-deep: hsl(165 85% 32%);
-  --color-bg-dark: hsl(200 40% 6%);
-  --color-bg-light: hsl(200 30% 98%);
-  --color-card-light: hsl(0 0% 100%);
-  --color-text-main: hsl(200 50% 12%);
-  --color-text-muted: hsl(200 20% 45%);
-  --color-border-subtle: hsl(200 20% 90%);
 
+@theme {
+  --color-primary: hsl(170 30% 12%);
+  --color-accent: hsl(165 85% 42%);
+  --color-bg-dark: hsl(170 35% 8%);
+  --color-bg-light: hsl(170 15% 97%);
+  --color-text-main: hsl(170 25% 15%);
   --font-display: 'Spectral', serif;
-  --font-body: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
 }
 
 @layer base {
   html {
     font-size: 16px;
+    scroll-behavior: smooth;
     background-color: var(--color-bg-light);
+    color: var(--color-text-main);
   }
-  @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
-  @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
-  @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
-  @media (max-width:  640px) { html { font-size: 4.444444vw; } }
-
-  body {
-    font-family: var(--font-body);
-    font-weight: 400;
-  }
+  @media (max-width: 1200px) { html { font-size: 15px; } }
+  @media (max-width: 768px) { html { font-size: 15px; } }
+  @media (max-width: 480px) { html { font-size: 15px; } }
 }
 
-.heading-display {
+/* Base styling overrides using theme variables */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+}
+
+/* Watermark styles */
+.text-watermark {
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.03;
+  line-height: 0.8;
   font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
-.text-caption {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.4;
-}
-
-.img-fallback {
-  background: linear-gradient(135deg, hsl(200 45% 15%) 0%, hsl(165 85% 42%) 100%);
-  min-height: 250px;
-  border-radius: 0px;
-}
-
-*:focus-visible {
+/* Focus outline aesthetics */
+:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Scroll Snap custom styles for swipeable carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@keyframes rotate-text {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.animate-rotate-text {
-  animation: rotate-text 20s linear infinite;
-}
-
+/* Custom CSS Marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
 }
 
-.animate-marquee-reverse {
-  animation: marquee 30s linear infinite reverse;
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-slow {
+    animation: none !important;
+  }
 }
