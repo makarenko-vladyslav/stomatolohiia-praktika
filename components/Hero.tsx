@@ -1,145 +1,108 @@
-
 "use client";
 import { useLocale } from "@/lib/i18n";
 
 export default function Hero() {
   const { t } = useLocale();
 
-  const renderItalicTitle = (text: string) => {
-    const parts = text.split("*");
-    return parts.map((part, index) => 
-      index % 2 === 1 
-        ? <em key={index} className="font-display italic font-medium text-accent">{part}</em>
-        : part
-    );
-  };
-
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-bg-dark pt-32 pb-8">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-24 bg-primary text-white">
       
-      {/* BACKGROUND STACK (Layer 8) */}
+      {/* BACKGROUND VIDEO LOOP STACK */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
-          poster="https://images.pexels.com/videos/6192977/bank-card-calculation-caries-caries-removal-6192977.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
-          className="w-full h-full object-cover scale-[1.02]"
+          poster={t("hero.posterSrc")}
+          className="w-full h-full object-cover opacity-30"
         >
-          <source src="https://videos.pexels.com/video-files/6192977/6192977-hd_1280_720_30fps.mp4" type="video/mp4" />
+          <source src={t("hero.videoSrc")} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/90 via-bg-dark/65 to-bg-dark/95 mix-blend-multiply z-10" />
+        {/* Surgical-green radial overlay for elite depth & contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark via-primary/85 to-primary/95 mix-blend-multiply" />
       </div>
 
-      {/* GIANT DECORATIVE TYPE LAYER (Layer 9 - Background Watermark) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none select-none overflow-hidden h-0" aria-hidden="true">
-        <span className="text-[15vw] font-display font-bold text-white/[0.02] tracking-widest uppercase whitespace-nowrap block">
-          PRAKTIKA
+      {/* GIANT DECORATIVE WATERMARK TEXT LAYER */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
+        <span className="font-display text-[15vw] font-bold text-white/2 leading-none whitespace-nowrap tracking-wider">
+          PRAKTIKA DENT
         </span>
       </div>
 
-      {/* HERO CONTENT GRID */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* HERO CONTENT CONTAINER */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 flex flex-col items-center text-center">
         
-        {/* Left Column Text details */}
-        <div className="lg:col-span-8 flex flex-col items-start gap-6">
+        {/* KICKER WITH REAL META */}
+        <div className="mb-6 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-[10px] font-mono tracking-[0.3em] uppercase text-accent">
+          <span>{t("hero.kicker")}</span>
+          <span className="hidden sm:inline text-white/30">·</span>
+          <span className="text-white/60">EST. 2018</span>
+        </div>
 
-          {/* Multi-line poster H1 (Layer 2) */}
-          <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight max-w-3xl font-display">
-            {renderItalicTitle(t("hero.title") as string)}
-          </h1>
+        {/* H1 WITH DUAL-FONT ARCHITECTURE */}
+        <h1 className="heading-display text-4xl sm:text-6xl md:text-8xl max-w-5xl leading-none mb-6">
+          Хірургічна точність <span className="italic font-normal text-accent">ортопедичної</span> реабілітації
+        </h1>
 
-          {/* Subtitle / Lede (Layer 3 - Clean Sans-Serif font-sans inherited) */}
-          <p className="text-white/80 text-xs sm:text-sm leading-relaxed max-w-xl">
-            {t("hero.subtitle") as string}
-          </p>
+        {/* SUBTITLE */}
+        <p className="text-sm sm:text-base text-white/70 max-w-3xl mb-12 font-light leading-relaxed max-w-2xl font-mono">
+          {t("hero.subtitle")}
+        </p>
 
-          {/* CTA Pair (Layer 4) */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6 w-full sm:w-auto mt-4">
-            <a
-              href="#booking"
-              className="bg-accent hover:bg-accent-dark text-white text-center py-4 px-8 font-bold uppercase tracking-widest text-[10px] transition-colors glow-accent-strong"
-            >
-              {t("common.cta") as string}
-            </a>
-            <a
-              href="#calculator"
-              className="text-white hover:text-accent font-mono text-[11px] font-bold uppercase tracking-widest transition-colors py-4 px-2"
-            >
-              {t("common.ctaSecondary") as string} →
-            </a>
+        {/* CTA PAIR BUTTON BLOCK */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto z-20">
+          <a
+            href="#contact"
+            className="w-full sm:w-auto bg-accent hover:bg-accent-deep text-white px-8 py-4.5 text-xs font-bold tracking-wider uppercase transition-all shadow-lg shadow-accent/20 font-mono"
+          >
+            {t("hero.ctaPrimary")}
+          </a>
+          <a
+            href="#calculator"
+            className="w-full sm:w-auto border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white px-8 py-4.5 text-xs font-bold tracking-wider uppercase transition-all font-mono"
+          >
+            {t("hero.ctaSecondary")}
+          </a>
+        </div>
+
+        {/* THREE-ITEM META STRIP */}
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 border-t border-white/10 pt-8 w-full max-w-3xl font-mono">
+          <div className="flex flex-col items-center">
+            <span className="text-xs text-white/40 uppercase tracking-widest block">Прийомні години</span>
+            <span className="text-xs font-bold text-white mt-1 block">Пн - Сб: 09:00 - 19:00</span>
+          </div>
+          <div className="flex flex-col items-center border-y sm:border-y-0 sm:border-x border-white/10 py-4 sm:py-0">
+            <span className="text-xs text-white/40 uppercase tracking-widest block">Локація</span>
+            <span className="text-xs font-bold text-white mt-1 block">Харків, проспект Науки, 77</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-xs text-white/40 uppercase tracking-widest block">Рейтинг клініки</span>
+            <span className="text-xs font-bold text-accent mt-1 block">4.9 / 5 · 587 відгуків</span>
           </div>
         </div>
 
-        {/* Right Column details (Layer 5: Micro details stack) */}
-        <div className="lg:col-span-4 flex flex-col gap-6">
-          
-          {/* Static Review Details card */}
-          <div className="bg-bg-dark/80 backdrop-blur-md p-6 rounded border border-white/10 shadow-2xl relative overflow-hidden">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-accent font-mono font-bold text-sm tracking-widest">GOOGLE MAPS</span>
-              <span className="text-[10px] font-mono text-white/50">EST. 2018</span>
-            </div>
-            <div className="flex items-baseline gap-2 mb-1">
-              <span className="font-display font-bold text-3xl text-white">4.9 / 5.0</span>
-            </div>
-            <p className="text-white/90 text-[11px] font-bold mb-1 uppercase tracking-wider">{t("common.reviewsCount") as string}</p>
-            <p className="text-white/60 text-xs leading-relaxed">
-              Харків’яни довіряють нам відновлення складних випадків адентії щелеп.
-            </p>
-          </div>
-
-          {/* Zygoma certification details card */}
-          <div className="bg-bg-dark/80 backdrop-blur-md p-6 rounded border border-accent/20 shadow-2xl relative overflow-hidden">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-accent font-mono font-bold text-sm tracking-widest">ZYGOMA CLINIC</span>
-              <span className="text-[10px] font-mono text-accent">UKRAINE</span>
-            </div>
-            <p className="text-white text-xs font-bold mb-2 uppercase tracking-wider">{t("common.zygomaCert") as string}</p>
-            <p className="text-white/60 text-xs leading-relaxed">
-              Хірургічний супровід пацієнтів з повною резорбцією за сертифікованими європейськими ліцензіями.
-            </p>
+        {/* ROTATING TEXT SEAL METAPHOR */}
+        <div className="hidden lg:block absolute right-12 bottom-24 w-28 h-28 pointer-events-none select-none z-20 overflow-hidden" aria-hidden="true">
+          <div className="relative w-full h-full animate-rotate-text flex items-center justify-center">
+            <svg className="w-full h-full text-white/10" viewBox="0 0 100 100">
+              <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
+              <text className="font-mono text-[7px] fill-accent uppercase tracking-[0.2em]">
+                <textPath href="#circlePath" startOffset="0%">
+                  PRAKTIKA DENTAL CLINIC · DIGITAL ACCURACY ·
+                </textPath>
+              </text>
+            </svg>
           </div>
         </div>
 
-      </div>
-
-      {/* FLANKING MINI-COPY & SCROLL CUE (Layers 10 & 6) */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-end pt-12 border-t border-white/5 mt-auto">
-        
-        {/* Flanking copy left - Organically holds the clinic credential kickers */}
-        <div className="hidden md:block">
-          <p className="text-[9px] font-mono text-white/40 leading-relaxed uppercase tracking-widest">
-            {t("hero.kicker") as string}<br />
-            ХАРКІВ · ЦЕНТР · ПРОСПЕКТ НАУКИ 77
-          </p>
-        </div>
-
-        {/* Center: Scroll Cue */}
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-white/40 text-[9px] uppercase tracking-[0.4em] font-mono font-bold animate-pulse">SCROLL</span>
-          <div className="w-[1px] h-8 bg-gradient-to-b from-white/40 to-transparent" />
-        </div>
-
-        {/* Flanking copy right */}
-        <div className="hidden md:block text-right">
-          <p className="text-[9px] font-mono text-white/40 leading-relaxed uppercase tracking-widest">
-            ОФІЦІЙНА ГАРАНТІЯ<br />
-            НА ХІРУРГІЮ ДО 15 РОКІВ
-          </p>
+        {/* CLASSIC SCROLL INDICATOR */}
+        <div className="mt-16 flex flex-col items-center gap-2">
+          <span className="text-[9px] font-mono tracking-[0.3em] text-white/40">SCROLL</span>
+          <div className="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
         </div>
 
       </div>
-
-      {/* BASE MARQUEE TICKER (Layer 12) */}
-      <div className="w-full bg-accent/10 border-t border-white/5 py-2.5 mt-6 overflow-hidden select-none">
-        <div className="flex whitespace-nowrap gap-8 text-[9px] font-mono text-accent font-bold tracking-widest uppercase animate-[marquee_20s_linear_infinite]">
-          <span>ПРОТОКОЛИ ALL-ON-4/ALL-ON-6 · ВИЛИЦЕВА ІМПЛАНТАЦІЯ ZYGOMA · ЛІКУВАННЯ В СЕДАЦІЇ · ЦИФРОВЕ ПЛАНУВАННЯ 3D КТ ·</span>
-          <span>ПРОТОКОЛИ ALL-ON-4/ALL-ON-6 · ВИЛИЦЕВА ІМПЛАНТАЦІЯ ZYGOMA · ЛІКУВАННЯ В СЕДАЦІЇ · ЦИФРОВЕ ПЛАНУВАННЯ 3D КТ ·</span>
-        </div>
-      </div>
-
     </section>
   );
 }

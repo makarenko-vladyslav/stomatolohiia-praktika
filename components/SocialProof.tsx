@@ -4,29 +4,33 @@ import { useLocale } from "@/lib/i18n";
 export default function SocialProof() {
   const { t } = useLocale();
 
-  interface Stat {
-    value: string;
-    label: string;
-  }
-
-  const stats = t("socialProof.stats") as Stat[] || [];
-
   return (
-    <section className="relative z-30 bg-primary py-12 border-y border-white/5 overflow-hidden">
+    <div className="bg-primary border-y border-white/10 py-8 overflow-hidden relative z-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center px-4 pt-6 md:pt-0">
-              <span className="font-display font-bold text-3xl sm:text-5xl text-accent mb-2 tracking-tight">
-                {stat.value}
-              </span>
-              <span className="text-white/70 text-xs font-medium max-w-[200px] leading-relaxed">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-white/80 text-[10px] tracking-[0.2em] uppercase font-mono">
+          
+          <div className="flex items-center gap-4 border-l border-accent/40 pl-4 py-1">
+            <span className="text-accent font-bold text-base">587+</span>
+            <span className="leading-tight text-white/60">{t("socialProof.reviews")}</span>
+          </div>
+          
+          <div className="flex items-center gap-4 border-l border-accent/40 pl-4 py-1">
+            <span className="text-accent font-bold text-base">МОЗ</span>
+            <span className="leading-tight text-white/60">{t("socialProof.license")}</span>
+          </div>
+
+          <div className="flex items-center gap-4 border-l border-accent/40 pl-4 py-1">
+            <span className="text-accent font-bold text-base">2018</span>
+            <span className="leading-tight text-white/60">{t("socialProof.est")}</span>
+          </div>
+
+          <div className="flex items-center gap-4 border-l border-accent/40 pl-4 py-1">
+            <span className="text-accent font-bold text-base">CAD</span>
+            <span className="leading-tight text-white/60">{t("socialProof.equipment")}</span>
+          </div>
+
         </div>
       </div>
-    </section>
+    </div>
   );
 }

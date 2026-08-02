@@ -20,11 +20,22 @@ import { useRef, type ReactNode } from "react";
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
- * One in-view contract for the whole site. `once` is the important part: a
- * reveal that replays every time the user scrolls back up reads as a glitch,
- * not as polish.
+ * One in-view contract for the whole site.
+ *
+ * `once` matters: a reveal that replays on every scroll-back reads as a glitch.
+ *
+ * The other two numbers were wrong and cost real damage. `amount: 0.25` waits
+ * for a QUARTER OF THE ELEMENT to be visible — on a phone a section is often
+ * taller than four viewports, so a quarter of it can never fit on screen and the
+ * condition is never met. The content then stays at opacity 0 forever and the
+ * visitor sees a blank screen where a section should be. A negative bottom
+ * margin made it worse by shrinking the trigger box further, so even sections
+ * that did fire only started after half a screen of scrolling.
+ *
+ * Now: fire as soon as ANY part appears, and start 15% before it reaches the
+ * viewport, so the movement is already settling when the visitor gets there.
  */
-const VIEWPORT = { once: true, amount: 0.25, margin: "0px 0px -10% 0px" } as const;
+const VIEWPORT = { once: true, amount: "some", margin: "0px 0px 15% 0px" } as const;
 
 /** Semantic tags a section actually needs — animation must not force a `div`. */
 type Tag =

@@ -1,133 +1,96 @@
-
 "use client";
 import { useLocale } from "@/lib/i18n";
 
 export default function Services() {
   const { t } = useLocale();
-
-  interface ServiceItem {
-    id: string;
-    categoryIdx: number;
-    title: string;
-    desc: string;
-    price: string;
-    tag: string;
-  }
-
-  const services = t("services.items") as ServiceItem[] || [];
-  const categories = t("services.categories") as string[] || [];
+  const items = t("services.items") as Array<{ title: string; description: string; price: string; tag?: string }>;
 
   return (
-    <section id="services" className="py-12 md:py-20 lg:py-24 bg-white relative scroll-mt-20 overflow-hidden">
-      
-      {/* DECORATIVE WATERMARK */}
-      <div className="absolute top-1/2 left-0 z-0 pointer-events-none select-none h-0" aria-hidden="true">
-        <span className="text-[12vw] font-display font-bold text-primary/[0.01] tracking-widest uppercase whitespace-nowrap block translate-x-12">
-          PRICING
-        </span>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="services" className="py-24 bg-card-light border-y border-border-subtle relative">
+      <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-20">
-          <span className="text-accent text-[10px] font-mono font-bold tracking-widest uppercase block mb-3">
-            {t("services.kicker") as string}
+        {/* HEADER */}
+        <div className="text-left mb-16 border-b border-border-subtle pb-8">
+          <span className="text-xs font-bold text-accent tracking-[0.25em] uppercase mb-4 block font-mono">
+            {t("services.kicker")}
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-primary leading-tight tracking-tight mb-6">
-            {t("services.title") as string}
+          <h2 className="heading-display text-3xl sm:text-5xl text-text-main max-w-3xl">
+            {t("services.title")}
           </h2>
-          <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-            {t("services.subtitle") as string}
+          <p className="text-text-muted text-xs font-mono tracking-wide mt-2">
+            *Усі маніпуляції виконуються за стандартами європейських протоколів реабілітації.
           </p>
         </div>
 
-        {/* Dynamic ROW based Layout (Price List style) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Main Price List Column */}
-          <div className="lg:col-span-8 flex flex-col gap-12">
-            {categories.map((category, catIdx) => (
-              <div key={catIdx} className="flex flex-col">
-                {/* Category Header (Layer 4) */}
-                <h3 className="font-display font-bold text-lg text-primary border-b border-border-subtle pb-3 mb-6 tracking-wide">
-                  {category}
-                </h3>
-                
-                {/* Category Rows Stack */}
-                <div className="flex flex-col gap-8">
-                  {services.filter(s => s.categoryIdx === catIdx).map((service) => (
-                    <div key={service.id} className="group flex flex-col gap-2">
-                      {/* Row Title + Dotted line + Price (Layer 5) */}
-                      <div className="flex items-baseline justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <span className="font-display font-bold text-base text-primary group-hover:text-accent transition-colors">
-                            {service.title}
-                          </span>
-                          
-                          {/* Micro-tags (Layer 6) */}
-                          {service.tag && (
-                            <span className="bg-primary/5 text-primary font-mono text-[9px] font-bold px-2 py-0.5 rounded uppercase">
-                              {service.tag}
-                            </span>
-                          )}
-                        </div>
-                        
-                        {/* Dotted Leader Line */}
-                        <div className="flex-grow border-b border-dotted border-border-subtle mx-2" />
-                        
-                        <span className="font-display font-bold text-base text-primary whitespace-nowrap">
-                          {new Intl.NumberFormat("uk-UA").format(Number(service.price))} {t("common.currency") as string}
-                        </span>
-                      </div>
+        {/* PRICE/OFFER LIST - EDITORIAL SCHEME IN ROWS */}
+        <div className="flex flex-col gap-0 border-t border-border-subtle">
+          {items && items.map((srv, i) => {
+            const isSignature = i === 0; // Highlight Swiss protocol as primary
+            return (
+              <div 
+                key={i} 
+                className={`group grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start py-8 border-b border-border-subtle transition-all duration-300 ${isSignature ? "bg-bg-light/80 -mx-6 px-6 border-x border-accent/10" : "hover:bg-bg-light/30"}`}
+              >
+                {/* Meta block */}
+                <div className="lg:col-span-3 flex items-center gap-3">
+                  <span className="text-[10px] font-mono text-text-muted">0{i+1} —</span>
+                  {srv.tag && (
+                    <span className="text-[8px] font-mono tracking-widest uppercase bg-accent/10 text-accent px-2 py-0.5 border border-accent/20">
+                      {srv.tag}
+                    </span>
+                  )}
+                  {isSignature && (
+                    <span className="text-[8px] font-mono tracking-widest uppercase bg-primary text-white px-2 py-0.5">
+                      Ключовий протокол
+                    </span>
+                  )}
+                </div>
 
-                      {/* Row Description - Clean Sans font inherited */}
-                      <p className="text-text-muted text-xs leading-relaxed max-w-xl">
-                        {service.desc}
-                      </p>
-                    </div>
-                  ))}
+                {/* Service Specs */}
+                <div className="lg:col-span-6 space-y-2">
+                  <h3 className="font-display font-medium text-lg sm:text-xl text-text-main group-hover:text-accent transition-colors leading-tight">
+                    {srv.title}
+                  </h3>
+                  <p className="text-text-muted text-xs font-mono leading-relaxed max-w-xl">
+                    {srv.description}
+                  </p>
+                </div>
+
+                {/* Leader line decoration for large screens */}
+                <div className="hidden lg:block lg:col-span-1 border-b border-dashed border-border-subtle h-6"></div>
+
+                {/* Pricing / CTA row */}
+                <div className="lg:col-span-2 flex items-center justify-between lg:justify-end gap-4 lg:text-right pt-2 lg:pt-0">
+                  <span className="text-sm font-bold text-text-main font-mono whitespace-nowrap">
+                    {srv.price}
+                  </span>
+                  <a href="#contact" className="text-[10px] font-bold text-accent hover:text-accent-deep transition-colors tracking-wider uppercase font-mono lg:pl-4">
+                    Запис ↗
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Interactive Feature Sticky Panel (Layer 7 - Signature Element) */}
-          <div className="lg:col-span-4 lg:sticky lg:top-28 bg-primary rounded p-8 text-white flex flex-col justify-between border border-white/5 overflow-hidden relative shadow-xl">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-2xl -translate-y-12 translate-x-12" />
-            
-            <div>
-              <span className="text-accent text-[9px] font-mono font-bold tracking-widest uppercase block mb-4">
-                ХІТ ХІРУРГІЇ
-              </span>
-              <h3 className="text-2xl font-bold font-display mb-3 text-white">
-                All-on-6 тотальна реконструкція
-              </h3>
-              <p className="text-white/70 text-xs leading-relaxed mb-6">
-                Високотехнологічний швейцарський протокол стабілізації зубного ряду. Ідеально при помірній атрофії без кісткової пластики. Тимчасовий незнімний протез за 24 години.
-              </p>
-            </div>
-
-            <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
-              <div className="flex justify-between items-baseline font-mono">
-                <span className="text-white/50 text-[10px] uppercase">Орієнтовний бюджет:</span>
-                <span className="text-xl font-bold text-accent font-display">165 000 грн</span>
-              </div>
-              <a href="#booking" className="block w-full bg-accent hover:bg-accent-dark text-white text-center py-4 text-[10px] font-bold uppercase tracking-widest transition-colors glow-accent">
-                {t("common.cta") as string}
-              </a>
-            </div>
-          </div>
-
+            );
+          })}
         </div>
 
-        {/* Footnote and secondary action (Layer 8) */}
-        <div className="mt-16 pt-8 border-t border-border-subtle flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-text-muted text-[11px] font-mono">
-            *Кінцевий прайс-лист та послідовність етапів формуються виключно після детального аналізу КТ щелепи хірургом у клініці.
-          </p>
-          <a href="#booking" className="text-primary hover:text-accent font-mono text-[11px] font-bold uppercase tracking-widest transition-colors">
-            Отримати детальну калькуляцію по КТ →
+        {/* FOOTNOTE & HIGH-CONTRAST DIGITAL CTA BANNER */}
+        <div className="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono border-b border-border-subtle pb-8">
+          <span className="text-text-muted leading-relaxed max-w-lg">
+            *Вартість лікування розраховується індивідуально за результатами комп'ютерної томографії та складання хірургічного шаблону в 3D.
+          </span>
+          <a href="#calculator" className="inline-flex items-center gap-2 text-accent font-bold hover:underline tracking-wider uppercase whitespace-nowrap">
+            Перейти до калькулятора <span>→</span>
+          </a>
+        </div>
+
+        {/* DIAGONAL ACTION DECORATOR BAND */}
+        <div className="mt-16 bg-primary text-white p-8 rounded-none border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <span className="text-[9px] font-mono text-accent tracking-widest uppercase block mb-1">Потрібен детальний аналіз?</span>
+            <p className="font-display text-xl sm:text-2xl text-white/90 font-normal">Діагностичне 3D-КТ сканування при першому візиті клініки</p>
+          </div>
+          <a href="#contact" className="bg-accent hover:bg-accent-deep text-white px-6 py-3.5 text-[10px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap font-mono rounded-none">
+            Записатись на КТ
           </a>
         </div>
 

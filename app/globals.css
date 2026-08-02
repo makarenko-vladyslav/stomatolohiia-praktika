@@ -1,60 +1,60 @@
 @import "tailwindcss";
 
-
 @theme {
-  --color-primary: hsl(215 35% 11%);
-  --color-accent: hsl(172 90% 40%);
-  --color-accent-dark: hsl(172 90% 32%);
-  --color-bg-dark: hsl(215 35% 8%);
-  --color-bg-light: hsl(200 15% 97%);
-  --color-text-main: hsl(215 30% 15%);
-  --color-text-muted: hsl(215 15% 45%);
-  --color-border-subtle: hsl(215 15% 88%);
-  
+  --color-primary: hsl(200 45% 10%);
+  --color-accent: hsl(165 85% 42%);
+  --color-accent-deep: hsl(165 85% 32%);
+  --color-bg-dark: hsl(200 40% 6%);
+  --color-bg-light: hsl(200 30% 98%);
+  --color-card-light: hsl(0 0% 100%);
+  --color-text-main: hsl(200 50% 12%);
+  --color-text-muted: hsl(200 20% 45%);
+  --color-border-subtle: hsl(200 20% 90%);
+
   --font-display: 'Spectral', serif;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
 }
 
 @layer base {
-  html { 
-    font-size: 16px; 
-    scroll-behavior: smooth;
+  html {
+    font-size: 16px;
+    background-color: var(--color-bg-light);
   }
   @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
   @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
   @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
   @media (max-width:  640px) { html { font-size: 4.444444vw; } }
-  
+
   body {
-    font-family: var(--font-sans);
-    background-color: var(--color-bg-light);
-    color: var(--color-text-main);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
+    font-weight: 400;
   }
 }
 
-/* Custom transitions and features */
-.glow-accent {
-  box-shadow: 0 0 30px hsl(172 90% 40% / 0.15);
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
-.glow-accent-strong {
-  box-shadow: 0 0 45px hsl(172 90% 40% / 0.25);
+.text-caption {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.img-fallback {
+  background: linear-gradient(135deg, hsl(200 45% 15%) 0%, hsl(165 85% 42%) 100%);
+  min-height: 250px;
+  border-radius: 0px;
 }
 
-/* Accessibility settings for reduced motion */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -64,26 +64,24 @@
   }
 }
 
-/* Interactive elements focus indicator */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
+@keyframes rotate-text {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* Image fallback gradient */
-.img-fallback {
-  background: linear-gradient(135deg, hsl(215 35% 15%) 0%, hsl(215 35% 8%) 100%);
-  min-height: 200px;
-  position: relative;
+.animate-rotate-text {
+  animation: rotate-text 20s linear infinite;
 }
-.img-fallback::before {
-  content: "Praktika Medical";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: hsl(172 90% 40% / 0.4);
-  font-family: var(--font-display);
-  font-size: 1.25rem;
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 30s linear infinite reverse;
 }
