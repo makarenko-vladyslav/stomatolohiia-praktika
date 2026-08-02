@@ -5,62 +5,59 @@ import { useLocale } from "@/lib/i18n";
 export default function Process() {
   const { t } = useLocale();
 
+  interface Step {
+    num: string;
+    title: string;
+    desc: string;
+  }
+
+  const steps = t("process.steps") as Step[] || [];
+
   return (
-    <section className="py-20 bg-bg-alt border-y border-border-subtle/30">
-      <div className="container-custom">
-        {/* Headings */}
-        <div className="max-w-3xl mb-12 space-y-4">
-          <span className="font-body text-xs font-bold text-accent uppercase tracking-widest">
+    <section className="py-12 md:py-20 lg:py-24 bg-bg-dark text-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16">
+          <span className="text-accent text-xs font-bold tracking-widest uppercase block mb-3">
             {t("process.kicker") as string}
           </span>
-          <h2 className="font-display text-text-main text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] font-bold">
+          <h2 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6">
             {t("process.title") as string}
           </h2>
-          <p className="font-body text-text-muted text-xs">
-            {t("process.desc") as string}
+          <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+            {t("process.subtitle") as string}
           </p>
         </div>
 
-        {/* Process Steps List — Clean alignment, Banned alternating zigzag voids */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Process Steps Timeline Flow */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           
-          <div className="bg-bg-light p-6 rounded border border-border-subtle flex flex-col justify-between relative">
-            <div className="space-y-4">
-              <span className="font-body text-4xl font-bold text-accent/30 block">01</span>
-              <h3 className="font-display font-semibold text-text-main text-base">
-                {t("process.step1_title") as string}
-              </h3>
-              <p className="font-body text-[0.7rem] text-text-muted leading-relaxed">
-                {t("process.step1_desc") as string}
-              </p>
-            </div>
-          </div>
+          {/* Timeline background connectors (horizontal on large screens) */}
+          <div className="hidden lg:block absolute top-[28px] left-[15%] right-[15%] h-[1px] bg-white/10 z-0" />
 
-          <div className="bg-bg-light p-6 rounded border border-border-subtle flex flex-col justify-between relative">
-            <div className="space-y-4">
-              <span className="font-body text-4xl font-bold text-accent/30 block">02</span>
-              <h3 className="font-display font-semibold text-text-main text-base">
-                {t("process.step2_title") as string}
-              </h3>
-              <p className="font-body text-[0.7rem] text-text-muted leading-relaxed">
-                {t("process.step2_desc") as string}
-              </p>
-            </div>
-          </div>
+          {steps.map((step, idx) => (
+            <div
+              key={idx}
+              className="bg-white/5 border border-white/10 p-6 rounded relative z-10 flex flex-col gap-4 group hover:bg-white/10 transition-colors"
+            >
+              {/* Order Numerals in clinical design style */}
+              <div className="w-12 h-12 rounded bg-accent text-white flex items-center justify-center font-bold font-display text-lg relative z-20 group-hover:scale-105 transition-transform">
+                {step.num}
+              </div>
 
-          <div className="bg-bg-light p-6 rounded border border-border-subtle flex flex-col justify-between relative">
-            <div className="space-y-4">
-              <span className="font-body text-4xl font-bold text-accent/30 block">03</span>
-              <h3 className="font-display font-semibold text-text-main text-base">
-                {t("process.step3_title") as string}
-              </h3>
-              <p className="font-body text-[0.7rem] text-text-muted leading-relaxed">
-                {t("process.step3_desc") as string}
-              </p>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-lg font-bold font-display text-white">
+                  {step.title}
+                </h3>
+                <p className="text-white/60 text-xs leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
             </div>
-          </div>
-
+          ))}
         </div>
+
       </div>
     </section>
   );

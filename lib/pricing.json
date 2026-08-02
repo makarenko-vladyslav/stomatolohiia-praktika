@@ -1,18 +1,17 @@
-
 {
-  "currency": "UAH",
   "basePrices": {
-    "implantation_all_4": 95000,
-    "implantation_all_6": 135000,
-    "implantation_zygoma": 190000,
-    "implantation_single": 15000,
-    "crown_zirconia": 14000,
-    "computed_tomography": 1200,
-    "medication_sleep_hour": 4000
+    "implantationSingle": 15000,
+    "allOn4": 120000,
+    "allOn6": 165000,
+    "zygoma": 280000,
+    "zirconiaCrown": 14000,
+    "emaxVeneer": 16000,
+    "ctScan": 1200
   },
-  "estimationLogic": {
-    "minUnits": 1,
-    "maxUnits": 16,
-    "defaultUnits": 1
-  }
+  "multipliers": {
+    "sedationPerHour": 4500,
+    "boneGrafting": 25000
+  },
+  "currency": "UAH",
+  "estimationLogic": "range"
 }

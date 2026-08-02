@@ -1,190 +1,199 @@
 
 "use client";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { useLocale } from "@/lib/i18n";
 
 export default function BookingForm() {
-  const { t, locale } = useLocale();
+  const { t } = useLocale();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
   const [date, setDate] = useState("");
-  const [sleep, setSleep] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [notes, setNotes] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !phone) return;
-    setLoading(true);
+    if (!name || !phone || !date) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
     
     setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+      setStatus("success");
+      setName("");
+      setPhone("");
+      setDate("");
+      setNotes("");
+    }, 1500);
   };
 
   return (
-    <section id="booking" className="py-24 bg-bg-light relative scroll-mt-12">
+    <section id="booking" className="py-12 md:py-20 lg:py-24 bg-primary text-white relative overflow-hidden scroll-mt-20">
       
-      {/* Soft teal-tinted ambient background circle */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 pointer-events-none select-none w-96 h-96 bg-accent/5 rounded-full blur-3xl z-0" />
+      {/* Absolute positioned background glow rings (Layer 10) */}
+      <div className="absolute right-0 bottom-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container-custom grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Left column structured meta details — V3 compliant */}
-        <div className="lg:col-span-5 space-y-6">
-          <span className="font-body text-xs font-bold text-accent uppercase tracking-[0.3em]">
-            {t("booking.kicker") as string}
-          </span>
+        {/* Dynamic 2-Column Split Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          <h2 className="font-display text-text-main text-[clamp(2.2rem,4.5vw,3.5rem)] leading-[1.08] font-bold tracking-tight">
-            {t("booking.title") as string}
-          </h2>
-          
-          <p className="font-body text-text-muted text-xs leading-relaxed">
-            {t("booking.desc") as string}
-          </p>
+          {/* Left Column: Booking meta details (Layer 4) */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            <span className="text-accent text-[10px] font-mono font-bold tracking-widest uppercase">
+              {t("booking.kicker") as string}
+            </span>
+            
+            {/* INVITATION HEADING (Not brand name) */}
+            <h2 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight">
+              {t("booking.title") as string}
+            </h2>
+            
+            <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+              {t("booking.subtitle") as string}
+            </p>
 
-          {/* Element 5: Structured Hours Mini-Table */}
-          <div className="border-t border-border-subtle pt-6 space-y-4">
-            <h4 className="font-body text-[0.625rem] text-text-main font-bold uppercase tracking-[0.2em]">
-              {t("booking.hours_title") as string || "Графік роботи"}
-            </h4>
-            <div className="space-y-2 font-body text-xs text-text-muted">
-              <div className="flex justify-between border-b border-border-subtle/40 pb-1">
-                <span>Пн — Пт</span>
-                <span className="font-semibold tabular-nums text-text-main">09:00 — 19:00</span>
+            {/* Structured Hours Mini-Table (Layer 6) */}
+            <div className="flex flex-col gap-2.5 font-mono border-y border-white/10 py-6 max-w-sm">
+              <span className="text-[10px] text-accent font-bold tracking-widest uppercase mb-2">ГРАФІК ПРИЙОМУ КЛІНІКИ</span>
+              <div className="flex justify-between text-xs text-white/80">
+                <span>Будні дні</span>
+                <span>09:00 - 19:00</span>
               </div>
-              <div className="flex justify-between border-b border-border-subtle/40 pb-1">
+              <div className="flex justify-between text-xs text-white/80">
                 <span>Субота</span>
-                <span className="font-semibold tabular-nums text-text-main">09:00 — 16:00</span>
+                <span>09:00 - 15:00</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between text-xs text-white/40">
                 <span>Неділя</span>
-                <span className="font-semibold text-accent font-bold">ЗАЧИНЕНО</span>
+                <span>Зачинено</span>
               </div>
+            </div>
+
+            {/* Address details & CTA (Layer 7) */}
+            <div className="flex flex-col gap-1 font-mono">
+              <span className="text-[10px] text-white/40 uppercase tracking-wider">КОНСУЛЬТАЦІЙНИЙ ЦЕНТР</span>
+              <p className="text-xs text-white/80">{t("common.address") as string}</p>
+              <a href={`tel:${t("common.phone")}`} className="text-accent hover:text-white font-bold text-xs mt-1 transition-colors">
+                Гаряча лінія: {t("common.phone") as string}
+              </a>
             </div>
           </div>
 
-          {/* Element 6: Address & Link */}
-          <div className="pt-4 space-y-2 border-t border-border-subtle">
-            <p className="font-body text-xs text-text-main font-bold uppercase tracking-wider">
-              Локація клініки
-            </p>
-            <p className="font-body text-xs text-text-muted leading-relaxed">
-              Харків, проспект Науки, 77 • ст. метро &quot;23 Серпня&quot; • Власна парковка для гостей
-            </p>
-            <a 
-              href="tel:+380507717535" 
-              className="inline-block font-body text-xs font-bold text-accent hover:text-primary transition-colors tracking-widest uppercase mt-1"
-            >
-              тел. +38 050 771 75 35
-            </a>
-          </div>
-
-          {/* Element 7: Trust micro-line */}
-          <p className="font-body text-[0.55rem] text-text-muted/60 leading-relaxed uppercase tracking-wider">
-            {t("booking.trust_line") as string || "* Клініка має державну ліцензію МОЗ України серії АЕ №571344"}
-          </p>
-
-        </div>
-
-        {/* Input Form Card — Clean solid white overlay background */}
-        <div className="lg:col-span-7 bg-bg-alt p-6 md:p-10 border border-border-subtle rounded-lg shadow-xl relative z-10">
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              
-              <div className="space-y-1">
-                <label className="font-body text-[0.65rem] text-text-main uppercase font-bold tracking-wider block">
-                  {t("booking.form_name") as string} *
-                </label>
-                <input 
-                  type="text" 
-                  required
-                  placeholder="Олексій"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-bg-light border border-border-subtle p-3 font-body text-xs rounded focus:outline-none focus:border-accent transition-colors text-text-main"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="font-body text-[0.65rem] text-text-main uppercase font-bold tracking-wider block">
-                  {t("booking.form_phone") as string} *
-                </label>
-                <input 
-                  type="tel" 
-                  required
-                  placeholder="+38 050 123 4567"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full bg-bg-light border border-border-subtle p-3 font-body text-xs rounded focus:outline-none focus:border-accent transition-colors text-text-main"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="font-body text-[0.65rem] text-text-main uppercase font-bold tracking-wider block">
-                  {t("booking.form_service") as string}
-                </label>
-                <select 
-                  value={service}
-                  onChange={(e) => setService(e.target.value)}
-                  className="w-full bg-bg-light border border-border-subtle p-3 font-body text-xs rounded focus:outline-none focus:border-accent transition-colors text-text-main"
+          {/* Right Column actual interactive Form details (Layer 5) */}
+          <div className="lg:col-span-7 bg-bg-dark border border-white/10 p-8 rounded shadow-2xl relative overflow-hidden">
+            
+            {status === "success" ? (
+              <div className="text-center py-12 flex flex-col items-center gap-4">
+                <div className="w-16 h-16 rounded bg-accent/10 text-accent flex items-center justify-center text-xl font-bold font-mono">
+                  OK
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-display uppercase tracking-wider">ЗАПИС УСПІШНО СТВОРЕНО</h3>
+                <p className="text-white/60 text-xs leading-relaxed max-w-sm">
+                  {t("booking.success") as string}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setStatus("idle")}
+                  className="mt-6 text-accent hover:text-white text-[10px] font-mono font-bold uppercase tracking-widest"
                 >
-                  <option value="">-- Оберіть процедуру --</option>
-                  <option value="all4">Імплантація All-on-4</option>
-                  <option value="all6">Імплантація All-on-6</option>
-                  <option value="zygoma">Вилицева імплантація Zygoma</option>
-                  <option value="microscope">Лікування під мікроскопом</option>
-                  <option value="hygiene">Гігієна AirFlow</option>
-                </select>
+                  НАДІСЛАТИ ІНШУ ЗАЯВКУ
+                </button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                
+                {status === "error" && (
+                  <div className="p-4 bg-rose-950/40 border border-rose-800 text-rose-300 text-xs rounded font-mono font-bold uppercase tracking-wider">
+                    {t("booking.error") as string}
+                  </div>
+                )}
 
-              <div className="space-y-1">
-                <label className="font-body text-[0.65rem] text-text-main uppercase font-bold tracking-wider block">
-                  {t("booking.form_date") as string}
-                </label>
-                <input 
-                  type="date" 
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-bg-light border border-border-subtle p-3 font-body text-xs rounded focus:outline-none focus:border-accent transition-colors text-text-main"
-                />
-              </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Name Input */}
+                  <div className="flex flex-col gap-2 font-mono">
+                    <label htmlFor="name-input" className="text-[9px] font-bold text-white/60 tracking-widest uppercase">
+                      {t("booking.name") as string} *
+                    </label>
+                    <input
+                      id="name-input"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Іван Ковальчук"
+                      className="w-full bg-white/5 border border-white/10 focus:border-accent p-3.5 text-xs text-white outline-none rounded font-sans"
+                    />
+                  </div>
 
-              <label className="flex items-center space-x-3 cursor-pointer pt-2 pb-2 select-none">
-                <input 
-                  type="checkbox"
-                  checked={sleep}
-                  onChange={(e) => setSleep(e.target.checked)}
-                  className="w-4 h-4 rounded text-accent border-border-subtle focus:ring-accent"
-                />
-                <span className="font-body text-[0.65rem] text-text-main font-bold uppercase tracking-wider">
-                  {t("booking.form_sleep") as string}
-                </span>
-              </label>
+                  {/* Phone Input */}
+                  <div className="flex flex-col gap-2 font-mono">
+                    <label htmlFor="phone-input" className="text-[9px] font-bold text-white/60 tracking-widest uppercase">
+                      {t("booking.phone") as string} *
+                    </label>
+                    <input
+                      id="phone-input"
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+38 050 000 00 00"
+                      className="w-full bg-white/5 border border-white/10 focus:border-accent p-3.5 text-xs text-white outline-none rounded font-sans"
+                    />
+                  </div>
+                </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-accent hover:bg-accent-hover text-white font-body text-xs uppercase tracking-[0.2em] font-bold py-4 rounded transition-all duration-300 shadow-xl shadow-accent/20"
-              >
-                {loading ? "Відправка..." : (t("booking.form_btn") as string)}
-              </button>
+                {/* Date Input */}
+                <div className="flex flex-col gap-2 font-mono">
+                  <label htmlFor="date-input" className="text-[9px] font-bold text-white/60 tracking-widest uppercase">
+                    {t("booking.date") as string} *
+                  </label>
+                  <input
+                    id="date-input"
+                    type="date"
+                    required
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="w-full bg-white/5 border border-white/10 focus:border-accent p-3.5 text-xs text-white outline-none rounded font-sans"
+                  />
+                </div>
 
-            </form>
-          ) : (
-            <div className="text-center py-12 space-y-4">
-              <span className="font-body text-4xl text-accent block font-bold select-none">✓</span>
-              <h3 className="font-display font-bold text-text-main text-xl">
-                {t("booking.success_title") as string}
-              </h3>
-              <p className="font-body text-xs text-text-muted leading-relaxed">
-                {t("booking.success_desc") as string}
-              </p>
-            </div>
-          )}
+                {/* Optional Message */}
+                <div className="flex flex-col gap-2 font-mono">
+                  <label htmlFor="notes-input" className="text-[9px] font-bold text-white/60 tracking-widest uppercase">
+                    {t("booking.notes") as string}
+                  </label>
+                  <textarea
+                    id="notes-input"
+                    rows={3}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Ваше повідомлення чи опис проблеми"
+                    className="w-full bg-white/5 border border-white/10 focus:border-accent p-3.5 text-xs text-white outline-none rounded resize-none font-sans"
+                  />
+                </div>
+
+                {/* Submit button & Trust notice */}
+                <div className="flex flex-col gap-4 mt-2">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="bg-accent hover:bg-accent-dark text-white text-center py-4 text-[10px] font-bold uppercase tracking-widest transition-colors glow-accent disabled:opacity-50"
+                  >
+                    {status === "loading" ? "НАДСИЛАННЯ..." : (t("booking.submit") as string)}
+                  </button>
+                  <p className="text-[9px] font-mono text-white/40 text-center uppercase tracking-widest">
+                    Натискаючи кнопку, ви погоджуєтесь на обробку медичних персональних даних.
+                  </p>
+                </div>
+
+              </form>
+            )}
+
+          </div>
+
         </div>
 
       </div>

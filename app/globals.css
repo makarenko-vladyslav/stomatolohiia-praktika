@@ -2,54 +2,50 @@
 
 
 @theme {
-  --color-primary: hsl(200 25% 10%);
-  --color-primary-light: hsl(200 15% 18%);
-  --color-accent: hsl(175 80% 40%);
-  --color-accent-hover: hsl(175 85% 32%);
-  --color-bg-light: hsl(180 15% 98%);
-  --color-bg-alt: hsl(195 15% 94%);
-  --color-text-main: hsl(200 35% 12%);
-  --color-text-muted: hsl(200 15% 45%);
-  --color-border-subtle: hsl(200 15% 88%);
+  --color-primary: hsl(215 35% 11%);
+  --color-accent: hsl(172 90% 40%);
+  --color-accent-dark: hsl(172 90% 32%);
+  --color-bg-dark: hsl(215 35% 8%);
+  --color-bg-light: hsl(200 15% 97%);
+  --color-text-main: hsl(215 30% 15%);
+  --color-text-muted: hsl(215 15% 45%);
+  --color-border-subtle: hsl(215 15% 88%);
   
-  --font-display: "Spectral", serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-display: 'Spectral', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
-  html {
-    font-size: 16px;
+  html { 
+    font-size: 16px; 
+    scroll-behavior: smooth;
   }
-
+  @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+  @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+  @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+  @media (max-width:  640px) { html { font-size: 4.444444vw; } }
+  
   body {
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     background-color: var(--color-bg-light);
     color: var(--color-text-main);
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
 }
 
-/* Base interactive styling */
-button, a {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Custom transitions and features */
+.glow-accent {
+  box-shadow: 0 0 30px hsl(172 90% 40% / 0.15);
 }
 
-.img-fallback {
-  background: linear-gradient(135deg, hsl(200 15% 18%) 0%, hsl(175 80% 40%) 100%);
-  min-height: 12.5rem;
-  border-radius: 0.75rem;
+.glow-accent-strong {
+  box-shadow: 0 0 45px hsl(172 90% 40% / 0.25);
 }
 
-/* Custom layout helper */
-.container-custom {
-  width: 100%;
-  max-width: 80rem; /* 1280px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-/* Custom scrolling layout enhancements */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -58,22 +54,7 @@ button, a {
   scrollbar-width: none;
 }
 
-/* Floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-0.625rem); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Accessibility Focus Styling */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-}
-
+/* Accessibility settings for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -81,4 +62,28 @@ button, a {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Interactive elements focus indicator */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Image fallback gradient */
+.img-fallback {
+  background: linear-gradient(135deg, hsl(215 35% 15%) 0%, hsl(215 35% 8%) 100%);
+  min-height: 200px;
+  position: relative;
+}
+.img-fallback::before {
+  content: "Praktika Medical";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(172 90% 40% / 0.4);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
 }
