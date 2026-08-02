@@ -1,1 +1,0 @@
-# stomatolohiia-praktika

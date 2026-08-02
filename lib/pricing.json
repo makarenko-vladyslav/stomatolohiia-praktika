@@ -1,0 +1,25 @@
+
+{
+  "basePrices": {
+    "singleImplant": 15000,
+    "allOn4": 120000,
+    "allOn6": 180000,
+    "zygoma": 240000
+  },
+  "options": {
+    "sedation": {
+      "price": 12000,
+      "required": false
+    },
+    "zirconiaCrown": {
+      "price": 8500,
+      "required": false
+    },
+    "boneGrafting": {
+      "price": 18000,
+      "required": false
+    }
+  },
+  "currency": "UAH",
+  "estimationLogic": "surgical-implant"
+}

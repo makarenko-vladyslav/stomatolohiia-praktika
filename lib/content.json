@@ -1,0 +1,503 @@
+{
+  "defaultLocale": "uk",
+  "locales": {
+    "uk": {
+      "meta": {
+        "title": "Стоматологія Praktika",
+        "tagline": "Хірургія та імплантація експертного рівня"
+      },
+      "nav": {
+        "services": "Послуги",
+        "calculator": "Розрахунок",
+        "portfolio": "Кейси",
+        "technology": "Технології",
+        "testimonials": "Відгуки",
+        "faq": "Питання",
+        "contact": "Контакти",
+        "cta": "Консультація з КТ"
+      },
+      "hero": {
+        "kicker": "Хірургічний центр повного циклу • Харків",
+        "title1": "Діагностика та імплантація",
+        "titleItalic": "за один хірургічний день",
+        "title2": "без тривоги",
+        "subtitle": "Повне відновлення зубів за протоколами All-on-4, All-on-6 та Zygoma. Комп'ютерне планування шаблонів та лікування у медикаментозному сні під контролем штатного анестезіолога.",
+        "primaryCta": "Запис на 3D КТ",
+        "secondaryCta": "Калькулятор вартості",
+        "scroll": "СКРОЛИТИ"
+      },
+      "stats": {
+        "rating": "4.9 Google",
+        "ratingSub": "587 підтверджених відгуків пацієнтів",
+        "operations": "4,200+",
+        "operationsSub": "встановлених імплантатів Nobel",
+        "zygoma": "100% приживлення",
+        "zygomaSub": "в хірургічних кейсах вираженої атрофії"
+      },
+      "services": {
+        "title": "Хірургічні рішення та прайс",
+        "subtitle": "Ми спеціалізуємось на відновленні зубного ряду при критичній втраті кісткової тканини щелепи.",
+        "categories": {
+          "implants": "Хірургія & Імплантація",
+          "therapy": "Терапія під мікроскопом",
+          "comfort": "Анестезія & Комфорт"
+        },
+        "items": [
+          {
+            "id": "all4",
+            "category": "implants",
+            "title": "Незнімний міст за протоколом All-on-4",
+            "desc": "Відновлення зубного ряду на чотирьох швейцарських імплантатах Nobel Biocare за одну операцію.",
+            "price": "120000",
+            "tag": "Популярно"
+          },
+          {
+            "id": "all6",
+            "category": "implants",
+            "title": "Незнімний міст за протоколом All-on-6",
+            "desc": "Рівномірне навантаження при широкій посмішці. Встановлення шести опорних імплантатів у глибокі відділи кістки.",
+            "price": "180000",
+            "tag": "Рекомендовано"
+          },
+          {
+            "id": "zygoma",
+            "category": "implants",
+            "title": "Вилична імплантація Zygoma",
+            "desc": "Встановлення виличних імплантатів Nobel Zygoma без операції нарощування кісткової тканини верхньої щелепи.",
+            "price": "240000",
+            "tag": "Експертно"
+          },
+          {
+            "id": "single",
+            "category": "implants",
+            "title": "Поодинока імплантація під ключ",
+            "desc": "Імплантат, абатмент, встановлення хірургом та тимчасова коронка в день маніпуляції.",
+            "price": "15000"
+          },
+          {
+            "id": "sleep",
+            "category": "comfort",
+            "title": "Лікування в медикаментозному сні",
+            "desc": "Введення пацієнта в контрольовану седацію під постійним наглядом анестезіологічної бригади.",
+            "price": "12000",
+            "tag": "Без болю"
+          },
+          {
+            "id": "microscope",
+            "category": "therapy",
+            "title": "Ендодонтія під мікроскопом ZEISS",
+            "desc": "Лікування, очищення та тривимірне пломбування складних розгалужених кореневих каналів.",
+            "price": "3500"
+          },
+          {
+            "id": "zirconia",
+            "category": "therapy",
+            "title": "Цирконієва коронка на імплантат",
+            "desc": "Високоточне фрезерування коронки за технологією CAD/CAM з діоксиду цирконію.",
+            "price": "8500"
+          },
+          {
+            "id": "bone",
+            "category": "implants",
+            "title": "Синус-ліфтинг / Кісткова пластика",
+            "desc": "Спрямована регенерація кісткової тканини для створення надійної основи під класичні імплантати.",
+            "price": "18000"
+          }
+        ],
+        "footnote": "* Кінцева вартість лікування розраховується хірургом-імплантологом виключно після аналізу 3D КТ знімку пацієнта.",
+        "secondaryCta": "Розрахувати індивідуальний кошторис"
+      },
+      "calculator": {
+        "title": "Прозорий прорахунок лікування",
+        "subtitle": "Оберіть тип відновлення та супутні етапи для отримання орієнтовної вартості процедури.",
+        "typeLabel": "Оберіть протокол відновлення",
+        "types": {
+          "single": "Поодинокий імплантат (1 одиниця)",
+          "all4": "All-on-4 (повна щелепа на 4 опорах)",
+          "all6": "All-on-6 (повна щелепа на 6 опорах)",
+          "zygoma": "Zygoma (виличні імплантати)"
+        },
+        "optionsLabel": "Додаткові етапи комфорту та терапії",
+        "options": {
+          "sedation": "Медикаментозний сон (седація анестезіологом)",
+          "zirconia": "Цирконієва коронка замість металокераміки",
+          "bone": "Синус-ліфтинг та нарощування кістки"
+        },
+        "totalLabel": "Попередній кошторис",
+        "note": "У вартість включено: роботу хірурга, анестезію, повний хірургічний пакет та післяопераційні огляди протягом 12 місяців.",
+        "cta": "Зафіксувати вартість та записатись"
+      },
+      "beforeAfter": {
+        "title": "Документований результат",
+        "subtitle": "Реальні клінічні випадки відновлення функції жування та естетики пацієнтів клініки.",
+        "case1": "Пацієнт 52 роки: повне знімне протезування замінено на All-on-4 верхньої щелепи за 1 день.",
+        "case2": "Пацієнтка 64 роки: вилична імплантація Zygoma при критичній резорбції кістки щелепи."
+      },
+      "tech": {
+        "kicker": "Стандарти хірургічного кабінету",
+        "title": "Чому Praktika перемагає",
+        "subtitle": "Ми не економимо на оптиці, шаблонах та обладнанні. Діагностика та операція проходять в одному центрі на проспекті Науки.",
+        "statement": "Хірургічна точність виключає помилки лікаря. Наш пріоритет — довгострокова стабільність конструкції.",
+        "author": "Костянтин М. — шеф-хірург клініки Praktika",
+        "items": [
+          {
+            "num": "1",
+            "title": "Власний 3D Томограф Planmeca",
+            "desc": "Робимо КТ безпосередньо у кріслі. Пацієнт отримує точні знімки без поїздок у діагностичні кабінети міста."
+          },
+          {
+            "num": "2",
+            "title": "Операційні мікроскопи ZEISS",
+            "desc": "Кожен терапевт працює під 40-кратним збільшенням. Бачимо мікротріщини каналів та щільність прилягання коронки."
+          },
+          {
+            "num": "3",
+            "title": "Навігаційні цифрові шаблони",
+            "desc": "Позиціонування кожного імплантату розраховується в програмі з точністю до десятих часток міліметра."
+          }
+        ]
+      },
+      "video": {
+        "title": "Операційний блок без страху",
+        "desc": "Подивіться відео про те, як влаштована стерилізація, комп'ютерне моделювання та цифровий хірургічний кабінет у нашій клініці."
+      },
+      "process": {
+        "title": "Кроки до нової посмішки",
+        "subtitle": "Послідовність відновлення зубів від першого КТ знімку до фіксації незнімної конструкції.",
+        "steps": [
+          {
+            "num": "I",
+            "title": "Діагностика на 3D томографі",
+            "desc": "Отримуємо пошаровий знімок щелепи пацієнта за 15 секунд для оцінки об'єму кістки."
+          },
+          {
+            "num": "II",
+            "title": "Моделювання шаблону",
+            "desc": "Лікар віртуально розставляє імплантати у програмі та моделює напрямні шаблони."
+          },
+          {
+            "num": "III",
+            "title": "Встановлення уві сні",
+            "desc": "Анестезіолог занурює пацієнта у сон, після чого хірург встановлює опорні імплантати за 2-3 години."
+          },
+          {
+            "num": "IV",
+            "title": "Фіксація конструкції",
+            "desc": "Закріплюємо незнімний адаптований протез у день операції, повертаючи жувальну функцію."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Що говорять пацієнти",
+        "subtitle": "Реальні клінічні відгуки людей, які здолали тривогу та відновили якість життя в нашому кріслі.",
+        "list": [
+          {
+            "author": "Михайло К., Харків",
+            "role": "Встановлено All-on-4 уві сні",
+            "descriptor": "Постійний пацієнт з 2019 року",
+            "quote": "Хвилювався перед операцією з дитинства. Тут мені провели процедуру під седацією. Прокинувся вже з встановленими зубами. Наступного дня болю не відчував взагалі."
+          },
+          {
+            "author": "Олена Павлівна, Харків",
+            "role": "Вилична імплантація Zygoma",
+            "descriptor": "Процедура виконана у червні 2021",
+            "quote": "В інших клініках наполягали на кістковій пластиці з тривалим очікуванням. Хірурги Praktika встановили виличні імплантати за один день. Результатом дуже задоволена."
+          },
+          {
+            "author": "Андрій Т., Харків",
+            "role": "Лікування каналів під мікроскопом",
+            "descriptor": "Врятовано складний зуб від видалення",
+            "quote": "Зуб планували видалити через запалення. Лікар під мікроскопом очистив та запломбував складні канали. Спасибі за високий рівень технологій."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Важливі відповіді",
+        "subtitle": "Роз'яснюємо деталі хірургічних етапів та анестезії простою мовою.",
+        "questions": [
+          {
+            "q": "Чи є обмеження за віком для встановлення імплантатів?",
+            "a": "Вік не є обмеженням для операції. Наш найстарший пацієнт успішно отримав конструкцію All-on-4 у віці 84 років. Головне — це загальний стан судин та кісткової тканини, що ми оцінюємо перед лікуванням."
+          },
+          {
+            "q": "Що являє собою вилична імплантація Zygoma?",
+            "a": "Це хірургічний метод відновлення зубів на верхній щелепі при значній нестачі кістки. Імплантати фіксуються безпосередньо у виличній кістці, що дозволяє уникнути травматичного нарощування."
+          },
+          {
+            "q": "Як діє медикаментозний сон під час операції?",
+            "a": "Пацієнт вводиться в стан легкого сну спеціальним препаратом під наглядом нашого анестезіолога. Людина дихає самостійно, не відчуваючи страху чи болісних маніпуляцій."
+          },
+          {
+            "q": "Скільки триває відновлення після хірургічного втручання?",
+            "a": "Незначний післяопераційний набряк проходить на 3-4 день. Повернутися до звичного робочого ритму пацієнт зазвичай може вже наступного дня після процедури."
+          }
+        ]
+      },
+      "contact": {
+        "kicker": "Консультація хірурга та КТ діагностика",
+        "title": "Почніть з точного діагнозу щелепи",
+        "subtitle": "Отримайте розгорнутий план лікування з розрахунком вартості після комп'ютерної томографії.",
+        "formTitle": "Запис на КТ та прийом",
+        "name": "Ваше ім'я",
+        "phone": "Телефон для зв'язку",
+        "date": "Бажана дата прийому",
+        "submit": "Забронювати час візиту",
+        "success": "Вашу заявку прийнято. Наш медичний координатор зателефонує вам найближчим часом для узгодження часу.",
+        "loading": "Записуємо на прийом...",
+        "phoneLabel": "Черговий лікар клініки",
+        "addressLabel": "Адреса клінічного центру",
+        "hoursLabel": "Графік роботи",
+        "hoursVal": "Пн-Сб 09:00 — 20:00, Нд — Вихідний"
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "Praktika Dental",
+        "tagline": "Advanced Dental Implantation & Surgery"
+      },
+      "nav": {
+        "services": "Services",
+        "calculator": "Calculator",
+        "portfolio": "Cases",
+        "technology": "Tech",
+        "testimonials": "Reviews",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "cta": "CT Consultation"
+      },
+      "hero": {
+        "kicker": "Full-Cycle Surgical Center • Kharkiv",
+        "title1": "Precision Implants",
+        "titleItalic": "completed in a single day",
+        "title2": "without anxiety",
+        "subtitle": "Full-arch tooth restoration using All-on-4, All-on-6, and Zygoma protocols. Computer-guided planning and procedures under sedation monitored by our anesthesiology team.",
+        "primaryCta": "Book 3D CT Scan",
+        "secondaryCta": "Cost Calculator",
+        "scroll": "SCROLL"
+      },
+      "stats": {
+        "rating": "4.9 Google",
+        "ratingSub": "587 verified patient reviews",
+        "operations": "4,200+",
+        "operationsSub": "Nobel implant units installed",
+        "zygoma": "100% success rate",
+        "zygomaSub": "in extreme bone atrophy cases"
+      },
+      "services": {
+        "title": "Surgical Procedures & Pricing",
+        "subtitle": "We specialize in bone-atrophy cases and complex dental reconstructions.",
+        "categories": {
+          "implants": "Surgery & Implants",
+          "therapy": "Microscopic Therapy",
+          "comfort": "Sedation & Comfort"
+        },
+        "items": [
+          {
+            "id": "all4",
+            "category": "implants",
+            "title": "Fixed Bridge on All-on-4",
+            "desc": "Full jaw restoration supported by four Swiss Nobel Biocare implants in a single visit.",
+            "price": "120000",
+            "tag": "Most Popular"
+          },
+          {
+            "id": "all6",
+            "category": "implants",
+            "title": "Fixed Bridge on All-on-6",
+            "desc": "Even chewing load distribution. Installation of six anchor implants in dense bone tissue.",
+            "price": "180000",
+            "tag": "Recommended"
+          },
+          {
+            "id": "zygoma",
+            "category": "implants",
+            "title": "Zygomatic Implants Zygoma",
+            "desc": "Anchored directly in the stable zygomatic bone, avoiding sinus lifts or bone grafting.",
+            "price": "240000",
+            "tag": "Expert Level"
+          },
+          {
+            "id": "single",
+            "category": "implants",
+            "title": "Single Tooth Implantation Package",
+            "desc": "Implant unit, abutment, surgical work, and temporary crown loaded on the same day.",
+            "price": "15000"
+          },
+          {
+            "id": "sleep",
+            "category": "comfort",
+            "title": "Anesthesiologist-monitored Sedation",
+            "desc": "Controlled medical sleep under the continuous supervision of our anesthetic team.",
+            "price": "12000",
+            "tag": "Anxiety Free"
+          },
+          {
+            "id": "microscope",
+            "category": "therapy",
+            "title": "Microscopic Canal Therapy (ZEISS)",
+            "desc": "Endodontic sanitization and 3D root canal sealing under high magnification.",
+            "price": "3500"
+          },
+          {
+            "id": "zirconia",
+            "category": "therapy",
+            "title": "Zirconia Crown on Implant",
+            "desc": "High-precision CAD/CAM milled zirconia structure for extreme longevity.",
+            "price": "8500"
+          },
+          {
+            "id": "bone",
+            "category": "implants",
+            "title": "Sinus Lift / Bone Grafting",
+            "desc": "Guided bone regeneration to prepare a stable baseline for standard dental implants.",
+            "price": "18000"
+          }
+        ],
+        "footnote": "* Final budget is constructed individually by the surgeon only after evaluating the patient's 3D CT scan.",
+        "secondaryCta": "Calculate Custom Cost Estimate"
+      },
+      "calculator": {
+        "title": "Transparent Cost Calculator",
+        "subtitle": "Choose desired reconstruction type and additional procedures to obtain an estimate.",
+        "typeLabel": "Select Restoration Protocol",
+        "types": {
+          "single": "Single Implant (1 tooth unit)",
+          "all4": "All-on-4 (Full jaw on 4 implants)",
+          "all6": "All-on-6 (Full jaw on 6 implants)",
+          "zygoma": "Zygoma (Zygomatic Implants)"
+        },
+        "optionsLabel": "Extra Comfort & Clinical Steps",
+        "options": {
+          "sedation": "Sedation (Anesthesiologist-monitored sleep)",
+          "zirconia": "Zirconia Crown instead of standard PFM",
+          "bone": "Sinus Lift and Bone Grafting"
+        },
+        "totalLabel": "Estimated Cost",
+        "note": "Includes implants, surgical labor, anesthesia, suturing materials, and follow-ups for 12 months.",
+        "cta": "Lock Price & Schedule Visit"
+      },
+      "beforeAfter": {
+        "title": "Clinical Proof",
+        "subtitle": "Actual clinical cases showing masticatory restoration and smile transformations.",
+        "case1": "Patient, 52 y.o.: full denture replaced by All-on-4 upper jaw bridge in 1 day.",
+        "case2": "Patient, 64 y.o.: zygomatic implants installed due to severe bone resorption."
+      },
+      "tech": {
+        "kicker": "Surgical Room Standards",
+        "title": "Why Praktika Leads",
+        "subtitle": "We invest in microscope optics, surgical navigation, and computed planning. Diagnostics and surgery occur in a single center on Nauky Avenue.",
+        "statement": "Surgical precision eliminates physician errors. Our priority is the long-term biological stability of the implant.",
+        "author": "Dr. Konstantin M. — Chief Surgeon at Praktika",
+        "items": [
+          {
+            "num": "1",
+            "title": "In-house Planmeca 3D CT Scan",
+            "desc": "Computed tomography performed in-office. We obtain spatial imagery instantly without diagnostic delays."
+          },
+          {
+            "num": "2",
+            "title": "ZEISS Operating Microscopes",
+            "desc": "Our team works under 40x optical magnification, preserving healthy tissue and mapping root canals."
+          },
+          {
+            "num": "3",
+            "title": "Guided Surgical Navigation",
+            "desc": "Every implant unit is virtually positioned and guided by milled templates with sub-millimeter precision."
+          }
+        ]
+      },
+      "video": {
+        "title": "Inside Our Surgical Suite",
+        "desc": "Watch this overview of our sterilization, 3D diagnostic mapping, and computer-guided implant procedures."
+      },
+      "process": {
+        "title": "The Road to Your Smile",
+        "subtitle": "A structured pathway from diagnostic 3D scans to fixed tooth prosthetic loading.",
+        "steps": [
+          {
+            "num": "I",
+            "title": "3D CT Spatial Scan",
+            "desc": "A 15-second diagnostic scan to build a spatial bone map and evaluate anatomical density."
+          },
+          {
+            "num": "II",
+            "title": "Virtual Design",
+            "desc": "The surgeon pre-positions the implants on-screen and prepares digital guide templates."
+          },
+          {
+            "num": "III",
+            "title": "Placement in Sleep",
+            "desc": "Procedure conducted during comfortable sedation under constant anesthesiologist control."
+          },
+          {
+            "num": "IV",
+            "title": "Prosthetic Loading",
+            "desc": "Fitting of the fixed prosthetic structure within hours of surgery, restoring chewing function."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Patient Reviews",
+        "subtitle": "Actual patient accounts from those who overcame dental phobia and reclaimed health.",
+        "list": [
+          {
+            "author": "Michael K., Kharkiv",
+            "role": "All-on-4 under Sedation",
+            "descriptor": "Regular patient since 2019",
+            "quote": "I had been terrified of dentists since my childhood. The entire surgery was done while I slept. Woke up with a fixed bridge. No pain at all on the next day."
+          },
+          {
+            "author": "Elena P., Kharkiv",
+            "role": "Zygomatic Implants",
+            "descriptor": "Procedure completed June 2021",
+            "quote": "Other clinics insisted on painful bone grafting. Praktika's surgical team installed zygomatic implants in one day. Extremely happy with the results."
+          },
+          {
+            "author": "Andrew T., Kharkiv",
+            "role": "Root Canal Salvage",
+            "descriptor": "Complex molar preserved",
+            "quote": "A tooth planned for extraction was saved. The therapist worked under microscope to clean and seal narrow canals. Truly high-tech dentistry."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Patient Questions",
+        "subtitle": "Clinical dental procedures simplified.",
+        "questions": [
+          {
+            "q": "Is age a barrier for dental implant placement?",
+            "a": "No. Age is not a surgical contraindication. Our oldest All-on-4 patient is 84. We focus purely on systemic cardiovascular and bone markers before scheduling."
+          },
+          {
+            "q": "What is Zygomatic Implantation?",
+            "a": "A specialized technique for extreme upper jaw bone loss where implants anchor directly into the stable zygomatic bone, avoiding sinus lifts completely."
+          },
+          {
+            "q": "How does sedation work during surgery?",
+            "a": "Our anesthesiologist administers a safe sedative agent. You drift into a light sleep, breathing naturally while remaining free of anxiety or discomfort."
+          },
+          {
+            "q": "What is the expected recovery timeline?",
+            "a": "Minor post-op swelling peak resolves within 72 hours. Most patients feel comfortable resuming light work or daily routines the next day."
+          }
+        ]
+      },
+      "contact": {
+        "kicker": "Consultation & 3D CT Diagnosis",
+        "title": "Start with Accurate Spatial Diagnostics",
+        "subtitle": "Obtain a complete treatment plan and structured cost estimate following our in-house 3D scan.",
+        "formTitle": "Appointment Request",
+        "name": "Your name",
+        "phone": "Phone number",
+        "date": "Preferred date",
+        "submit": "Secure Your Appointment",
+        "success": "Your request has been received. Our clinical coordinator will call you shortly to confirm the scheduled slot.",
+        "loading": "Processing your appointment...",
+        "phoneLabel": "On-Duty Coordinator",
+        "addressLabel": "Kharkiv Clinical Address",
+        "hoursLabel": "Operating Hours",
+        "hoursVal": "Mon-Sat 09:00 — 20:00, Sun — Closed"
+      }
+    }
+  }
+}
