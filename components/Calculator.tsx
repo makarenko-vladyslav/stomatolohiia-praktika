@@ -1,209 +1,169 @@
 "use client";
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import { useLocale } from '@/lib/i18n';
 import pricing from '@/lib/pricing.json';
-
-// Static mapping to avoid ReferenceError and prevent runtime/build crashes
-const serviceMap: Record<string, number> = {
-  allOn4: 0,
-  allOn6: 1,
-  zygoma: 2,
-  singleImplant: 3
-};
+import { Reveal } from './motion';
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [treatment, setTreatment] = useState<keyof typeof pricing.basePrices>('allOn4');
-  const [premiumImplant, setPremiumImplant] = useState<boolean>(true);
-  const [sedationHours, setSedationHours] = useState<number>(2);
-  const [guideTemplate, setGuideTemplate] = useState<boolean>(true);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  
-  const [formData, setFormData] = useState({ name: '', phone: '' });
-  const [success, setSuccess] = useState<boolean>(false);
 
-  useEffect(() => {
-    let base = pricing.basePrices[treatment];
-    let multiplier = premiumImplant ? pricing.multipliers.premiumSwiss : pricing.multipliers.standardKorean;
-    let guideCost = guideTemplate ? pricing.multipliers.digitalGuide : 0;
-    let sedationCost = sedationHours * pricing.basePrices.sedationPerHour;
+  const [selectedType, setSelectedType] = useState('single');
+  const [quantity, setQuantity] = useState(1);
+  const [withSedation, setWithSedation] = useState(false);
+  const [withBoneGraft, setWithBoneGraft] = useState(false);
 
-    let computed = Math.round((base * multiplier) + guideCost + sedationCost);
-    setTotalPrice(computed);
-  }, [treatment, premiumImplant, sedationHours, guideTemplate]);
+  const types = [
+    { key: 'single', name: 'Одиночні імпланти (за 1 шт)', basePrice: pricing.basePrices.single_implant },
+    { key: 'all_4', name: 'Протокол All-on-4 (ціла щелепа)', basePrice: pricing.basePrices.all_on_4 },
+    { key: 'all_6', name: 'Протокол All-on-6 (посилена фіксація)', basePrice: pricing.basePrices.all_on_6 },
+    { key: 'zygoma', name: 'Zygoma (скулова імплантація)', basePrice: pricing.basePrices.zygoma },
+  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.phone) return;
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-      setFormData({ name: '', phone: '' });
-    }, 5000);
-  };
+  const currentType = types.find(t => t.key === selectedType) || types[0];
+
+  let calculatedPrice = currentType.basePrice * quantity;
+  if (withSedation) calculatedPrice += pricing.basePrices.sedation_hour;
+  if (withBoneGraft) calculatedPrice *= pricing.multipliers.bone_graft;
 
   return (
-    <section id="calculator" className="relative w-full py-24 bg-bg-dark text-white border-b border-white/5 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          
-          {/* Controls Panel */}
-          <div className="w-full lg:w-7/12 flex flex-col gap-8">
-            <div className="flex flex-col items-start gap-4">
-              {/* Abolished pill design: Clean uppercase tracking-widest editorial kicker */}
-              <span className="text-accent font-mono text-[0.75rem] tracking-[0.2em] uppercase block mb-2">
-                {t('calculator.kicker')}
-              </span>
-              <h2 className="text-[2.5rem] md:text-[3.5rem] font-display font-bold leading-tight text-white">
-                {t('calculator.title')}
-              </h2>
-              <p className="text-[1rem] text-white/70">
-                {t('calculator.subtitle')}
-              </p>
-            </div>
+    <section id="calculator" className="py-20 bg-bg-tint border-b border-border-light relative overflow-hidden">
+      
+      {/* Decorative Watermark Word */}
+      <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.03] font-display text-[15vw] font-bold uppercase text-text-main whitespace-nowrap">
+        CALCULATOR
+      </div>
 
-            <div className="flex flex-col gap-6 bg-white/[0.02] p-8 rounded-2xl border border-white/10">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <Reveal className="text-left max-w-3xl mb-12">
+          <span className="text-xs font-body uppercase tracking-[0.2em] text-accent font-bold">
+            {t('calculator.kicker') as string}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-semibold text-text-main mt-2">
+            {t('calculator.title') as string}
+          </h2>
+          <p className="text-xs sm:text-sm font-body text-text-muted mt-3 leading-relaxed">
+            {t('calculator.subtitle') as string}
+          </p>
+        </Reveal>
+
+        <Reveal className="max-w-5xl mx-auto bg-bg-light border border-border-light p-6 sm:p-10 rounded-2xl shadow-xl">
+          <div className="grid md:grid-cols-12 gap-8 items-stretch">
+            
+            {/* Input Controls */}
+            <div className="md:col-span-7 space-y-6 flex flex-col justify-between">
               
-              {/* Restoration Type Selection */}
-              <div className="flex flex-col gap-3">
-                <label className="text-[0.75rem] tracking-[0.2em] font-mono text-white/50 uppercase">
-                  {t('calculator.labels.treatmentType')}
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {(['allOn4', 'allOn6', 'zygoma', 'singleImplant'] as const).map((key) => (
-                    <button
-                      key={key}
-                      onClick={() => setTreatment(key)}
-                      className={`p-4 rounded-xl text-left border font-sans transition-all duration-200 cursor-pointer ${treatment === key ? 'border-accent bg-accent/15 text-white' : 'border-white/10 bg-white/[0.01] text-white/80 hover:border-white/20'}`}
-                    >
-                      <span className="font-semibold block text-[0.95rem]">
-                        {t(`services.list.${serviceMap[key]}.title`)}
-                      </span>
-                      <span className="text-[0.75rem] text-white/40 font-mono mt-1 block">
-                        Базова ціна: {pricing.basePrices[key].toLocaleString()} ₴
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Implant System Choice */}
-              <div className="flex flex-col gap-3">
-                <label className="text-[0.75rem] tracking-[0.2em] font-mono text-white/50 uppercase">
-                  {t('calculator.labels.implantSystem')}
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <button
-                    onClick={() => setPremiumImplant(true)}
-                    className={`p-4 rounded-xl text-left border font-sans transition-all duration-200 cursor-pointer ${premiumImplant ? 'border-accent bg-accent/15 text-white' : 'border-white/10 bg-white/[0.01] text-white/80 hover:border-white/20'}`}
-                  >
-                    <span className="font-semibold block text-[0.95rem]">Швейцарія (Straumann / Nobel)</span>
-                    <span className="text-[0.75rem] text-white/40 font-mono mt-1 block">Коефіцієнт: 1.35x</span>
-                  </button>
-                  <button
-                    onClick={() => setPremiumImplant(false)}
-                    className={`p-4 rounded-xl text-left border font-sans transition-all duration-200 cursor-pointer ${!premiumImplant ? 'border-accent bg-accent/15 text-white' : 'border-white/10 bg-white/[0.01] text-white/80 hover:border-white/20'}`}
-                  >
-                    <span className="font-semibold block text-[0.95rem]">Південна Корея (Osstem / MegaGen)</span>
-                    <span className="text-[0.75rem] text-white/40 font-mono mt-1 block">Базовий тариф: 1.0x</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Slider for sedation hours */}
-              <div className="flex flex-col gap-3">
-                <div className="flex justify-between items-center">
-                  <label className="text-[0.75rem] tracking-[0.2em] font-mono text-white/50 uppercase">
-                    {t('calculator.labels.sedation')}
+              <div className="space-y-6">
+                {/* Type Selection */}
+                <div>
+                  <label className="block text-xs font-body font-bold uppercase tracking-wider text-text-main mb-3">
+                    {t('calculator.typeLabel') as string}
                   </label>
-                  <span className="text-[0.9rem] font-mono font-bold text-accent">{sedationHours} год</span>
+                  <div className="grid grid-cols-1 gap-2">
+                    {types.map((type) => (
+                      <button
+                        key={type.key}
+                        onClick={() => setSelectedType(type.key)}
+                        className={`p-3 text-left rounded text-xs font-body transition-all border ${
+                          selectedType === type.key
+                            ? 'border-accent bg-accent/10 text-text-main font-semibold'
+                            : 'border-border-light hover:border-text-muted text-text-muted'
+                        }`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <span>{type.name}</span>
+                          <span className="text-accent font-bold tabular-nums">від {type.basePrice.toLocaleString('uk-UA')} грн</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="6"
-                  step="1"
-                  value={sedationHours}
-                  onChange={(e) => setSedationHours(parseInt(e.target.value))}
-                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-accent"
-                />
-                <span className="text-[0.7rem] font-mono text-white/40">Лікування під медикаментозним сном (седацією). Рекомендовано від 2 годин.</span>
+
+                {/* Range Slider */}
+                <div>
+                  <div className="flex justify-between items-center mb-2 font-body text-xs">
+                    <span className="font-bold uppercase tracking-wider text-text-main">
+                      {t('calculator.quantityLabel') as string}
+                    </span>
+                    <span className="text-accent font-bold text-base tabular-nums">{quantity}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="4"
+                    value={quantity}
+                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    className="w-full accent-accent cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-body text-text-muted mt-1">
+                    <span>1 одиниця</span>
+                    <span>2 щелепи</span>
+                    <span>4 блоки</span>
+                  </div>
+                </div>
+
+                {/* Options Checkboxes */}
+                <div className="space-y-3 pt-2 font-body text-xs border-t border-border-light/60">
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={withSedation}
+                      onChange={(e) => setWithSedation(e.target.checked)}
+                      className="w-4 h-4 accent-accent rounded"
+                    />
+                    <span className="text-text-main">{t('calculator.sedationLabel') as string} (+4 500 грн/год)</span>
+                  </label>
+
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={withBoneGraft}
+                      onChange={(e) => setWithBoneGraft(e.target.checked)}
+                      className="w-4 h-4 accent-accent rounded"
+                    />
+                    <span className="text-text-main">{t('calculator.boneGraftLabel') as string} (+25% до вартості)</span>
+                  </label>
+                </div>
               </div>
 
-              {/* Navigation Guide Checkbox */}
-              <div className="flex items-center gap-3 py-2">
-                <input
-                  id="guide"
-                  type="checkbox"
-                  checked={guideTemplate}
-                  onChange={(e) => setGuideTemplate(e.target.checked)}
-                  className="w-5 h-5 rounded border-white/10 text-accent focus:ring-accent accent-accent cursor-pointer"
-                />
-                <label htmlFor="guide" className="text-[0.875rem] font-sans text-white/80 cursor-pointer select-none">
-                  {t('calculator.labels.guide')} (+8,000 ₴)
-                </label>
+              <div className="text-[10px] font-body text-text-muted pt-2 border-t border-border-light">
+                Фіксація ціни у договору під час 3D КТ-сканування
               </div>
 
             </div>
-          </div>
 
-          {/* Pricing Panel */}
-          <div className="w-full lg:w-5/12 lg:sticky lg:top-28 flex flex-col gap-6 bg-white/[0.03] text-white p-8 rounded-2xl border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
-            <div>
-              <span className="text-[0.75rem] tracking-[0.2em] font-mono text-white/50 uppercase block mb-2">ПОПЕРЕДНІЙ КОШТОРИС</span>
-              <p className="text-[0.95rem] text-white/85 font-sans leading-relaxed">
-                Розрахунок включає хірургічну роботу лікаря, анестезію, тимчасову адаптивну ортопедичну конструкцію та сервісне супроводження клініки.
-              </p>
-            </div>
-
-            <div className="border-y border-white/10 py-6 my-2">
-              <span className="text-[0.75rem] tracking-[0.2em] font-mono text-white/50 uppercase block mb-1">
-                {t('calculator.labels.total')}
-              </span>
-              <span className="text-[2.5rem] md:text-[3rem] font-mono font-bold text-accent">
-                {totalPrice.toLocaleString()} ₴
-              </span>
-            </div>
-
-            {/* Quick Request Form inside Calculator */}
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <div>
-                <input
-                  type="text"
-                  required
-                  placeholder={t('calculator.labels.name')}
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 focus:border-accent text-white rounded p-3 font-sans text-[0.875rem] focus:outline-none"
-                />
-              </div>
-              <div>
-                <input
-                  type="tel"
-                  required
-                  placeholder={t('calculator.labels.phone')}
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 focus:border-accent text-white rounded p-3 font-sans text-[0.875rem] focus:outline-none"
-                />
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-accent hover:bg-accent/90 text-white font-mono uppercase tracking-wider p-4 rounded text-[0.875rem] transition-all duration-300 cursor-pointer"
-              >
-                {t('calculator.labels.submit')}
-              </button>
-
-              {success && (
-                <p className="text-[0.8rem] text-accent font-mono text-center">
-                  {t('calculator.labels.success')}
+            {/* Price Output Display Card */}
+            <div className="md:col-span-5 bg-primary p-6 sm:p-8 rounded-xl text-bg-light flex flex-col justify-between h-full space-y-6 text-left border border-border-light/20">
+              <div className="space-y-4">
+                <span className="text-[10px] font-body uppercase tracking-[0.2em] text-accent font-semibold block">
+                  {t('calculator.estimateTitle') as string}
+                </span>
+                <div className="text-3xl sm:text-4xl font-display font-bold text-accent tabular-nums">
+                  {Math.round(calculatedPrice).toLocaleString('uk-UA')} грн
+                </div>
+                <div className="w-full h-[1px] bg-border-light/10" />
+                <p className="text-[11px] font-body text-bg-light/70 leading-relaxed">
+                  {t('calculator.estimateNotice') as string}
                 </p>
-              )}
-            </form>
-          </div>
+              </div>
 
-        </div>
+              <div className="space-y-3">
+                <a
+                  href="#booking"
+                  className="block w-full py-3.5 text-center text-xs font-body font-bold uppercase tracking-widest bg-accent text-primary-dark hover:bg-accent-hover transition-colors rounded shadow-md"
+                >
+                  {t('calculator.cta') as string}
+                </a>
+                <span className="text-[9px] font-body text-bg-light/50 text-center block">
+                  *Безкоштовна консультація при записі сьогодні
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </Reveal>
+
       </div>
     </section>
   );

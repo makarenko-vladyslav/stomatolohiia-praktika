@@ -1,105 +1,101 @@
 "use client";
-import { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
 
-interface CaseStudy {
-  title: string;
-  details: string;
-  beforeUrl: string;
-  afterUrl: string;
-}
+import { useLocale } from '@/lib/i18n';
+import { Reveal } from './motion';
 
 export default function BeforeAfter() {
   const { t } = useLocale();
-  const cases = t('beforeAfter.cases') as CaseStudy[];
-  const [activeCase, setActiveCase] = useState<number>(0);
-  const [sliderPosition, setSliderPosition] = useState<number>(50);
-
-  const handleSliderMove = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    const container = e.currentTarget.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const x = clientX - container.left;
-    const position = Math.max(0, Math.min(100, (x / container.width) * 100));
-    setSliderPosition(position);
-  };
+  const cases = t('beforeAfter.cases') as Array<{
+    id: string;
+    title: string;
+    desc: string;
+    photoBefore: string;
+    photoAfter: string;
+  }>;
 
   return (
-    <section id="beforeAfter" className="relative w-full py-24 bg-bg-light border-b border-border-soft scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col items-start gap-4 mb-16">
-          {/* Abolished pill design: Clean uppercase tracking-widest editorial kicker */}
-          <span className="text-accent font-mono text-[0.75rem] tracking-[0.2em] uppercase block mb-4">
-            {t('beforeAfter.kicker')}
+    <section id="cases" className="py-20 bg-bg-tint border-b border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <Reveal className="text-left max-w-3xl mb-14">
+          <span className="text-xs font-body uppercase tracking-[0.2em] text-accent font-bold">
+            {t('beforeAfter.kicker') as string}
           </span>
-          <h2 className="text-[2.5rem] md:text-[3.5rem] font-display font-bold leading-tight">
-            {t('beforeAfter.title')}
+          <h2 className="text-3xl sm:text-4xl font-display font-semibold text-text-main mt-2">
+            {t('beforeAfter.title') as string}
           </h2>
-          <p className="text-[1.125rem] text-text-main/70 max-w-2xl font-sans">
-            {t('beforeAfter.subtitle')}
+          <p className="text-xs sm:text-sm font-body text-text-muted mt-3">
+            {t('beforeAfter.subtitle') as string}
           </p>
-        </div>
+        </Reveal>
 
-        {/* Case Studies Selector */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            {cases.map((cs, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveCase(index);
-                  setSliderPosition(50);
-                }}
-                className={`p-6 rounded-xl text-left border transition-all duration-300 flex flex-col gap-3 cursor-pointer ${activeCase === index ? 'border-accent bg-white shadow-lg shadow-primary/5' : 'border-border-soft bg-transparent hover:border-text-main/30'}`}
-              >
-                <span className="font-mono text-[0.75rem] text-accent uppercase tracking-wider">КЕЙС {index + 1}</span>
-                <h3 className="font-display font-bold text-[1.25rem] text-primary">{cs.title}</h3>
-                <p className="text-[0.8rem] text-text-main/70 leading-relaxed font-sans">{cs.details}</p>
-              </button>
-            ))}
-          </div>
-
-          {/* Interactive slider component */}
-          <div className="lg:col-span-8 flex flex-col gap-4">
-            <div 
-              className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border-soft shadow-2xl select-none cursor-ew-resize"
-              onMouseMove={handleSliderMove}
-              onTouchMove={handleSliderMove}
-            >
-              {/* After image background */}
-              <img 
-                src={cases[activeCase].afterUrl} 
-                alt="After rehabilitation result" 
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                loading="lazy"
-              />
-              <div className="absolute bottom-4 right-4 bg-accent text-white px-3 py-1 text-[0.75rem] font-mono rounded tracking-widest z-10">РЕЗУЛЬТАТ</div>
-
-              {/* Before image mask */}
-              <div 
-                className="absolute inset-y-0 left-0 overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
-              >
-                <img 
-                  src={cases[activeCase].beforeUrl} 
-                  alt="Before treatment" 
-                  className="absolute inset-y-0 left-0 w-full h-full object-cover max-w-none pointer-events-none"
-                  style={{ width: '100%' }}
-                  loading="lazy"
-                />
-                <div className="absolute bottom-4 left-4 bg-primary text-white px-3 py-1 text-[0.75rem] font-mono rounded tracking-widest z-10">ДО ЛІКУВАННЯ</div>
+        {/* Large Full-Width Cases */}
+        <div className="space-y-12">
+          {cases.map((c) => (
+            <Reveal key={c.id} className="bg-bg-light border border-border-light p-6 sm:p-8 rounded-2xl space-y-6 shadow-md">
+              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-border-light pb-4">
+                <div>
+                  <span className="text-[10px] font-body uppercase tracking-widest text-accent font-bold">
+                    КЛІНІЧНИЙ КЕЙС № 0{c.id}
+                  </span>
+                  <h3 className="font-display font-semibold text-xl sm:text-2xl text-text-main mt-1">
+                    {c.title}
+                  </h3>
+                </div>
+                <div className="text-xs font-body text-text-muted tabular-nums">
+                  Протокол: All-on-4 / Zygoma
+                </div>
               </div>
 
-              {/* Drag line */}
-              <div 
-                className="absolute inset-y-0 w-[2px] bg-white cursor-ew-resize z-20 flex items-center justify-center"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="w-8 h-8 rounded-full bg-white text-primary flex items-center justify-center shadow-lg font-mono text-[0.8rem] font-bold border border-border-soft">⇔</div>
+              <p className="font-body text-xs sm:text-sm text-text-muted leading-relaxed max-w-4xl">
+                {c.desc}
+              </p>
+              
+              <div className="grid sm:grid-cols-2 gap-6 pt-2">
+                
+                {/* Before Photo Container */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] font-body uppercase tracking-wider text-text-muted font-bold">
+                    <span>Вихідний стан (До)</span>
+                    <span className="text-border-light/80">Рис. A</span>
+                  </div>
+                  <div className="h-64 rounded-xl overflow-hidden bg-primary-dark relative">
+                    <img
+                      src={c.photoBefore}
+                      alt="До лікування"
+                      loading="lazy"
+                      className="w-full h-full object-cover opacity-90"
+                    />
+                    <div className="absolute bottom-2 left-2 bg-primary-dark/80 px-2 py-1 text-[10px] font-body text-bg-light rounded">
+                      Атрофія / Втрата зубів
+                    </div>
+                  </div>
+                </div>
+
+                {/* After Photo Container */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] font-body uppercase tracking-wider text-accent font-bold">
+                    <span>Клінічний результат (Після)</span>
+                    <span>Рис. B</span>
+                  </div>
+                  <div className="h-64 rounded-xl overflow-hidden bg-primary border-2 border-accent relative shadow-lg">
+                    <img
+                      src={c.photoAfter}
+                      alt="Після лікування"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-2 left-2 bg-accent text-primary-dark px-2.5 py-1 text-[10px] font-body font-bold rounded">
+                      Незнімний цирконієвий міст
+                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>
-            <span className="text-[0.7rem] font-mono text-text-main/50 text-center block">Проведіть курсором або пальцем по зображенню для порівняння</span>
-          </div>
+            </Reveal>
+          ))}
         </div>
+
       </div>
     </section>
   );

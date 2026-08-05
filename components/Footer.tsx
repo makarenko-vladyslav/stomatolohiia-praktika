@@ -1,98 +1,104 @@
 "use client";
+
 import { useLocale } from '@/lib/i18n';
 
 export default function Footer() {
   const { t } = useLocale();
-  const currentYear = 2026;
 
   return (
-    <footer className="relative w-full bg-bg-dark text-white pt-24 pb-12 border-t border-white/5 overflow-hidden">
+    <footer className="bg-primary-dark text-bg-light pt-16 pb-12 border-t border-border-light/10 font-body text-xs relative overflow-hidden">
       
-      {/* Giant full-width background brand wordmark bleeding off the bottom */}
-      <div className="absolute bottom-[-4rem] left-1/2 -translate-x-1/2 w-full text-center select-none pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-        <span className="font-display font-black text-white/[0.015] text-[18vw] tracking-tighter leading-none whitespace-nowrap block uppercase">
-          PRAKTIKA
-        </span>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      {/* Densest Band: Main Content Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          {/* Column 1: Brand descriptor */}
-          <div className="lg:col-span-4 flex flex-col items-start gap-4">
-            <a href="#" className="flex items-center gap-3 text-white group" aria-label="Home link">
-              <svg className="w-8 h-8 text-accent group-hover:scale-105 transition-transform duration-300" viewBox="0 0 32 32" fill="none">
-                <path d="M9 11C9 18.5 13 23 16 23C19 23 23 18.5 23 11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-                <circle cx="16" cy="11" r="2" fill="currentColor"/>
-              </svg>
-              <span className="font-display font-bold text-[1.5rem] tracking-tight">Praktika</span>
-            </a>
-            <p className="text-[0.8rem] text-white/50 font-sans leading-relaxed max-w-xs mt-2">
-              Центр сучасної хірургічної стоматології та тотальної реабілітації у Харкові. Власна зуботехнічна CAD/CAM лабораторія цифрового фрезерування.
+          {/* Brand Info Column */}
+          <div className="space-y-4">
+            <span className="font-display font-bold text-2xl text-bg-light block">
+              {t('brand.fullName') as string}
+            </span>
+            <p className="text-bg-light/70 leading-relaxed text-[11px]">
+              {t('footer.desc') as string}
+            </p>
+            <div className="text-[10px] font-body text-accent font-semibold pt-1">
+              {t('footer.licenseInfo') as string}
+            </div>
+          </div>
+
+          {/* Contact Details Column */}
+          <div className="space-y-3">
+            <h4 className="font-display font-semibold text-base text-bg-light">
+              {t('footer.addressTitle') as string}
+            </h4>
+            <p className="text-bg-light/80">{t('footer.address') as string}</p>
+            <p className="text-accent font-bold tabular-nums">
+              <a href="tel:+380507717535">{t('footer.phone') as string}</a>
+            </p>
+            <p className="text-bg-light/60">{t('footer.email') as string}</p>
+          </div>
+
+          {/* Hours Column */}
+          <div className="space-y-3">
+            <h4 className="font-display font-semibold text-base text-bg-light">
+              Режим роботы
+            </h4>
+            <p className="text-bg-light/80">{t('footer.hours') as string}</p>
+            <p className="text-bg-light/60 text-[10px]">
+              Власна автопарковка біля входу
             </p>
           </div>
 
-          {/* Column 2: Navigation Links */}
-          <div className="lg:col-span-3 flex flex-col items-start gap-4">
-            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">НАВІГАЦІЯ</span>
-            <div className="grid grid-cols-1 gap-2.5 text-[0.8rem] font-mono text-white/60">
-              <a href="#services" className="hover:text-white transition-colors">Спектр рішень</a>
-              <a href="#calculator" className="hover:text-white transition-colors">Розрахунок вартості</a>
-              <a href="#beforeAfter" className="hover:text-white transition-colors">Клінічні результати</a>
-              <a href="#about" className="hover:text-white transition-colors">Про технології</a>
-              <a href="#faq" className="hover:text-white transition-colors">Довідковий розділ</a>
-              <a href="#contact" className="hover:text-white transition-colors">Реєстрація пацієнтів</a>
-            </div>
-          </div>
-
-          {/* Column 3: Contacts list (separate lines) */}
-          <div className="lg:col-span-3 flex flex-col items-start gap-4">
-            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">КОНТАКТИ</span>
-            <div className="flex flex-col gap-2 text-[0.8rem] font-mono text-white/60">
-              <span>{t('contact.info.address')}</span>
-              <span>+38 050 771 75 35</span>
-              <span>praktika.kh@gmail.com</span>
-            </div>
-          </div>
-
-          {/* Column 4: Clinical Hours list */}
-          <div className="lg:col-span-2 flex flex-col items-start gap-4">
-            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">РОБОЧИЙ ЧАС</span>
-            <div className="flex flex-col gap-1 text-[0.8rem] font-mono text-white/60">
-              <span>ПН - СБ:</span>
-              <span className="text-white font-semibold">09:00 - 19:00</span>
-              <span className="text-white/40 text-[0.7rem] mt-1">НД — За запитом чергового хірурга</span>
-            </div>
+          {/* Nav Links Column */}
+          <div className="space-y-3">
+            <h4 className="font-display font-semibold text-base text-bg-light">
+              {t('footer.navTitle') as string}
+            </h4>
+            <ul className="space-y-2 text-bg-light/70 uppercase text-[10px] tracking-wider">
+              <li><a href="#services" className="hover:text-accent">{t('nav.services') as string}</a></li>
+              <li><a href="#calculator" className="hover:text-accent">{t('nav.calculator') as string}</a></li>
+              <li><a href="#zygoma" className="hover:text-accent">{t('nav.zygoma') as string}</a></li>
+              <li><a href="#lab" className="hover:text-accent">{t('nav.lab') as string}</a></li>
+              <li><a href="#cases" className="hover:text-accent">{t('nav.cases') as string}</a></li>
+              <li><a href="#faq" className="hover:text-accent">{t('nav.faq') as string}</a></li>
+            </ul>
           </div>
 
         </div>
 
-        {/* Separator Line */}
-        <div className="border-t border-white/10 w-full my-8" />
-
-        {/* Social raw TEXT links row */}
-        <div className="flex flex-wrap gap-6 font-mono text-[0.65rem] text-accent uppercase tracking-widest mb-12">
-          <a href="https://google.com/maps" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GOOGLE MAPS REVIEWS</a>
-          <span className="text-white/20">·</span>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">FACEBOOK PAGE</a>
-          <span className="text-white/20">·</span>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">INSTAGRAM FEED</a>
+        {/* Social Row as Text Links */}
+        <div className="pt-6 border-t border-border-light/10 flex flex-wrap items-center justify-between gap-4">
+          <span className="text-[10px] uppercase font-body text-bg-light/50 tracking-widest">
+            ОФІЦІЙНІ КАНАЛИ ТА РЕЙТИНГ:
+          </span>
+          <div className="flex flex-wrap gap-6 text-[11px] font-body text-accent font-bold">
+            <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="hover:underline">Google Maps (587 Відгуків)</a>
+            <a href="#" className="hover:underline">Instagram</a>
+            <a href="#" className="hover:underline">Facebook</a>
+            <a href="#" className="hover:underline">Telegram Channel</a>
+          </div>
         </div>
 
-        {/* Legal block, accreditation, and developer details */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[0.7rem] font-mono text-white/40">
-          <div className="flex flex-col gap-1.5">
-            <span>&copy; {currentYear} {t('footer.copyright')}</span>
-            <span className="text-white/20 uppercase text-[0.6rem] tracking-wider leading-relaxed">
-              {t('footer.license')}
-            </span>
+        {/* Legal Row & Studio Credit */}
+        <div className="pt-6 border-t border-border-light/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-bg-light/50 text-[11px]">
+          <div>{t('footer.rights') as string}</div>
+          <div>
+            <a
+              href="https://makarich.framer.website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent underline transition-colors font-semibold"
+            >
+              {t('footer.credit') as string}
+            </a>
           </div>
-          
-          {/* Standard legal credit link */}
-          <div className="border-t md:border-t-0 border-white/5 pt-4 md:pt-0 w-full md:w-auto">
-            Розробка та архітектура <a href="https://makarich.framer.website" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Студія Тест</a>
-          </div>
+        </div>
+
+        {/* Giant Full-Width Brand Wordmark Bleeding off bottom edge */}
+        <div aria-hidden="true" className="pt-8 text-center overflow-hidden select-none pointer-events-none -mb-16">
+          <span className="font-display text-[15vw] font-bold text-bg-light/[0.04] leading-none uppercase tracking-tighter whitespace-nowrap block">
+            PRAKTIKA DENTISTRY
+          </span>
         </div>
 
       </div>

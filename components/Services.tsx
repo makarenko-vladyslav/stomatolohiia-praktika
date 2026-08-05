@@ -1,150 +1,167 @@
 "use client";
+
 import { useState } from 'react';
 import { useLocale } from '@/lib/i18n';
+import { Reveal } from './motion';
 
 interface ServiceItem {
   id: string;
   category: string;
   title: string;
-  description: string;
   price: string;
-  features: string[];
+  desc: string;
+  photo: string;
   tag?: string;
+  featured?: boolean;
 }
 
 export default function Services() {
   const { t } = useLocale();
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeTab, setActiveTab] = useState('Всі послуги');
 
-  const servicesList = t('services.list') as ServiceItem[];
-  
-  const filteredServices = activeCategory === 'all' 
-    ? servicesList 
-    : servicesList.filter(s => s.category === activeCategory);
+  const categories = t('services.categories') as string[];
+  const items = t('services.items') as ServiceItem[];
+  const footnote = t('services.footnote') as string;
+  const ctaSecondary = t('services.ctaSecondary') as string;
 
-  const categories = ['all', 'implants', 'ortho', 'general'];
+  const filteredItems = activeTab === 'Всі послуги'
+    ? items
+    : items.filter(item => item.category === activeTab);
+
+  const featuredItems = items.filter(i => i.featured);
 
   return (
-    <section id="services" className="relative w-full py-24 bg-bg-light border-b border-border-soft scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="py-20 bg-bg-light border-b border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Layer 1: Eyebrow/Kicker (Abolished Pill Badge) */}
-        <span className="text-accent font-mono text-[0.75rem] tracking-[0.2em] uppercase block mb-4">
-          {t('services.kicker')}
-        </span>
+        {/* Section Header */}
+        <Reveal className="text-left max-w-3xl mb-12">
+          <span className="text-xs font-body uppercase tracking-[0.2em] text-accent font-bold">
+            {t('services.kicker') as string}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-display font-semibold text-text-main mt-2">
+            {t('services.title') as string}
+          </h2>
+          <p className="text-xs sm:text-sm font-body text-text-muted mt-3 leading-relaxed">
+            {t('services.subtitle') as string}
+          </p>
+        </Reveal>
 
-        {/* Layer 2: Main Display Heading */}
-        <h2 className="text-[2.5rem] md:text-[3.8rem] lg:text-[4.2rem] font-display font-bold leading-tight text-primary max-w-4xl mb-4">
-          {t('services.title')}
-        </h2>
-
-        {/* Layer 3: Lede Sub-headline */}
-        <p className="text-[1.1rem] text-text-main/70 max-w-2xl font-sans mb-12">
-          {t('services.subtitle')}
-        </p>
-
-        {/* Layer 4: Category Filters (Interactive Controls) */}
-        <div className="flex flex-wrap gap-2.5 mb-12 border-b border-border-soft pb-6">
+        {/* Category Filter Tabs */}
+        <Reveal className="flex flex-wrap gap-2 mb-10 pb-4 border-b border-border-light">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded font-mono text-[0.75rem] uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeCategory === cat ? 'bg-primary text-white' : 'bg-white hover:bg-border-soft/60 text-text-main/80 border border-border-soft'}`}
+              onClick={() => setActiveTab(cat)}
+              className={`px-4 py-2 rounded text-xs font-body font-semibold uppercase tracking-wider transition-all ${
+                activeTab === cat
+                  ? 'bg-primary text-bg-light shadow-md'
+                  : 'bg-bg-tint text-text-muted hover:text-text-main hover:bg-border-light/40'
+              }`}
             >
-              {t(`services.categories.${cat}`)}
+              {cat}
             </button>
           ))}
-        </div>
+        </Reveal>
 
-        {/* Two-Column Layout: Left Highlight (Layer 5) & Right Rows (Layer 6) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* LEFT: Highlight Spotlight (Signature item represented differently) */}
-          <div className="lg:col-span-4 bg-primary text-white p-8 rounded-xl border border-white/10 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl" />
-            <span className="text-[0.65rem] tracking-[0.2em] font-mono text-accent uppercase block mb-3">ХІРУРГІЧНИЙ ФЛАГМАН</span>
-            <h3 className="font-display font-medium text-[1.8rem] leading-tight mb-4">
-              Вилицева імплантація Zygoma
-            </h3>
-            <p className="text-[0.85rem] text-white/70 leading-relaxed font-sans mb-6">
-              Революційне рішення для тотального відновлення при критичному дефіциті щелепної кістки. Хірургія проводиться безпосередньо у вилицеву кістку без кісткової пластики.
-            </p>
-            <div className="border-t border-white/10 pt-4 mb-6">
-              <span className="text-[0.65rem] font-mono text-white/50 block uppercase mb-1">ТЕРМІН ОПЕРАЦІЇ</span>
-              <span className="text-[1.1rem] font-mono font-semibold text-accent">До 24 годин під ключем</span>
+        {/* Signature Featured Item Banner (One item highlighted differently) */}
+        {activeTab === 'Всі послуги' && featuredItems.length > 0 && (
+          <Reveal className="mb-12 bg-primary text-bg-light rounded-xl overflow-hidden border border-border-light/20 shadow-xl grid lg:grid-cols-12">
+            <div className="lg:col-span-7 p-8 space-y-4 flex flex-col justify-between">
+              <div>
+                <div className="inline-block px-2.5 py-1 rounded bg-accent/20 text-accent text-[10px] font-body uppercase tracking-widest font-bold mb-3">
+                  {featuredItems[0].tag || 'Ключовий Протокол'}
+                </div>
+                <h3 className="font-display font-semibold text-2xl text-bg-light">
+                  {featuredItems[0].title}
+                </h3>
+                <p className="font-body text-xs text-bg-light/80 mt-2 leading-relaxed max-w-xl">
+                  {featuredItems[0].desc}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border-light/10">
+                <span className="font-display font-bold text-2xl text-accent tabular-nums">
+                  {featuredItems[0].price}
+                </span>
+                <a
+                  href="#booking"
+                  className="px-6 py-3 rounded text-xs font-body font-bold uppercase tracking-widest bg-accent text-primary-dark hover:bg-accent-hover transition-colors"
+                >
+                  Записатись на консультацію
+                </a>
+              </div>
             </div>
-            <a 
-              href="#calculator" 
-              className="inline-block w-full text-center bg-accent hover:bg-accent/90 text-white font-mono tracking-widest text-[0.75rem] py-3 px-6 rounded uppercase transition-all"
-            >
-              Конфігурувати кошторис
-            </a>
-          </div>
+            <div className="lg:col-span-5 relative min-h-[220px]">
+              <img
+                src={featuredItems[0].photo}
+                alt={featuredItems[0].title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.parentElement?.classList.add('img-fallback');
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60 lg:opacity-30" />
+            </div>
+          </Reveal>
+        )}
 
-          {/* RIGHT: High density rows list with leaders & tabular prices */}
-          <div className="lg:col-span-8 flex flex-col border-t border-border-soft">
-            {filteredServices.map((service, index) => (
-              <div 
-                key={service.id} 
-                className="group py-6 border-b border-border-soft transition-all duration-300 hover:px-2"
-              >
-                {/* Header row: Title + Leader + Price */}
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-2">
+        {/* Price / Offer List as Dense Rows with Leader Lines */}
+        <Reveal className="space-y-4 bg-bg-light">
+          <div className="divide-y divide-border-light/60 border-t border-b border-border-light">
+            {filteredItems.map((item) => (
+              <div key={item.id} className="py-4 hover:bg-bg-tint/50 transition-colors px-2 rounded sm:px-4 space-y-2">
+                
+                {/* Main Row: Title, Dotted Leader, Price */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[0.7rem] text-text-main/40">
-                      {(index + 1).toString().padStart(2, '0')}
-                    </span>
-                    <h4 className="text-[1.15rem] font-display font-bold text-primary group-hover:text-accent transition-colors">
-                      {service.title}
-                    </h4>
-                    {service.tag && (
-                      <span className="text-[0.55rem] font-mono bg-accent/10 text-accent border border-accent/20 px-2 py-0.5 rounded uppercase">
-                        {service.tag}
+                    <h3 className="font-display font-semibold text-base text-text-main">
+                      {item.title}
+                    </h3>
+                    {item.tag && (
+                      <span className="px-2 py-0.5 rounded text-[9px] font-body uppercase tracking-wider bg-accent/15 text-accent font-bold">
+                        {item.tag}
                       </span>
                     )}
                   </div>
                   
-                  {/* Leader dots & numeric alignment */}
-                  <div className="hidden sm:block flex-grow mx-4 leader-dots h-4" aria-hidden="true" />
+                  {/* Dotted Leader Line */}
+                  <div className="hidden sm:block flex-1 border-b border-dotted border-border-light/80 mx-4 my-1.5" />
                   
-                  <div className="text-right flex-shrink-0">
-                    <span className="font-mono text-[0.95rem] font-semibold text-primary">
-                      {service.price}
-                    </span>
-                  </div>
+                  <span className="font-body font-bold text-sm text-accent whitespace-nowrap tabular-nums">
+                    {item.price}
+                  </span>
                 </div>
 
-                {/* Subtitle / Description Row */}
-                <p className="text-[0.85rem] text-text-main/60 leading-relaxed font-sans max-w-2xl">
-                  {service.description}
-                </p>
-
-                {/* Inline checklist with custom clean markers */}
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[0.7rem] font-mono text-text-main/40">
-                  {service.features.map((feat, i) => (
-                    <span key={i} className="flex items-center gap-1.5">
-                      <span className="text-accent font-bold">·</span> {feat}
-                    </span>
-                  ))}
+                {/* Description & Action Link */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-body text-text-muted">
+                  <p className="max-w-2xl leading-relaxed">{item.desc}</p>
+                  <a
+                    href="#booking"
+                    className="text-primary hover:text-accent transition-colors font-semibold uppercase text-[10px] tracking-wider whitespace-nowrap pt-1 sm:pt-0"
+                  >
+                    Забронювати →
+                  </a>
                 </div>
+
               </div>
             ))}
           </div>
+        </Reveal>
 
-        </div>
-
-        {/* Footnote & Secondary CTA (Layer 7 & 8) */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-border-soft pt-6 font-mono text-[0.7rem] text-text-main/50">
-          <span>
-            * Усі хірургічні та ортопедичні ціни є фіксованими та включають клінічний анестезіологічний супровід.
-          </span>
-          <a 
-            href="#calculator" 
-            className="text-accent hover:text-primary font-bold uppercase tracking-wider flex items-center gap-2 transition-colors"
+        {/* Footnote & Secondary CTA */}
+        <Reveal className="mt-8 pt-4 border-t border-border-light flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-text-muted">
+          <p className="max-w-2xl text-[11px] leading-relaxed">
+            {footnote}
+          </p>
+          <a
+            href="#booking"
+            className="text-accent font-bold uppercase text-xs tracking-wider hover:underline whitespace-nowrap"
           >
-            ВІДКРИТИ КОНФІГУРАТОР КЛІНІЧНОГО КОШТОРИСУ —
+            {ctaSecondary}
           </a>
-        </div>
+        </Reveal>
 
       </div>
     </section>

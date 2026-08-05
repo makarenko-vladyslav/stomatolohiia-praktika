@@ -1,49 +1,45 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
 
-interface FAQItem {
-  q: string;
-  a: string;
-}
+import { useLocale } from '@/lib/i18n';
+import { Reveal } from './motion';
 
 export default function FAQ() {
   const { t } = useLocale();
-  const faqList = t('faq.list') as FAQItem[];
+  const items = t('faq.items') as Array<{ q: string; a: string }>;
 
   return (
-    <section id="faq" className="relative w-full py-24 bg-white border-b border-border-soft scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="faq" className="py-20 bg-bg-light border-b border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col items-start gap-4 mb-16">
-          {/* Abolished pill design: Clean uppercase tracking-widest editorial kicker */}
-          <span className="text-accent font-mono text-[0.75rem] tracking-[0.2em] uppercase block mb-4">
-            {t('faq.kicker')}
+        <Reveal className="text-left max-w-3xl mb-14">
+          <span className="text-xs font-body uppercase tracking-[0.2em] text-accent font-bold">
+            {t('faq.kicker') as string}
           </span>
-          <h2 className="text-[2.5rem] md:text-[3.5rem] font-display font-bold leading-tight">
-            {t('faq.title')}
+          <h2 className="text-3xl sm:text-4xl font-display font-semibold text-text-main mt-2">
+            {t('faq.title') as string}
           </h2>
-          <p className="text-[1.125rem] text-text-main/70 max-w-2xl font-sans">
-            {t('faq.subtitle')}
-          </p>
-        </div>
+        </Reveal>
 
-        {/* High Density Accordions using Native HTML Details tag */}
-        <div className="flex flex-col gap-4 max-w-4xl">
-          {faqList.map((item, index) => (
-            <details 
-              key={index} 
-              className="group border border-border-soft rounded-xl bg-bg-light overflow-hidden transition-all duration-300"
-            >
-              <summary className="flex justify-between items-center p-6 cursor-pointer font-display font-bold text-[1.2rem] text-primary select-none list-none group-open:bg-primary group-open:text-white transition-colors duration-200">
-                <span>{item.q}</span>
-                <span className="font-mono text-[1.25rem] text-accent group-open:text-white transition-transform duration-200 group-open:rotate-45">[+]</span>
-              </summary>
-              <div className="p-6 border-t border-border-soft bg-white text-[0.95rem] text-text-main/80 font-sans leading-relaxed">
-                {item.a}
-              </div>
-            </details>
+        {/* Accordion spanning full container width */}
+        <div className="w-full space-y-4">
+          {items.map((item, idx) => (
+            <Reveal key={idx}>
+              <details className="group bg-bg-tint border border-border-light/80 rounded-xl p-6 [&_summary::-webkit-details-marker]:none">
+                <summary className="flex items-center justify-between cursor-pointer font-display font-semibold text-base sm:text-lg text-text-main">
+                  <span>{item.q}</span>
+                  <span className="text-accent group-open:rotate-180 transition-transform font-body text-base font-bold ml-4">↓</span>
+                </summary>
+                <p className="font-body text-xs sm:text-sm text-text-muted mt-4 leading-relaxed border-t border-border-light/60 pt-4">
+                  {item.a}
+                </p>
+              </details>
+            </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-8 text-center sm:text-left text-xs font-body text-text-muted">
+          Не знайшли відповіді? Зателефонуйте лікарю напряму: <a href="tel:+380507717535" className="text-accent font-bold hover:underline tabular-nums">+38 050 771 75 35</a>
+        </Reveal>
 
       </div>
     </section>

@@ -1,69 +1,44 @@
 "use client";
+
 import { useLocale } from '@/lib/i18n';
+import { Reveal, Stagger, StaggerItem } from './motion';
 
 export default function SocialProof() {
   const { t } = useLocale();
+  const badges = t('socialProof.badges') as string[];
 
   return (
-    <section className="relative w-full bg-primary text-white py-16 border-y border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-10 bg-bg-tint border-b border-border-light/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Proof Layer 1: Clean kicker & Header */}
-        <div className="flex flex-col items-start gap-2 mb-12">
-          <span className="text-accent font-mono text-[0.7rem] tracking-[0.2em] uppercase block mb-2">
-            {t('socialProof.reviewsBadge')}
-          </span>
-          <div className="flex flex-col sm:flex-row sm:items-baseline gap-4">
-            <span className="text-[2.8rem] font-display font-semibold tracking-tight text-white leading-none">
-              {t('socialProof.rating')}
+        <Reveal className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b border-border-light/40">
+          <div>
+            <span className="text-[10px] font-body uppercase tracking-[0.2em] text-accent font-bold block">
+              {t('socialProof.kicker') as string}
             </span>
-            <span className="text-[0.75rem] font-mono text-white/50 uppercase tracking-widest">
-              {t('socialProof.reviewsCount')}
-            </span>
+            <h2 className="text-lg sm:text-xl font-display font-semibold text-text-main mt-0.5">
+              {t('socialProof.heading') as string}
+            </h2>
           </div>
-        </div>
-
-        {/* Proof Layers 2, 3, 4: Display Quote with Oversized Mark & Attribution */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative mb-12">
-          
-          {/* Large decorative quotation mark background */}
-          <div className="absolute -top-12 -left-4 select-none pointer-events-none text-white/[0.03] font-display text-[15rem] leading-none z-0" aria-hidden="true">
-            “
+          <div className="text-xs font-body text-text-muted tabular-nums">
+            АКРЕДИТАЦІЯ МОЗ № 684/18 · 587 ВІДГУКІВ
           </div>
+        </Reveal>
 
-          <div className="lg:col-span-8 relative z-10">
-            <blockquote className="font-display italic text-[1.4rem] md:text-[1.7rem] lg:text-[2rem] text-white/95 leading-relaxed">
-              "Ми шукали рішення для батька, якому скрізь відмовляли через резорбцію кістки щелепи. Хірурги клініки розробили та втілили концепцію Zygoma за 24 години. Жодного болю, батько знову посміхається."
-            </blockquote>
-            
-            <div className="mt-6 flex flex-col gap-1">
-              <span className="font-mono text-[0.85rem] text-accent font-semibold">
-                Марія К. — пацієнтка клініки з 2019 року
-              </span>
-              <span className="font-sans text-[0.7rem] text-white/40">
-                Харків, Україна · Проведено протокол All-on-4 та вилицеву стабілізацію.
-              </span>
-            </div>
-          </div>
-
-          {/* Side stats & verification source (Layer 5) */}
-          <div className="lg:col-span-4 bg-white/[0.02] border border-white/10 p-6 rounded-lg flex flex-col gap-4 font-mono text-[0.75rem] text-white/60">
-            <span className="text-accent uppercase tracking-widest block border-b border-white/5 pb-2">ВЕРИФІКОВАНІ ДАНІ</span>
-            <div className="flex flex-col gap-2 leading-relaxed">
-              <span>Джерело: Google Maps Clinical Reviews</span>
-              <span>Модерація: Клінічний відділ контролю якості</span>
-              <span>Кількість унікальних кейсів: 587+</span>
-            </div>
-            {/* Dots navigation block simulator (Layer 6) */}
-            <div className="flex gap-2 mt-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-            </div>
-          </div>
-
-        </div>
+        <Stagger className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {badges.map((badge, idx) => (
+            <StaggerItem key={idx}>
+              <div className="h-full bg-bg-light border border-border-light/80 p-3 rounded text-left flex flex-col justify-between hover:border-accent transition-colors">
+                <span className="text-[9px] font-body text-accent font-bold uppercase tracking-widest">
+                  АКТ 0{idx + 1}
+                </span>
+                <span className="text-[11px] font-body font-medium text-text-main leading-snug mt-2">
+                  {badge}
+                </span>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
 
       </div>
     </section>
