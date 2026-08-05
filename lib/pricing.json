@@ -1,19 +1,19 @@
 
 {
   "basePrices": {
-    "implantationBasic": 12000,
-    "allOn4": 140000,
-    "allOn6": 190000,
-    "zygoma": 280000,
+    "allOn4": 115000,
+    "allOn6": 160000,
+    "zygoma": 195000,
+    "singleImplant": 120000,
     "zirconiumCrown": 14000,
-    "ceramicVeneer": 16000,
+    "ceramicVeneer": 16500,
     "sedationPerHour": 4500
   },
   "multipliers": {
-    "regular": 1.0,
-    "complexBoneAtrophy": 1.25,
-    "guidedSurgery3D": 1.15
+    "premiumSwiss": 1.35,
+    "standardKorean": 1.0,
+    "digitalGuide": 8000
   },
-  "currency": "грн",
-  "estimationLogic": "range"
+  "currency": "UAH",
+  "estimationLogic": "complex-dental"
 }

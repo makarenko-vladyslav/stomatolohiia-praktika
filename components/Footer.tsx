@@ -1,103 +1,101 @@
-
 "use client";
 import { useLocale } from '@/lib/i18n';
 
 export default function Footer() {
   const { t } = useLocale();
+  const currentYear = 2026;
 
   return (
-    <footer className="bg-primary text-white border-t border-white/5 pt-20 pb-24 lg:pb-12 relative overflow-hidden">
+    <footer className="relative w-full bg-bg-dark text-white pt-24 pb-12 border-t border-white/5 overflow-hidden">
       
-      {/* High decorative interstitial hairline banner at footer top */}
-      <div className="max-w-7xl mx-auto px-6 border-b border-white/10 pb-16">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
-          <div>
-            <span className="text-2xs font-bold text-accent uppercase tracking-[0.2em]">ПРАКТИКА СТОМАТОЛОГІЇ</span>
-            <p className="font-display font-medium text-xl sm:text-2xl text-white mt-1 leading-snug">
-              Робимо відновлення зубів надійним, прогнозованим та безболісним.
+      {/* Giant full-width background brand wordmark bleeding off the bottom */}
+      <div className="absolute bottom-[-4rem] left-1/2 -translate-x-1/2 w-full text-center select-none pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <span className="font-display font-black text-white/[0.015] text-[18vw] tracking-tighter leading-none whitespace-nowrap block uppercase">
+          PRAKTIKA
+        </span>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+          
+          {/* Column 1: Brand descriptor */}
+          <div className="lg:col-span-4 flex flex-col items-start gap-4">
+            <a href="#" className="flex items-center gap-3 text-white group" aria-label="Home link">
+              <svg className="w-8 h-8 text-accent group-hover:scale-105 transition-transform duration-300" viewBox="0 0 32 32" fill="none">
+                <path d="M9 11C9 18.5 13 23 16 23C19 23 23 18.5 23 11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                <circle cx="16" cy="11" r="2" fill="currentColor"/>
+              </svg>
+              <span className="font-display font-bold text-[1.5rem] tracking-tight">Praktika</span>
+            </a>
+            <p className="text-[0.8rem] text-white/50 font-sans leading-relaxed max-w-xs mt-2">
+              Центр сучасної хірургічної стоматології та тотальної реабілітації у Харкові. Власна зуботехнічна CAD/CAM лабораторія цифрового фрезерування.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <a 
-              href={`tel:${t('common.phone')}`} 
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded font-bold text-2xs uppercase tracking-widest transition-colors"
-            >
-              Зателефонувати
-            </a>
-            <a 
-              href="#contact" 
-              className="px-6 py-3 bg-accent hover:bg-white text-primary rounded font-bold text-2xs uppercase tracking-widest transition-colors"
-            >
-              Записатись
-            </a>
+
+          {/* Column 2: Navigation Links */}
+          <div className="lg:col-span-3 flex flex-col items-start gap-4">
+            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">НАВІГАЦІЯ</span>
+            <div className="grid grid-cols-1 gap-2.5 text-[0.8rem] font-mono text-white/60">
+              <a href="#services" className="hover:text-white transition-colors">Спектр рішень</a>
+              <a href="#calculator" className="hover:text-white transition-colors">Розрахунок вартості</a>
+              <a href="#beforeAfter" className="hover:text-white transition-colors">Клінічні результати</a>
+              <a href="#about" className="hover:text-white transition-colors">Про технології</a>
+              <a href="#faq" className="hover:text-white transition-colors">Довідковий розділ</a>
+              <a href="#contact" className="hover:text-white transition-colors">Реєстрація пацієнтів</a>
+            </div>
+          </div>
+
+          {/* Column 3: Contacts list (separate lines) */}
+          <div className="lg:col-span-3 flex flex-col items-start gap-4">
+            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">КОНТАКТИ</span>
+            <div className="flex flex-col gap-2 text-[0.8rem] font-mono text-white/60">
+              <span>{t('contact.info.address')}</span>
+              <span>+38 050 771 75 35</span>
+              <span>praktika.kh@gmail.com</span>
+            </div>
+          </div>
+
+          {/* Column 4: Clinical Hours list */}
+          <div className="lg:col-span-2 flex flex-col items-start gap-4">
+            <span className="text-[0.65rem] font-mono text-accent uppercase tracking-[0.2em] block mb-1">РОБОЧИЙ ЧАС</span>
+            <div className="flex flex-col gap-1 text-[0.8rem] font-mono text-white/60">
+              <span>ПН - СБ:</span>
+              <span className="text-white font-semibold">09:00 - 19:00</span>
+              <span className="text-white/40 text-[0.7rem] mt-1">НД — За запитом чергового хірурга</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Separator Line */}
+        <div className="border-t border-white/10 w-full my-8" />
+
+        {/* Social raw TEXT links row */}
+        <div className="flex flex-wrap gap-6 font-mono text-[0.65rem] text-accent uppercase tracking-widest mb-12">
+          <a href="https://google.com/maps" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GOOGLE MAPS REVIEWS</a>
+          <span className="text-white/20">·</span>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">FACEBOOK PAGE</a>
+          <span className="text-white/20">·</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">INSTAGRAM FEED</a>
+        </div>
+
+        {/* Legal block, accreditation, and developer details */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[0.7rem] font-mono text-white/40">
+          <div className="flex flex-col gap-1.5">
+            <span>&copy; {currentYear} {t('footer.copyright')}</span>
+            <span className="text-white/20 uppercase text-[0.6rem] tracking-wider leading-relaxed">
+              {t('footer.license')}
+            </span>
+          </div>
+          
+          {/* Standard legal credit link */}
+          <div className="border-t md:border-t-0 border-white/5 pt-4 md:pt-0 w-full md:w-auto">
+            Розробка та архітектура <a href="https://makarich.framer.website" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Студія Тест</a>
           </div>
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pt-16">
-        
-        {/* Brand Meta Block */}
-        <div className="lg:col-span-4 space-y-6">
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded bg-accent flex items-center justify-center font-display font-extrabold text-primary text-base">
-              P
-            </div>
-            <span className="font-display font-extrabold text-xl tracking-wide text-white">
-              PRAKTIKA
-            </span>
-          </a>
-          <p className="font-body text-2xs text-white/50 leading-relaxed">
-            Центр складної імплантації та естетичного протезування. Засновано у Харкові в 2018 році. Працюємо автономно на базі власних генераторних потужностей.
-          </p>
-          <p className="text-3xs text-white/30 tracking-wide">
-            Ліцензія Міністерства Охорони Здоров'я України (МОЗ) серія АЕ №587391
-          </p>
-        </div>
-
-        {/* Navigation columns */}
-        <div className="lg:col-span-3 space-y-4">
-          <p className="text-2xs font-bold uppercase tracking-widest text-accent">Навігація</p>
-          <ul className="space-y-2 text-2xs text-white/70">
-            <li><a href="#about" className="hover:text-white transition-colors">{t('nav.about')}</a></li>
-            <li><a href="#services" className="hover:text-white transition-colors">{t('nav.services')}</a></li>
-            <li><a href="#calculator" className="hover:text-white transition-colors">{t('nav.calculator')}</a></li>
-            <li><a href="#cases" className="hover:text-white transition-colors">{t('nav.cases')}</a></li>
-            <li><a href="#faq" className="hover:text-white transition-colors">{t('nav.faq')}</a></li>
-          </ul>
-        </div>
-
-        {/* Contact info column */}
-        <div className="lg:col-span-3 space-y-4">
-          <p className="text-2xs font-bold uppercase tracking-widest text-accent">Контакти</p>
-          <ul className="space-y-2 text-2xs text-white/70 font-body">
-            <li>{t('common.address')}</li>
-            <li>{t('common.phone')}</li>
-            <li>{t('common.email')}</li>
-            <li className="text-accent">{t('common.hours')}</li>
-          </ul>
-        </div>
-
-        {/* Social feeds */}
-        <div className="lg:col-span-2 space-y-4">
-          <p className="text-2xs font-bold uppercase tracking-widest text-accent">Ми в соцмережах</p>
-          <ul className="space-y-2 text-2xs text-white/70">
-            <li><a href="https://www.instagram.com/praktika.dentist/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
-            <li><a href="https://www.facebook.com/praktika.dentist" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a></li>
-          </ul>
-        </div>
 
       </div>
-
-      {/* Footer copyright, studio credit & compliance */}
-      <div className="max-w-7xl mx-auto px-6 border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-3xs text-white/40 font-body">
-        <p>© 2026 Стоматологія Praktika. Харків. Всі права захищено.</p>
-        
-        {/* Mandatory Studio Credit linked dynamically */}
-        <p>
-          Розроблено — <a href="https://makarich.framer.website" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Студія Тест</a>
-        </p>
-      </div>
-
     </footer>
   );
 }

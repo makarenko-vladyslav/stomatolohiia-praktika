@@ -1,6 +1,4 @@
-
 "use client";
-import { useState } from 'react';
 import { useLocale } from '@/lib/i18n';
 
 interface FAQItem {
@@ -10,60 +8,41 @@ interface FAQItem {
 
 export default function FAQ() {
   const { t } = useLocale();
-  const faqList = t('faq.list') as Array<FAQItem>;
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-
-  const toggle = (idx: number) => {
-    setOpenIdx(openIdx === idx ? null : idx);
-  };
+  const faqList = t('faq.list') as FAQItem[];
 
   return (
-    <section id="faq" className="py-24 bg-white relative overflow-hidden">
+    <section id="faq" className="relative w-full py-24 bg-white border-b border-border-soft scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
-          <span className="text-2xs font-bold uppercase tracking-widest text-accent">
+        <div className="flex flex-col items-start gap-4 mb-16">
+          {/* Abolished pill design: Clean uppercase tracking-widest editorial kicker */}
+          <span className="text-accent font-mono text-[0.75rem] tracking-[0.2em] uppercase block mb-4">
             {t('faq.kicker')}
           </span>
-          <h2 className="font-display font-semibold text-2xl sm:text-4xl leading-tight tracking-tight text-primary">
+          <h2 className="text-[2.5rem] md:text-[3.5rem] font-display font-bold leading-tight">
             {t('faq.title')}
           </h2>
+          <p className="text-[1.125rem] text-text-main/70 max-w-2xl font-sans">
+            {t('faq.subtitle')}
+          </p>
         </div>
 
-        {/* Accordion list */}
-        <div className="max-w-4xl space-y-4">
-          {faqList.map((faq, idx) => {
-            const isOpen = openIdx === idx;
-            return (
-              <div 
-                key={idx} 
-                className={`border-b border-primary/10 pb-4 transition-all ${
-                  isOpen ? 'bg-primary/[0.01]' : ''
-                }`}
-              >
-                <button 
-                  onClick={() => toggle(idx)}
-                  className="w-full flex justify-between items-center text-left py-4 focus:outline-none group"
-                >
-                  <span className="font-display font-bold text-base sm:text-lg text-primary group-hover:text-accent transition-colors">
-                    {faq.q}
-                  </span>
-                  <span className="font-bold text-primary text-sm ml-4">
-                    {isOpen ? '—' : '+'}
-                  </span>
-                </button>
-                
-                <div className={`overflow-hidden transition-all duration-300 ${
-                  isOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
-                }`}>
-                  <p className="font-body text-xs sm:text-sm text-text-main/75 leading-relaxed pl-1 max-w-3xl">
-                    {faq.a}
-                  </p>
-                </div>
+        {/* High Density Accordions using Native HTML Details tag */}
+        <div className="flex flex-col gap-4 max-w-4xl">
+          {faqList.map((item, index) => (
+            <details 
+              key={index} 
+              className="group border border-border-soft rounded-xl bg-bg-light overflow-hidden transition-all duration-300"
+            >
+              <summary className="flex justify-between items-center p-6 cursor-pointer font-display font-bold text-[1.2rem] text-primary select-none list-none group-open:bg-primary group-open:text-white transition-colors duration-200">
+                <span>{item.q}</span>
+                <span className="font-mono text-[1.25rem] text-accent group-open:text-white transition-transform duration-200 group-open:rotate-45">[+]</span>
+              </summary>
+              <div className="p-6 border-t border-border-soft bg-white text-[0.95rem] text-text-main/80 font-sans leading-relaxed">
+                {item.a}
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
 
       </div>

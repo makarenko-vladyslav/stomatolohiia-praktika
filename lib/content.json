@@ -1,342 +1,535 @@
+
 {
   "defaultLocale": "uk",
   "locales": {
     "uk": {
       "meta": {
-        "title": "Praktika — Центр Комплексної Імплантації та Протезування у Харкові",
-        "description": "Технологічне відновлення зубів у Харкові. Імплантація All-on-4, All-on-6, вилицева імплантація Zygoma та протезування під седацією. Власна цифрова лабораторія.",
-        "keywords": "імплантація харків, зуби за один день, алл он 4 харків, зигома харків, протезування зубів харків, стоматологія практіка, лікування під седацією",
+        "title": "Стоматологія Praktika Харків — Цифрова Імплантація зубів",
+        "description": "Центр хірургічної стоматології та зубопротезування у Харкові. Складні операції All-on-4/6, вилицева імплантація Zygoma, лікування уві сні. Власна CAD/CAM лабораторія.",
+        "keywords": "стоматологія харків, імплантація зубів харків, all on 4 харків, вилицева імплантація, коронки цирконій харків, стоматологія практіка",
         "lang": "uk"
       },
-      "common": {
-        "currency": "грн",
-        "phone": "+38 050 771 75 35",
-        "email": "praktika.kh@gmail.com",
-        "address": "Харків, проспект Науки, 77",
-        "hours": "Пн-Сб: 09:00 - 19:00",
-        "cta": "Записатись",
-        "calculate": "Розрахувати вартість",
-        "more": "Детальніше"
-      },
       "nav": {
-        "about": "Про клініку",
-        "services": "Послуги та ціни",
-        "calculator": "Калькулятор",
-        "cases": "Клінічні випадки",
-        "faq": "Харків'янам"
+        "home": "Головна",
+        "services": "Спектр рішень",
+        "calculator": "Прорахунок",
+        "beforeAfter": "Портфоліо",
+        "about": "Про технології",
+        "faq": "Запитання",
+        "contact": "Реєстрація",
+        "cta": "Запис на прийом"
       },
       "hero": {
-        "kicker": "ХІРУРГІЧНА ПРЕЦИЗІЙНІСТЬ • ХАРКІВ, ОЛЕКСІЇВКА",
-        "title": "Відновлюємо посмішку за один день *без* страху та компромісів",
-        "description": "Повна реабілітація щелепи за протоколами All-on-4, All-on-6 та надскладна вилицева імплантація Zygoma у медичному сні. Власна цифрова 3D-лабораторія для ідеального естетичного результату.",
-        "badgeText": "587+ відгуків у Google",
-        "phoneLabel": "Черговий координатор на зв'язку:",
-        "addressShort": "ст. м. Олексіївська"
+        "kicker": "КЛІНІЧНА ХІРУРГІЯ ТА ЦИФРОВА ОРТОПЕДІЯ · ХАРКІВ · ЕСТ. 2018",
+        "title": "Складна імплантація зубів та тотальна реабілітація",
+        "titleItalic": "безболісно",
+        "subtitle": "Відновлення зубного ряду за протоколами All-on-4/6 та вилицева імплантація Zygoma із встановленням адаптивного протеза за 24 години завдяки власній зуботехнічній CAD/CAM лабораторії.",
+        "videoUrl": "https://videos.pexels.com/video-files/6192977/6192977-hd_1280_720_30fps.mp4",
+        "posterUrl": "https://images.pexels.com/videos/6192977/bank-card-calculation-caries-caries-removal-6192977.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+        "ctaPrimary": "Прорахувати вартість",
+        "ctaSecondary": "Консультація хірурга",
+        "scroll": "SCROLL"
       },
-      "stats": [
-        {"value": "587+", "label": "Відгуків у Google з оцінкою 4.9+"},
-        {"value": "2018", "label": "Рік заснування центру у Харкові"},
-        {"value": "100%", "label": "Цифровий контроль позиціонування"},
-        {"value": "100%", "label": "Безпечна седація під наглядом анестезіолога"}
-      ],
-      "about": {
-        "kicker": "ЦИФРОВА ЕВОЛЮЦІЯ СТОМАТОЛОГІЇ",
-        "title": "Praktika — це не просто лікування. Це інженерна точність.",
-        "text1": "Ми заснували клініку в Харкові у 2018 році з однією метою: змінити уявлення про комплексне відновлення зубів. Ми відмовилися від аналогових відбитків та застарілих методів хірургії «на око».",
-        "text2": "Сьогодні кожен клінічний випадок прораховується у віртуальному просторі. Ми створюємо навігаційні шаблони з точністю до мікрона, що гарантує 100% приживлення імплантатів та ідеальну естетику коронок.",
-        "image1_alt": "Сучасний стоматологічний кабінет клініки Praktika Харків",
-        "image2_alt": "Діагностичне обладнання та дентальний мікроскоп"
+      "socialProof": {
+        "rating": "4.9 / 5.0",
+        "reviewsCount": "на базі 587+ відгуків пацієнтів у Google Maps",
+        "reviewsBadge": "СЕРТИФІКОВАНИЙ РЕЙТИНГ GOOGLE MAPS",
+        "tagline": "Клінічна точність, підтверджена результатами цифрового планування."
       },
       "services": {
-        "kicker": "ПРЕЙСКУРАНТ ТА РІШЕННЯ",
-        "title": "Хірургія та цифрова ортопедія повного циклу",
-        "subtitle": "Офіційна гарантія та прозорий розрахунок кожного етапу лікування без прихованих платежів.",
+        "kicker": "Прейскурант хірургічних та ортопедичних рішень",
+        "title": "Класифікація протоколів та фіксована вартість",
+        "subtitle": "Ціни включають повний хірургічний та ортопедичний пакети без прихованих платежів.",
+        "categories": {
+          "all": "Повний спектр",
+          "implants": "Хірургія / Імплантація",
+          "ortho": "Ортопедія / Лабораторія",
+          "general": "Терапія під наркозом"
+        },
         "list": [
           {
-            "id": "all4",
-            "title": "Імплантація All-on-4",
-            "desc": "Повний незнімний протез на 4 імплантатах за один день при повній адентії.",
-            "price": "від 140 000 грн",
+            "id": "all-on-4",
+            "category": "implants",
+            "title": "Хірургічний протокол All-on-4",
+            "description": "Повне відновлення зубного ряду на 4 імплантатах за 24 години. Негайне навантаження незнімним протезом.",
+            "price": "115 000 ₴",
+            "features": ["Незнімний адаптивний протез за 16 годин", "4 імплантати Nobel Biocare", "Цифрова навігація СТ-Guide"],
             "tag": "Популярно"
           },
           {
-            "id": "all6",
-            "title": "Імплантація All-on-6",
-            "desc": "Максимально стабільне відновлення зубного ряду на 6 дентальних опорах.",
-            "price": "від 190 000 грн",
-            "tag": "Надійно"
+            "id": "all-on-6",
+            "category": "implants",
+            "title": "Хірургічний протокол All-on-6",
+            "description": "Посилена ортопедична опора на 6 імплантатах для рівномірного розподілу жувального навантаження при резорбції кістки.",
+            "price": "160 000 ₴",
+            "features": ["Підвищена жувальна стабільність", "Запобігання атрофії кісткової тканини", "6 оригінальних імплантатів Straumann"],
+            "tag": "Для складних випадків"
           },
           {
             "id": "zygoma",
+            "category": "implants",
             "title": "Вилицева імплантація Zygoma",
-            "desc": "Встановлення імплантатів у вилицеву кістку при критичному дефіциті щелепної тканини.",
-            "price": "від 280 000 грн",
-            "tag": "Ексклюзивно в Харкові"
+            "description": "Операція при критичній атрофії кісткової тканини верхньої щелепи без кісткової пластики. Імплантати фіксуються в щільну вилицеву кістку.",
+            "price": "195 000 ₴",
+            "features": ["Без синус-ліфтингу та нарощування кістки", "Виготовлення протеза за 24 години", "Довічна гарантія на імплантати"],
+            "tag": "Ексклюзивно"
+          },
+          {
+            "id": "single-implant",
+            "category": "implants",
+            "title": "Одиничний імплантат з коронкою",
+            "description": "Встановлення оригінального титанового штифта з наступною фіксацією цирконієвої коронки на індивідуальному абатменті.",
+            "price": "12 000 ₴",
+            "features": ["Двохетапний класичний протокол", "Ідеальна інтеграція в ясна", "Цирконієвий абатмент"],
+            "tag": "Базовий прайс"
+          },
+          {
+            "id": "zirconium",
+            "category": "ortho",
+            "title": "Цирконієва коронка CAD/CAM",
+            "description": "Надміцна коронка, виточена на німецькому фрезерному верстаті Imes-Icore у нашій лабораторії за вашим 3D-знімком.",
+            "price": "14 000 ₴",
+            "features": ["Точність прилягання менше 10 мікрон", "Натуральна напівпрозорість цирконію", "Біосумісність із тканинами ясен"],
+            "tag": "Лабораторія"
+          },
+          {
+            "id": "veneers",
+            "category": "ortho",
+            "title": "Керамічний вінір E-max",
+            "description": "Тонка ультраміцна керамічна пластинка для естетичної корекції фронтальної групи зубів. Фіксація під мікроскопом.",
+            "price": "16 500 ₴",
+            "features": ["Мінімальне препарування емалі", "Стійкість до фарбування їжею", "Моделювання посмішки у DSD"],
+            "tag": "Естетика"
           },
           {
             "id": "sedation",
-            "title": "Лікування у медичному сні",
-            "desc": "Повна седація під контролем анестезіологічної бригади. Без стресу та страху.",
-            "price": "4 500 грн/год",
-            "tag": "Абсолютно безболісно"
+            "category": "general",
+            "title": "Хірургічне лікування під седацією",
+            "description": "Проведення будь-яких хірургічних етапів у стані глибокого контрольованого сну під наглядом лікаря-анестезіолога.",
+            "price": "4 500 ₴",
+            "features": ["Повна відсутність больових відчуттів", "Безпечні препарати європейського виробництва", "Моніторинг серцевого ритму"],
+            "tag": "За годину"
           },
           {
-            "id": "zircon",
-            "title": "Коронки з діоксиду цирконію",
-            "desc": "Надміцні коронки, змодельовані на CAD/CAM обладнанні у нашій лабораторії.",
-            "price": "від 14 000 грн",
-            "tag": "Цифрова точність"
-          },
-          {
-            "id": "veneer",
-            "title": "Керамічні вініри E-max",
-            "desc": "Створення бездоганної естетики посмішки. Мінімальне препарування емалі.",
-            "price": "від 16 000 грн",
-            "tag": "Преміум естетика"
+            "id": "3d-ct",
+            "category": "general",
+            "title": "Комп'ютерна 3D томографія",
+            "description": "Діагностичне сканування щелеп на конусно-променевому комп'ютерному томографі для точного планування позиції імплантатів.",
+            "price": "1 200 ₴",
+            "features": ["Мінімальне променеве навантаження", "Висока роздільна здатність знімка", "Видача результатів на носії"],
+            "tag": "Діагностика"
           }
         ]
       },
-      "sedation": {
-        "kicker": "БЕЗБОЛІСНИЙ ДОСВІД",
-        "title": "Складні хірургічні втручання — поки ви спите",
-        "desc": "Ми нівелювали головний бар'єр — страх болю та хірургії. Усі виды імплантації та кісткової пластики проводяться під глибокою седацією. Наша ліцензована анестезіологічна команда контролює кожен ваш подих.",
-        "point1": "Моніторинг життєвих показників за стандартами МОЗ",
-        "point2": "Легкий вихід із медичного сну без похмільного синдрому",
-        "point3": "Можливість провести повну санацію рота за 1 візит"
-      },
-      "lab": {
-        "kicker": "ВЛАСНЕ ВИРОБНИЦТВО",
-        "title": "Цифрова зуботехнічна лабораторія всередині клініки",
-        "desc": "Ми не надсилаємо ваші зліпки стороннім підрядникам. Власна CAD/CAM лабораторія дозволяє ортопеду та зубному техніку працювати пліч-о-пліч. Протез виготовляється та коригується безпосередньо під час вашого візиту.",
-        "benefit1": "Скорочення терміну виготовлення тимчасового протеза до 3 годин",
-        "benefit2": "Мікронна точність прилягання без натирання та дискомфорту",
-        "benefit3": "Індивідуальний підбір кольору та світлопроникності коронки"
-      },
       "calculator": {
-        "kicker": "ОНЛАЙН РОЗРАХУНОК",
-        "title": "Сплануйте свій бюджет прозоро",
-        "subtitle": "Оберіть базові параметри для отримання орієнтовної вартості відновлення зубів за офіційними тарифами клініки Praktika.",
-        "fieldVolume": "Оберіть кількість імплантатів або тип послуги:",
-        "fieldAtrophy": "Стан кісткової тканинищелепи:",
-        "atrophyNormal": "Нормальний стан (без додаткової пластики)",
-        "atrophySevere": "Виражена атрофія (потрібна синус-ліфтинг чи остеопластика)",
-        "fieldTech": "Хірургічний протокол:",
-        "techStandard": "Класичний хірургічний протокол",
-        "techGuided": "3D-навігаційне моделювання (шаблонний метод)",
-        "labelResult": "Попередній кошторис:",
-        "disclaimer": "*Розрахунок є орієнтовним. Остаточний план лікування складається хірургом на основі комп'ютерної томографії (КТ) у клініці."
+        "kicker": "ПРОГРАМНИЙ АНАЛІЗАТОР КЛІНІЧНОГО КОШТОРИСУ",
+        "title": "Розрахунок вартості реабілітації",
+        "subtitle": "Оберіть хірургічні параметри для автоматичного формування попереднього кошторису згідно з протоколами лікування.",
+        "labels": {
+          "treatmentType": "Концепція хірургічного втручання",
+          "implantSystem": "Клінічний бренд імплантатів",
+          "sedation": "Медикаментозний сон (контрольована седація)",
+          "guide": "Шаблонне позиціонування (3D навігація)",
+          "total": "Розрахунковий кошторис лікування:",
+          "calculate": "Розрахувати детально",
+          "submit": "Зафіксувати ціну за номером",
+          "name": "Ваше ім'я",
+          "phone": "Контактний телефон",
+          "success": "Параметри лікування зафіксовано. Координатор клініки зателефонує вам із готовим планом."
+        }
       },
-      "cases": {
-        "kicker": "ПОРТФОЛІО УСПІШНИХ РЕАБІЛІТАЦІЙ",
-        "title": "Робота, якою ми пишаємося",
-        "subtitle": "Подивіться на реальні процеси та результати ортопедичного та хірургічного лікування наших пацієнтів у Харкові."
+      "beforeAfter": {
+        "kicker": "ПОРТФОЛІО КЛІНІЧНИХ ВИПАДКІВ",
+        "title": "Результати тотальної реабілітації",
+        "subtitle": "Порівняйте початковий стан зубного ряду пацієнтів та фінальний ортопедичний результат після встановлення незнімного протеза.",
+        "cases": [
+          {
+            "title": "Реабілітація All-on-4 під медикаментозним сном",
+            "details": "Пацієнт 52 роки. Повна відсутність зубів на верхній щелепі. Встановлено 4 імплантати Nobel Biocare за шаблоном та незнімний адаптивний протез за 16 годин.",
+            "beforeUrl": "https://praktika.dentist/wp-content/uploads/2025/12/3-800x533.jpg",
+            "afterUrl": "https://praktika.dentist/wp-content/uploads/2025/12/2-800x533.jpg"
+          },
+          {
+            "title": "Вилицева імплантація Zygoma при екстремальній атрофії кістки",
+            "details": "Пацієнтка 61 рік. Критичний дефіцит кісткової тканини. Встановлено 2 вилицеві імплантати Zygoma та фіксований металокомпозитний протез.",
+            "beforeUrl": "https://praktika.dentist/wp-content/uploads/2025/12/5-800x533.jpg",
+            "afterUrl": "https://praktika.dentist/wp-content/uploads/2025/12/4-800x533.jpg"
+          }
+        ]
       },
-      "faq": {
-        "kicker": "ПОШИРЕНІ ЗАПИТАННЯ",
-        "title": "Про що найчастіше запитують пацієнти",
+      "trust": {
+        "kicker": "ТЕХНОЛОГІЧНІ СТАНДАРТИ КЛІНІКИ",
+        "title": "Чому пацієнти обирають Praktika",
+        "subtitle": "Ми поєднали точність цифрових інженерних рішень та найвищу хірургічну кваліфікацію в одному центрі.",
         "list": [
           {
-            "q": "Чи дійсно можна встановити зуби за один день при All-on-4?",
-            "a": "Так, це стандартний протокол швидкої реабілітації. У день операції ми встановлюємо 4 імплантати та фіксуємо адаптаційний незнімний протез, виготовлений у нашій цифровій лабораторії. Ви виходите з клініки з повноцінними новими зубами."
+            "title": "Власна цифрова CAD/CAM лабораторія",
+            "description": "Виготовлення протеза контролюється лікарем безпосередньо в клініці. Ніяких тривалих очікувань та неточностей прилягання."
           },
           {
-            "q": "У чому особливість вилицевої імплантації Zygoma?",
-            "a": "Це унікальна методика для людей, які роками ходили без зубів та мають екстремальну втрату кістки на верхній щелепі. Ми фіксуємо спеціальні довгі імплантати безпосередньо у міцну вилицеву кістку. Це дозволяє уникнути болючих та тривалих операцій з нарощування кістки."
+            "title": "Хірургічні операції під мікроскопом",
+            "description": "Усі терапевтичні та ортопедичні етапи виконуються під 25-кратним збільшенням, що гарантує максимальне збереження здорових тканин та точність країв."
           },
           {
-            "q": "Скільки коштує лікування під седацією?",
-            "a": "Седація сплачується погодинно (4 500 грн за годину). Зазвичай для операції All-on-4 необхідно близько 2-3 годин медичного сну. Весь цей час пацієнт комфортно спить під наглядом анестезіолога."
+            "title": "Офіційна ліцензія МОЗ України",
+            "description": "Ми дотримуємося найсуворіших стандартів стерилізації інструментів, операційного блоку та використовуємо лише сертифіковані імплантаційні системи."
+          }
+        ]
+      },
+      "process": {
+        "kicker": "ЕТАПИ ЛІКУВАЛЬНОГО ПРОЦЕСУ",
+        "title": "Шлях до відновлення посмішки",
+        "subtitle": "Оцифрований та передбачуваний процес лікування від першого КТ-знімка до фінального контролю прилягання.",
+        "steps": [
+          {
+            "num": "01",
+            "title": "3D-діагностика та моделювання",
+            "description": "Проведення комп'ютерної томографії безпосередньо в клініці. Створення віртуального хірургічного шаблону в спеціалізованому ПЗ."
           },
           {
-            "q": "Як довго тримається результат імплантації?",
-            "a": "За умови правильної гігієни та регулярних оглядів, титанові імплантати служать пацієнту все життя. Ортопедичні коронки та протези з діоксиду цирконію мають термін служби від 15-20 років."
+            "num": "02",
+            "title": "Хірургічний етап під седацією",
+            "description": "Усі хірургічні маніпуляції проходять під час лікувального сну. Пацієнт не відчуває ні страху, ні болю. Встановлення імплантатів займає до 2 годин."
           },
           {
-            "q": "Чи працює клініка під час повітряних тривог та блекаутів у Харкові?",
-            "a": "Так, Praktika повністю автономна. Ми оснащені потужними генераторами, системами резервного водопостачання та стабільним супутниковим інтернетом. Лікування під наркозом та хірургічні втручання відбуваються в штатному режимі незалежно від зовнішніх обставин."
+            "num": "03",
+            "title": "Виготовлення та фіксація протеза",
+            "description": "Власна цифрова лабораторія виготовляє тимчасовий незнімний протез за технологією CAD/CAM. Фіксація відбувається в день операції або наступного дня."
+          },
+          {
+            "num": "04",
+            "title": "Контроль та фінальне протезування",
+            "description": "Через 4-6 місяців після повної інтеграції імплантатів виконується заміна тимчасової конструкції на постійний ультраміцний керамокомпозит або цирконій."
+          }
+        ]
+      },
+      "videoTour": {
+        "kicker": "СТЕРИЛЬНИЙ ТЕХНОЛОГІЧНИЙ РЕЗЕРВУАР",
+        "title": "Стандарти хірургічної стерильності",
+        "subtitle": "Перегляньте коротке відео про підготовку інструментів та операційного блоку в клініці Praktika Харків.",
+        "videoUrl": "https://videos.pexels.com/video-files/4490546/4490546-hd_1280_720_50fps.mp4",
+        "posterUrl": "https://images.pexels.com/videos/4490546/pexels-photo-4490546.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+      },
+      "gallery": {
+        "kicker": "ГАЛЕРЕЯ КЛІНІЧНОГО ПРОСТОРУ",
+        "title": "Операційний блок та цифрова лабораторія",
+        "subtitle": "Реальні кадри з наших кабінетів, операційного блоку та зуботехнічної лабораторії у Харкові."
+      },
+      "faq": {
+        "kicker": "ДОВІДКОВИЙ РОЗДІЛ ДЛЯ ПАЦІЄНТІВ",
+        "title": "Відповіді на поширені питання",
+        "subtitle": "Дізнайтеся більше про безпеку матеріалів, особливості седації та гарантійні зобов'язання.",
+        "list": [
+          {
+            "q": "Чи дійсно імплантація за протоколом All-on-4 є безболісною?",
+            "a": "Так, оскільки в більшості випадків процедура проводиться під седацією (медикаментозним сном). Ви засинаєте, а прокидаєтеся вже з встановленими імплантатами та зафіксованим протезом. Післяопераційний дискомфорт легко купується стандартними анальгетиками."
+          },
+          {
+            "q": "Що таке вилицева імплантація Zygoma і кому вона підходить?",
+            "a": "Zygoma — це революційний протокол для пацієнтів з критичним дефіцитом кісткової тканини на верхній щелепі. Замість тривалого та хворобливого синус-ліфтингу (кісткової пластики), імплантати фіксуються у вилицеву кістку, яка є надзвичайно щільною та ніколи не атрофується."
+          },
+          {
+            "q": "Скільки служить постійний цирконієвий протез?",
+            "a": "Термін служби цирконієвих коронок та мостоподібних протезів за умови правильної гігієни становить понад 15-20 років. Ми надаємо довічну гарантію на імплантати від виробників та офіційну клінічну гарантію на ортопедичні роботи."
+          },
+          {
+            "q": "Чи є якісь приховані витрати під час лікування?",
+            "a": "Ні. Ми складаємо комплексний план лікування з точним прорахунком вартості кожного етапу до початку будь-яких втручань. Сума фіксується в договорі та залишається незмінною."
+          },
+          {
+            "q": "Скільки триває адаптація до нового протезу?",
+            "a": "Сучасні цифрові протоколи дозволяють змоделювати протез із урахуванням вашого індивідуального прикусу. Повна адаптація мовлення та жувальної функції відбувається впродовж 3-7 днів."
           }
         ]
       },
       "contact": {
-        "kicker": "ДІАГНОСТИКА ТА ЗАПИС",
-        "title": "Зробіть перший крок до здорової посмішки",
-        "subtitle": "Залиште заявку на первинну консультацію хірурга-імплантолога з комп'ютерною томографією (КТ) прямо зараз.",
-        "formName": "Ваше ім'я та прізвище",
-        "formPhone": "Контактний номер телефону",
-        "formDate": "Бажана дата візиту",
-        "formService": "Послуга, яка вас цікавить",
-        "formSubmit": "Записатись на КТ та консультацію",
-        "success": "Дякуємо! Ваша заявка зареєстрована. Координатор клініки зв'яжеться з вами протягом 15 хвилин для підтвердження часу.",
-        "error": "Сталася помилка. Будь ласка, зателефонуйте нам напряму за номером +38 050 771 75 35."
+        "kicker": "ЗАПИС НА КОНСУЛЬТАЦІЮ ТА 3D ДІАГНОСТИКУ",
+        "title": "Оберіть зручний час для вашої нової посмішки",
+        "subtitle": "Залиште контакти, і наш медичний координатор зв'яжеться з вами для підбору зручного часу консультації та КТ-діагностики.",
+        "form": {
+          "name": "Ваше ім'я та прізвище",
+          "phone": "+38 (0__) ___-__-__",
+          "date": "Бажана дата візиту",
+          "service": "Напрямок лікування",
+          "message": "Додаткова інформація (скарги, побажання)",
+          "submit": "Записатися на діагностику",
+          "success": "Вашу заявку прийнято. Очікуйте на дзвінок найближчим часом!"
+        },
+        "info": {
+          "address": "проспект Науки, 77, Харків, UA",
+          "workHours": "Пн - Сб: 09:00 - 19:00, Нд: Вихідний",
+          "phone": "+38 050 771 75 35",
+          "email": "praktika.kh@gmail.com"
+        }
+      },
+      "footer": {
+        "license": "Ліцензія МОЗ України серія АЕ № 571435 від 14.03.2018 р.",
+        "copyright": "Стоматологія Praktika Харків. Всі права захищені."
       }
     },
     "en": {
       "meta": {
-        "title": "Praktika — Complex Dental Implants and Prosthodontics in Kharkiv",
-        "description": "High-tech dental restoration in Kharkiv. All-on-4, All-on-6, Zygoma zygomatic implants, and prosthetic treatment under sedation. In-house digital laboratory.",
-        "keywords": "dental implants kharkiv, teeth in a day, all on 4 ukraine, zygoma implants, dental treatment under sedation",
+        "title": "Praktika Dental Clinic Kharkiv — Digital Dental Implants",
+        "description": "Center of surgical dentistry and teeth prosthetics in Kharkiv. All-on-4/6 clinical protocols, Zygoma implants, sedation sleep treatment. In-house digital CAD/CAM lab.",
+        "keywords": "dental clinic kharkiv, dental implants kharkiv, all on 4 kharkiv, zygoma implants, zirconium crowns kharkiv",
         "lang": "en"
       },
-      "common": {
-        "currency": "UAH",
-        "phone": "+38 050 771 75 35",
-        "email": "praktika.kh@gmail.com",
-        "address": "77 Nauky Avenue, Kharkiv",
-        "hours": "Mon-Sat: 09:00 - 19:00",
-        "cta": "Book Now",
-        "calculate": "Calculate Cost",
-        "more": "Learn More"
-      },
       "nav": {
-        "about": "About",
-        "services": "Services & Prices",
-        "calculator": "Calculator",
-        "cases": "Clinical Cases",
-        "faq": "For Patients"
+        "home": "Home",
+        "services": "Clinical Solutions",
+        "calculator": "Estimation",
+        "beforeAfter": "Cases Portfolio",
+        "about": "Technology",
+        "faq": "FAQ",
+        "contact": "Registration",
+        "cta": "Schedule Appointment"
       },
       "hero": {
-        "kicker": "SURGICAL PRECISION • KHARKIV, OLEKSIIVKA",
-        "title": "Restore your smile in one day *without* fear or compromise",
-        "description": "Full-arch mouth rehabilitation using All-on-4, All-on-6 protocols and advanced Zygomatic (Zygoma) implantation under sedation. In-house digital 3D lab for perfect aesthetic alignment.",
-        "badgeText": "587+ Google reviews",
-        "phoneLabel": "Duty coordinator on line:",
-        "addressShort": "Oleksiivska metro"
+        "kicker": "CLINICAL SURGERY & DIGITAL ORTHOPEDICS · KHARKIV · EST. 2018",
+        "title": "Complex Dental Implants & Total Mouth Rehabilitation",
+        "titleItalic": "pain-free",
+        "subtitle": "Full mouth reconstruction utilizing All-on-4/6 protocols and Zygoma zygomatic implants with temporary adaptive bridge delivery within 24 hours via in-house digital CAD/CAM laboratory.",
+        "videoUrl": "https://videos.pexels.com/video-files/6192977/6192977-hd_1280_720_30fps.mp4",
+        "posterUrl": "https://images.pexels.com/videos/6192977/bank-card-calculation-caries-caries-removal-6192977.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+        "ctaPrimary": "Calculate Cost",
+        "ctaSecondary": "Consult Surgeon",
+        "scroll": "SCROLL"
       },
-      "stats": [
-        {"value": "587+", "label": "Google Reviews with 4.9+ rating"},
-        {"value": "2018", "label": "Year of foundation in Kharkiv"},
-        {"value": "100%", "label": "Digital positioning control"},
-        {"value": "100%", "label": "Safe deep sedation monitored by anesthesiologist"}
-      ],
-      "about": {
-        "kicker": "DIGITAL DENTAL EVOLUTION",
-        "title": "Praktika is more than just dental care. It's engineering precision.",
-        "text1": "We founded our clinic in Kharkiv in 2018 with a clear goal: to change the paradigm of complex dental rehabilitation. We rejected analog dental impressions and imprecise old-school surgical templates.",
-        "text2": "Today, every single case is carefully pre-planned in virtual 3D spaces. We produce navigation surgery templates with micron accuracy, ensuring a 100% implant acceptance rate and unmatched tooth aesthetics.",
-        "image1_alt": "Modern dental surgery room at Praktika clinic Kharkiv",
-        "image2_alt": "Diagnostic equipment and dental microscope"
+      "socialProof": {
+        "rating": "4.9 / 5.0",
+        "reviewsCount": "based on 587+ Google Maps reviews",
+        "reviewsBadge": "CERTIFIED GOOGLE MAPS RATING",
+        "tagline": "Clinical accuracy verified by our automated 3D digital navigation outcomes."
       },
       "services": {
-        "kicker": "PRICE LIST & SOLUTIONS",
-        "title": "Full-cycle surgery and digital prosthetics",
-        "subtitle": "Official warranty and highly transparent cost estimation of every step of treatment with no hidden fees.",
+        "kicker": "Surgical and Orthopedic Pricing Directory",
+        "title": "Protocol Classifications & Fixed Rates",
+        "subtitle": "All costs include complete surgical and orthopedic packages with no hidden clinic fees.",
+        "categories": {
+          "all": "Full Spectrum",
+          "implants": "Surgery / Implants",
+          "ortho": "Prosthetics / Lab",
+          "general": "Therapy & Sleep"
+        },
         "list": [
           {
-            "id": "all4",
-            "title": "All-on-4 Dental Implants",
-            "desc": "Full-arch fixed bridge fixed on 4 implants in a single day for fully toothless jaws.",
-            "price": "from 140,000 UAH",
+            "id": "all-on-4",
+            "category": "implants",
+            "title": "All-on-4 Surgical Protocol",
+            "description": "Complete mouth rehabilitation on 4 dental implants in 24 hours. Immediate loading with fixed structural bridge.",
+            "price": "115,000 UAH",
+            "features": ["Fixed adaptive prosthesis in 16 hours", "4 Nobel Biocare implants", "Digital guided surgical guide template"],
             "tag": "Most Popular"
           },
           {
-            "id": "all6",
-            "title": "All-on-6 Dental Implants",
-            "desc": "Maximum stability and natural load distribution on 6 titanium dental implants.",
-            "price": "from 190,000 UAH",
-            "tag": "Reliable"
+            "id": "all-on-6",
+            "category": "implants",
+            "title": "All-on-6 Surgical Protocol",
+            "description": "Reinforced structural prosthesis on 6 dental implants for perfect loading distribution under bone loss.",
+            "price": "160,000 UAH",
+            "features": ["Increased chewing load resistance", "Bone atrophy prevention", "6 original Straumann implants"],
+            "tag": "For Complex Cases"
           },
           {
             "id": "zygoma",
-            "title": "Zygoma Zygomatic Implants",
-            "desc": "Anchoring implants in the zygomatic bone for severe jaw bone atrophy cases.",
-            "price": "from 280,000 UAH",
-            "tag": "Kharkiv Exclusive"
+            "category": "implants",
+            "title": "Zygoma Zygomatic Implantation",
+            "description": "Advanced surgery for extreme upper jaw bone atrophy without bone grafting. Implants anchored in dense zygoma bone.",
+            "price": "195,000 UAH",
+            "features": ["No sinus lifts or bone augmentations", "Bridge delivery in 24 hours", "Lifetime implant warranty coverage"],
+            "tag": "Exclusive Tech"
+          },
+          {
+            "id": "single-implant",
+            "category": "implants",
+            "title": "Single Implant & Zirconium Crown",
+            "description": "Single titanium fixture placement followed by zirconium crown attachment over an individual custom abutment.",
+            "price": "12,000 UAH",
+            "features": ["Classic 2 stage surgical protocol", "Perfect gum tissue transition integration", "Biocompatible custom zirconium abutment"],
+            "tag": "Base Rate"
+          },
+          {
+            "id": "zirconium",
+            "category": "ortho",
+            "title": "CAD/CAM Zirconium Crown",
+            "description": "Ultra durable cosmetic dental crown milled on specialized German Imes-Icore equipment according to your 3D optical model.",
+            "price": "14,000 UAH",
+            "features": ["Margin precision integration under 10 μm", "Organic zirconium translucency properties", "Biocompatible gum tissue adaptation"],
+            "tag": "Laboratory"
+          },
+          {
+            "id": "veneers",
+            "category": "ortho",
+            "title": "E-max Ceramic Veneer",
+            "description": "Ultra thin high density cosmetic ceramic plate for visual improvement of frontal teeth. Applied under clinical microscope.",
+            "price": "16,500 UAH",
+            "features": ["Minimal enamel preparation required", "Exceptional clinical color persistence", "DSD smile design modeling beforehand"],
+            "tag": "Aesthetics"
           },
           {
             "id": "sedation",
-            "title": "Treatment Under Sedation",
-            "desc": "Full medical sleep monitored by dedicated anesthesiology team. Stress-free.",
-            "price": "4,500 UAH/hour",
-            "tag": "Totally Painless"
+            "category": "general",
+            "title": "Surgical Care under Sedation",
+            "description": "Surgical procedures completed while the patient is under controlled medical sleep supervised by our anesthesia specialist.",
+            "price": "4,500 UAH",
+            "features": ["Complete elimination of surgical pain", "Certified safe European anesthetic drugs", "Continuous vital parameters monitoring"],
+            "tag": "Per Hour"
           },
           {
-            "id": "zircon",
-            "title": "Zirconium Dental Crowns",
-            "desc": "Ultra-strong dental crowns designed and milled on advanced CAD/CAM in-house.",
-            "price": "from 14,000 UAH",
-            "tag": "Digital Precision"
-          },
-          {
-            "id": "veneer",
-            "title": "Ceramic Veneers E-max",
-            "desc": "Creating flawless smile aesthetics. Minimal preparation of native tooth enamel.",
-            "price": "from 16,000 UAH",
-            "tag": "Premium Aesthetics"
+            "id": "3d-ct",
+            "category": "general",
+            "title": "Computed 3D Jaw Tomography",
+            "description": "Diagnostic CBCT scanning of patient jaws for precise digital positioning of planned titanium implants.",
+            "price": "1,200 UAH",
+            "features": ["Extremely low diagnostic radiation dosage", "Sub millimeter image definition accuracy", "Results export on flash media"],
+            "tag": "Diagnostics"
           }
         ]
       },
-      "sedation": {
-        "kicker": "PAINLESS EXPERIENCE",
-        "title": "Complex surgical procedures while you sleep",
-        "desc": "We have broken the barrier of surgery-related fear and pain. All implantations and bone grafting are done under deep sedation. Our certified anesthesiology staff controls your condition step by step.",
-        "point1": "Constant vital metrics monitoring by state health standards",
-        "point2": "Smooth recovery from medical sleep without any hangover feelings",
-        "point3": "Ability to perform entire full-mouth rehabilitation in just 1 visit"
-      },
-      "lab": {
-        "kicker": "IN-HOUSE PRODUCTION",
-        "title": "Digital laboratory right inside our clinic",
-        "desc": "We do not ship dental impressions to remote third-party contractors. Our on-site CAD/CAM lab allows the prosthodontist and dental technician to co-design your restoration synchronously.",
-        "benefit1": "Reduction of provisional bridge manufacturing time down to 3 hours",
-        "benefit2": "Micron-level margins accuracy to prevent gum irritation",
-        "benefit3": "Perfect customization of shade depth and light translucency"
-      },
       "calculator": {
-        "kicker": "ONLINE COST ESTIMATE",
-        "title": "Plan your budget with absolute transparency",
-        "subtitle": "Choose basic clinical inputs to calculate the preliminary cost of your implantation according to official clinic tariffs.",
-        "fieldVolume": "Choose quantity of implants or service type:",
-        "fieldAtrophy": "Bone tissue condition of your jaw:",
-        "atrophyNormal": "Normal bone level (no bone grafting needed)",
-        "atrophySevere": "Severe bone loss (requires sinus lift or bone graft)",
-        "fieldTech": "Surgical technique:",
-        "techStandard": "Standard free-hand surgical protocol",
-        "techGuided": "3D-guided navigation template technique",
-        "labelResult": "Preliminary estimation:",
-        "disclaimer": "*This estimation is provisional. Final clinical cost is set by the surgeon based on computed tomography (CT) in the clinic."
+        "kicker": "CLINICAL ESTIMATE CALCULATOR PROGRAM",
+        "title": "Treatment Cost Estimator",
+        "subtitle": "Select surgical parameters to automatically generate an itemized treatment estimate matching our clinical protocols.",
+        "labels": {
+          "treatmentType": "Surgical Protocol Strategy",
+          "implantSystem": "Clinical Implant Manufacturer Brand",
+          "sedation": "Controlled Medical Sleep (Sedation)",
+          "guide": "Guided Surgery Template (3D Navigation)",
+          "total": "Calculated Treatment Estimate:",
+          "calculate": "Detailed Calculation",
+          "submit": "Secure Pricing via Phone Number",
+          "name": "Your Name",
+          "phone": "Contact Phone Number",
+          "success": "Clinical parameters received. Our medical coordinator will call you back with the itemized roadmap."
+        }
       },
-      "cases": {
-        "kicker": "COMPLEX REHABILITATION PORTFOLIO",
-        "title": "The art we take pride in",
-        "subtitle": "Explore the actual diagnostic steps and high-end prosthetic results of patients treated in Kharkiv."
+      "beforeAfter": {
+        "kicker": "CLINICAL CASES PORTFOLIO",
+        "title": "Total Rehabilitation Outcomes",
+        "subtitle": "Compare initial diagnostic dental conditions with the final orthopedic rehabilitation results after fixed bridge integration.",
+        "cases": [
+          {
+            "title": "All-on-4 Rehabilitation Under Sedation",
+            "details": "Patient 52 y.o. Complete adentia on the upper jaw. Integrated 4 Nobel Biocare implants via template with temporary fixed bridge in 16 hours.",
+            "beforeUrl": "https://praktika.dentist/wp-content/uploads/2025/12/3-800x533.jpg",
+            "afterUrl": "https://praktika.dentist/wp-content/uploads/2025/12/2-800x533.jpg"
+          },
+          {
+            "title": "Zygoma Implantation for Extreme Maxillary Atrophy",
+            "details": "Patient 61 y.o. Severe bone loss. Placed 2 zygomatic Zygoma implants and delivered a fixed metal composite bridge.",
+            "beforeUrl": "https://praktika.dentist/wp-content/uploads/2025/12/5-800x533.jpg",
+            "afterUrl": "https://praktika.dentist/wp-content/uploads/2025/12/4-800x533.jpg"
+          }
+        ]
       },
-      "faq": {
-        "kicker": "FREQUENTLY ASKED QUESTIONS",
-        "title": "Answering your dental implant concerns",
+      "trust": {
+        "kicker": "CLINICAL TECHNOLOGY STANDARDS",
+        "title": "Why Patients Trust Praktika",
+        "subtitle": "We have combined high precision digital engineering and superior surgical qualifications under one clinical center.",
         "list": [
           {
-            "q": "Is it actually possible to get teeth in one single day with All-on-4?",
-            "a": "Yes, this is an established immediate-load protocol. On the surgery day we position 4 titanium anchors and fit a tailored provisional bridge milled in our lab. You leave our center with functional teeth."
+            "title": "In-house CAD/CAM Digital Lab",
+            "description": "Prosthetic production is monitored by the doctor on-site. Zero long waiting lists or marginal mismatch defects."
           },
           {
-            "q": "What makes Zygoma zygomatic implants special?",
-            "a": "It is a highly specialized rescue procedure for patients with complete upper jaw bone atrophy. We anchor long implants directly into zygomatic (cheek) bones, avoiding lengthy and expensive bone graft surgeries."
+            "title": "Surgical Procedures Under Microscope",
+            "description": "All therapeutic and restorative phases are completed under 25x magnification, ensuring natural tissue preservation."
           },
           {
-            "q": "What is the cost of dental treatment under sedation?",
-            "a": "Sedation is billed hourly (4,500 UAH/hr). Generally, a standard All-on-4 implant surgery takes around 2 to 3 hours of comfortable medical sleep."
+            "title": "State MOH Ukraine Registration",
+            "description": "We follow absolute surgical sterile preparation guidelines and exclusively use fully certified premium implant brands."
+          }
+        ]
+      },
+      "process": {
+        "kicker": "TREATMENT ROADMAP TIMELINE",
+        "title": "Clinical Treatment Progress Stages",
+        "subtitle": "A fully digitized, predictable medical journey from your first CBCT scan to final bite occlussion check.",
+        "steps": [
+          {
+            "num": "01",
+            "title": "3D Diagnostics & Modeling",
+            "description": "Comprehensive CBCT jaw scanning completed on site. Developing a virtual surgical navigation guide template in our software."
           },
           {
-            "q": "How long will my implants last?",
-            "a": "Given excellent daily home hygiene and standard diagnostic dental checks, titanium implants can serve you for life. Digital zirconium crown systems last 15-20+ years."
+            "num": "02",
+            "title": "Surgical Implantation Phase",
+            "description": "All dental surgeries are completed under medical sedation sleep. Patients do not feel surgical stress or pain. Implantation takes up to 2 hours."
           },
           {
-            "q": "Does the clinic operate during electricity outages in Kharkiv?",
-            "a": "Yes, Praktika is fully prepared and autonomous. We operate heavy-duty backup generators, storage water supplies, and satellite internet feeds. All surgery sessions continue safely."
+            "num": "03",
+            "title": "CAD/CAM Bridge Fabrication",
+            "description": "Our in-house digital laboratory mills a fixed temporary adaptive bridge. Orthopedic integration is done on the surgery day."
+          },
+          {
+            "num": "04",
+            "title": "Permanent Orthopedic Transition",
+            "description": "Following implant osseointegration (4-6 months), the temporary setup is replaced with an ultra strong permanent zirconium or ceramic setup."
+          }
+        ]
+      },
+      "videoTour": {
+        "kicker": "SURGICAL STERILITY MATRIX",
+        "title": "Standard Operating Sterility Guidelines",
+        "subtitle": "Watch a brief video outlining instrument sterile preparation and operatory guidelines inside Praktika Kharkiv.",
+        "videoUrl": "https://videos.pexels.com/video-files/4490546/4490546-hd_1280_720_50fps.mp4",
+        "posterUrl": "https://images.pexels.com/videos/4490546/pexels-photo-4490546.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+      },
+      "gallery": {
+        "kicker": "CLINICAL FACILITY PREMISES",
+        "title": "Surgical Theater & Digital Lab Tour",
+        "subtitle": "Real photos of our sterile surgical blocks, diagnostic suites, and digital milling centers in Kharkiv."
+      },
+      "faq": {
+        "kicker": "PATIENT REFERENCE CORNER",
+        "title": "Answers to Frequent Questions",
+        "subtitle": "Learn more about implant material longevity, medical sleep parameters, and clinical guarantees.",
+        "list": [
+          {
+            "q": "Is the All-on-4 surgical protocol truly painless?",
+            "a": "Yes, because the clinical procedure is completed under controlled sedation sleep. You rest comfortably and wake up with your implants secure and adaptive bridge fixed. Postoperative discomfort is easily controlled with simple analgesics."
+          },
+          {
+            "q": "What is Zygoma zygomatic implantation?",
+            "a": "Zygoma is a revolutionary protocol for patients with severe upper jaw bone loss. Instead of long, traumatic bone grafts, implants are locked inside dense zygomatic bone, which never suffers atrophy."
+          },
+          {
+            "q": "How long do CAD/CAM zirconium prostheses last?",
+            "a": "With standard oral hygiene, zirconium crowns and fixed bridges last for more than 15-20 years. We supply lifetime structural guarantees on original implant fixtures."
+          },
+          {
+            "q": "Are there any hidden treatment costs?",
+            "a": "No. We formulate a detailed clinical cost plan before launching any procedures. The cost is locked contractually and does not increase."
+          },
+          {
+            "q": "How long is the adaptive chewing phase?",
+            "a": "Since we model the prosthetics digitally based on individual jaw kinematics, patients adapt to speaking and eating comfortably within 3 to 7 days."
           }
         ]
       },
       "contact": {
-        "kicker": "DIAGNOSTICS & BOOKING",
-        "title": "Take the first step toward your healthy smile",
-        "subtitle": "Submit an appointment request for a primary diagnostic check with CT scanning in Kharkiv.",
-        "formName": "Your Name",
-        "formPhone": "Phone Number",
-        "formDate": "Desired Appointment Date",
-        "formService": "Interested Service",
-        "formSubmit": "Book Diagnostic Visit with CT Scan",
-        "success": "Thank you! Your booking is registered. Our treatment coordinator will contact you in 15 minutes to confirm the exact time slot.",
-        "error": "Error occurred. Please call us directly via phone +38 050 771 75 35."
+        "kicker": "APPOINTMENT REGISTRATION & CBCT DIAGNOSTICS",
+        "title": "Choose your time for a new smile",
+        "subtitle": "Submit your details. Our clinical coordinator will call back shortly to choose a convenient hour for diagnostics.",
+        "form": {
+          "name": "Your First and Last Name",
+          "phone": "+38 (0__) ___-__-__",
+          "date": "Requested appointment date",
+          "service": "Clinical direction",
+          "message": "Additional details (your main concerns)",
+          "submit": "Schedule 3D Diagnostics Session",
+          "success": "Your appointment request has been secured. Our clinical coordinator will contact you shortly!"
+        },
+        "info": {
+          "address": "prospect Nauky, 77, Kharkiv, UA",
+          "workHours": "Mon - Sat: 09:00 - 19:00, Sun: Closed",
+          "phone": "+38 050 771 75 35",
+          "email": "praktika.kh@gmail.com"
+        }
+      },
+      "footer": {
+        "license": "Ministry of Health of Ukraine medical license series AE № 571435 issued 14.03.2018.",
+        "copyright": "Praktika Dental Clinic Kharkiv. All rights reserved."
       }
     }
   }
